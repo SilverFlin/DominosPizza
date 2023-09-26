@@ -1,0 +1,180 @@
+<mxfile host="app.diagrams.net" modified="2023-09-26T03:13:06.845Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 OPR/102.0.0.0" etag="zaL-gBmXrDCSeHw6LJ1B" version="21.8.2" type="google">
+  <diagram name="Page-1" id="uQClqllL-ADNsrzteAgd">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-3" value="take turn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-1" target="xNemJZNa_XYcOmy6WIEb-2">
+          <mxGeometry y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-17" value="select domino to put" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-1" target="xNemJZNa_XYcOmy6WIEb-14">
+          <mxGeometry x="0.4894" y="20" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="155" y="290" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-36" value="pick a domino from the pool" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-1" target="xNemJZNa_XYcOmy6WIEb-35">
+          <mxGeometry x="-0.1698" y="-75" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="155" y="585" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-1" value="Player" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="130" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-2" target="xNemJZNa_XYcOmy6WIEb-7">
+          <mxGeometry x="-0.0588" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-2" value="Game GUI" style="shape=umlBoundary;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="120" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-4" target="xNemJZNa_XYcOmy6WIEb-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-4" value="Paint table´s dominoes" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="120" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-7" target="xNemJZNa_XYcOmy6WIEb-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-7" value="get table´s dominoes" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="120" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-10" target="xNemJZNa_XYcOmy6WIEb-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-10" value="get other player´s&amp;nbsp;amount dominoes" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="120" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-12" target="xNemJZNa_XYcOmy6WIEb-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="985" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-12" value="paint other player´s dominoes" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="120" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-26" value="select where put it" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-14" target="xNemJZNa_XYcOmy6WIEb-25">
+          <mxGeometry x="0.8571" y="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="410" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-14" value="Game GUI" style="shape=umlBoundary;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="250" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-20" value="he has a min a domino to put" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-16" target="xNemJZNa_XYcOmy6WIEb-14">
+          <mxGeometry x="0.0508" y="-20" relative="1" as="geometry">
+            <mxPoint x="760" y="320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="670" y="320" />
+              <mxPoint x="670" y="290" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-34" value="he doesnt have a domino to put" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-16" target="xNemJZNa_XYcOmy6WIEb-35">
+          <mxGeometry x="0.297" y="-20" relative="1" as="geometry">
+            <mxPoint x="985" y="490" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="985" y="590" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-16" value="validate player´s dominoes to put" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="280" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-28" value="its ok" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-25" target="xNemJZNa_XYcOmy6WIEb-27">
+          <mxGeometry x="-0.1" y="11" relative="1" as="geometry">
+            <mxPoint x="-6" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-30" value="its not ok" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-25" target="xNemJZNa_XYcOmy6WIEb-14">
+          <mxGeometry x="0.0303" y="10" relative="1" as="geometry">
+            <mxPoint x="570" y="480" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="435" y="480" />
+              <mxPoint x="310" y="480" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-25" value="validate the domino´s number" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="370" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-27" target="xNemJZNa_XYcOmy6WIEb-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-27" value="draw domino on table" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="370" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-31" value="end turn" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="370" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-35" target="xNemJZNa_XYcOmy6WIEb-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-35" value="Game GUI" style="shape=umlBoundary;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="545" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-40" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-37" target="xNemJZNa_XYcOmy6WIEb-39">
+          <mxGeometry x="-0.0526" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-48" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-37" target="xNemJZNa_XYcOmy6WIEb-47">
+          <mxGeometry x="0.1429" y="20" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-37" value="does pool have dominoes?" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="305" y="690" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-39" target="xNemJZNa_XYcOmy6WIEb-45">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="730" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-39" value="give one domino to the player" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="690" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-45" target="xNemJZNa_XYcOmy6WIEb-35">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="675" y="640" />
+              <mxPoint x="360" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-45" value="draw new domino" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="690" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-47" value="pass turn" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="305" y="840" width="70" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-49" target="xNemJZNa_XYcOmy6WIEb-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xNemJZNa_XYcOmy6WIEb-49" target="xNemJZNa_XYcOmy6WIEb-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xNemJZNa_XYcOmy6WIEb-49" value="DominoTale" style="ellipse;shape=umlEntity;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
