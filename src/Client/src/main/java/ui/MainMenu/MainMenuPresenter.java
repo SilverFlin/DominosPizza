@@ -4,6 +4,7 @@ import data.dominio.Avatar;
 import data.dominio.DominoGame;
 import data.dominio.Player;
 import java.util.List;
+import network.EventRouter;
 import ui.Board.BoardPresenter;
 import ui.base.Model;
 
@@ -15,18 +16,29 @@ public class MainMenuPresenter implements MainMenuViewListener {
     MainMenuView view;
     BoardPresenter boardPresenter;
     Model model;
+    EventRouter eventRouter;
 
     public MainMenuPresenter(MainMenuView view) {
         this.view = view;
     }
 
+    @Override
     public void setBoardPresenter(final BoardPresenter boardPresenter) {
         this.boardPresenter = boardPresenter;
     }
 
     @Override
+    public void setEventRouter(final EventRouter eventRouter) {
+        this.eventRouter = eventRouter;
+    }
+
+    @Override
     public void onStartGameButton() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (this.verifyExistentGame()) {
+            this.view.displayLobbyPanel();
+        } else {
+            this.view.displayConfigurationPanel();
+        }
     }
 
     @Override
@@ -55,8 +67,6 @@ public class MainMenuPresenter implements MainMenuViewListener {
         return model.getAvatar();
     }
 
-
-
     @Override
     public void createPlayer(Avatar avatar) {
         model.createPlayer(avatar);
@@ -80,6 +90,35 @@ public class MainMenuPresenter implements MainMenuViewListener {
     @Override
     public DominoGame getDominoGame() {
         return model.getDominoGame();
+    }
+
+    @Override
+    public boolean verifyExistentGame() {
+        return this.eventRouter.isExistentGame();
+    }
+
+    @Override
+    public void notifyPlayersInLobby() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setPlayers(final List<Player> players) {
+        this.view.updatePlayers(players);
+        this.model.setPlayers(players);
+    }
+
+    @Override
+    public void notifyPlayers() {
+        this.eventRouter.notifyPlayers(this.model.getDominoGame().getPlayers());
+    }
+
+    @Override
+    public void toggleReadyStatus() {
+//        this.model.getPlayer().setStatus();
+        System.out.println("TODO");
+        this.notifyPlayers();
+        this.view.displayBoardView();
     }
 
 }

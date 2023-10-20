@@ -31,13 +31,14 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
             JOptionPane.showMessageDialog(this, "No se a seleccionado un avatar", "Avatar no seleccionado", JOptionPane.QUESTION_MESSAGE);
             return;
         }
-        view.createAvatar(avatarName, avatarImage);
+        this.view.createAvatar(avatarName, avatarImage);
+        this.view.createPlayer(view.getAvatar());
     }
 
-    private boolean avatarWasSelected(){
-    return !avatarName.equalsIgnoreCase("");
+    private boolean avatarWasSelected() {
+        return !avatarName.equalsIgnoreCase("");
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,7 +181,7 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
             return;
         }
         this.view.displayLobbyPanel();
-        
+
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btnAvatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar1ActionPerformed
@@ -232,4 +233,5 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
     private javax.swing.JLabel lblAvatar5;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
+
 }
