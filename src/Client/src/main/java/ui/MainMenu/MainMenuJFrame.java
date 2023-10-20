@@ -1,5 +1,8 @@
 package ui.MainMenu;
 
+import data.dominio.Avatar;
+import data.dominio.DominoGame;
+import data.dominio.Player;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -145,6 +148,46 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     @Override
     public void setListener(final MainMenuViewListener listener) {
         this.listener = listener;
+    }
+
+    @Override
+    public void setTilesPerPlayer(int cant) {
+        listener.setTilesPerPlayer(cant);
+    }
+
+    @Override
+    public void createAvatar(String name, String Image) {
+        listener.createAvatar(name, Image);
+    }
+
+    @Override
+    public Avatar getAvatar() {
+        return listener.getAvatar();
+    }
+
+    @Override
+    public void createPlayer(Avatar avatar) {
+        listener.createPlayer(avatar);
+    }
+
+    @Override
+    public void removePlayer(Player player) {
+        listener.removePlayer(player);
+    }
+
+    @Override
+    public void createDominoGame() {
+        listener.createDominoGame();
+    }
+
+    @Override
+    public void createTurnController() {
+        listener.createTurnController();
+    }
+
+    @Override
+    public DominoGame getDominoGame() {
+        return listener.getDominoGame();
     }
 
 

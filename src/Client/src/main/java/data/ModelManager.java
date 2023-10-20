@@ -5,7 +5,7 @@
 package data;
 
 import data.dominio.Avatar;
-import data.models.Model;
+import ui.base.Model;
 import data.dominio.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 public class ModelManager implements Model {
 
     Config configuration;
-    List<Avatar> avatares;
+    Avatar avatar;
     TurnController turnController;
     List<Player> players;
     DominoGame dominoGame;
@@ -27,7 +27,6 @@ public class ModelManager implements Model {
         turnController = new TurnController();
         players = new ArrayList<>();
         this.dominoGame = new DominoGame();
-        this.avatares = new ArrayList<>();
     }
 
     @Override
@@ -36,22 +35,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void createAvatares(String name, String image) {
+    public void createAvatar(String name, String image) {
         Avatar newAvatar = new Avatar();
         newAvatar.setName(name);
         newAvatar.setImage(image);
-        this.avatares.add(newAvatar);
+        this.avatar = newAvatar;
 
     }
 
     @Override
-    public List<Avatar> getAvatars() {
-        return this.avatares;
-    }
-
-    @Override
-    public Avatar getAvatarByIndex(int index) {
-        return this.avatares.get(index);
+    public Avatar getAvatar() {
+        return this.avatar;
     }
 
     @Override
@@ -64,6 +58,11 @@ public class ModelManager implements Model {
     @Override
     public void addPlayer(Player player) {
         this.players.add(player);
+    }
+
+    @Override
+    public void removePlayer(Player player) {
+        players.remove(player);
     }
 
     @Override
