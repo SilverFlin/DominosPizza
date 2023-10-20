@@ -1,22 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ui.MainMenu;
 
-import java.util.Observer;
+import ui.base.BasePanel;
 
 /**
  *
  * @author edemb
+ * @param <V>
  */
-public class MenuJPanel extends javax.swing.JPanel{
+public class MenuJPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V> {
+
+    private V view;
 
     /**
      * Creates new form MenuPanel
      */
     public MenuJPanel() {
         initComponents();
+    }
+
+    @Override
+    public void setView(final V view) {
+        this.view = view;
     }
 
     /**
@@ -53,7 +57,7 @@ public class MenuJPanel extends javax.swing.JPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.view.displayConfigurationPanel();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

@@ -1,15 +1,25 @@
 package ui.MainMenu;
 
+import ui.base.BasePanel;
+
 /**
  *
+ * @param <V>
  */
-public class AvatarsJPanel extends javax.swing.JPanel {
+public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V> {
+
+    private V view;
 
     /**
      * Creates new form AvatarsJPanel.
      */
     public AvatarsJPanel() {
         initComponents();
+    }
+
+    @Override
+    public void setView(final V view) {
+        this.view = view;
     }
 
     /**
@@ -124,7 +134,7 @@ public class AvatarsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        // TODO add your handling code here:
+        this.view.displayLobbyPanel();
     }//GEN-LAST:event_btnSelectActionPerformed
 
 

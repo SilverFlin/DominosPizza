@@ -4,18 +4,18 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
+import ui.base.BasePanel;
 
 /**
  *
  */
 public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 
-    private JPanel avatarPanel;
-    private JPanel lobbyPanel;
-    private JPanel configurationPanel;
-    private JPanel menuPanel;
+    private AvatarsJPanel avatarPanel;
+    private LobbyJPanel lobbyPanel;
+    private ConfigurationJPanel<MainMenuJFrame> configurationPanel;
+    private MenuJPanel menuPanel;
     private final List<JPanel> panels = new LinkedList<>();
-    ;
 
     private static final int PANEL_START_X = 0;
     private static final int PANEL_START_Y = 0;
@@ -38,51 +38,61 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     }
 
     public void addPanel(final JPanel panel) {
-        panels.add(panel);
-        this.add(panel);
+        if (!this.panels.contains(panel)) {
+            this.panels.add(panel);
+        }
+        this.add(panel, CONSTRAINTS);
+        panel.setVisible(false);
     }
 
-    public void setAvatarPanel(final JPanel avatarPanel) {
+    @Override
+    public void setAvatarPanel(final AvatarsJPanel avatarPanel) {
         this.avatarPanel = avatarPanel;
-        this.add(this.avatarPanel, CONSTRAINTS);
-        this.avatarPanel.setVisible(false);
+        this.addPanel(avatarPanel);
+        this.avatarPanel.setView(this);
     }
 
-    public void displayAvatarPanel() {
+    @Override
+    public void displayAvatarsPanel() {
         this.hidePanels();
         this.avatarPanel.setVisible(true);
     }
 
-    public void setLobbyPanel(final JPanel lobbyPanel) {
+    @Override
+    public void setLobbyPanel(final LobbyJPanel lobbyPanel) {
         this.lobbyPanel = lobbyPanel;
-        this.add(this.lobbyPanel, CONSTRAINTS);
-        this.lobbyPanel.setVisible(false);
+        this.addPanel(lobbyPanel);
+        this.lobbyPanel.setView(this);
     }
 
+    @Override
     public void displayLobbyPanel() {
         this.hidePanels();
         this.lobbyPanel.setVisible(true);
     }
 
-    public void setConfigurationPanel(final JPanel configurationPanel) {
+    @Override
+    public void setConfigurationPanel(final ConfigurationJPanel configurationPanel) {
         this.configurationPanel = configurationPanel;
-        this.add(this.configurationPanel, CONSTRAINTS);
-        this.configurationPanel.setVisible(false);
-
+        this.addPanel(configurationPanel);
+        this.configurationPanel.setView(this);
     }
 
+    @Override
     public void displayConfigurationPanel() {
         this.hidePanels();
         this.configurationPanel.setVisible(true);
     }
 
-    public void setMenuPanel(final JPanel menuPanel) {
+    @Override
+    public void setMenuPanel(final MenuJPanel menuPanel) {
         this.menuPanel = menuPanel;
-        this.add(this.menuPanel, CONSTRAINTS);
-        this.menuPanel.setVisible(false);
+        this.addPanel(menuPanel);
+        this.menuPanel.setView(this);
 
     }
 
+    @Override
     public void displayMenuPanel() {
         this.hidePanels();
         this.menuPanel.setVisible(true);
@@ -91,6 +101,8 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     private void hidePanels() {
         for (JPanel panel : panels) {
             panel.setVisible(false);
+            panel.revalidate();
+            panel.repaint();
         }
     }
 
@@ -111,6 +123,13 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    @Override
+    public void load() {
+        this.setVisible(true);
+        this.revalidate();
+        this.repaint();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

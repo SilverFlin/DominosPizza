@@ -1,16 +1,26 @@
 package ui.MainMenu;
 
+import ui.base.BasePanel;
+
 /**
  *
  * @author Toled
+ * @param <V>
  */
-public class LobbyJPanel extends javax.swing.JPanel {
+public class LobbyJPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V>  {
+
+    private V view;
 
     /**
      * Creates new form LobbyJPanel.
      */
     public LobbyJPanel() {
         initComponents();
+    }
+
+    @Override
+    public void setView(final V view) {
+        this.view = view;
     }
 
     /**
@@ -60,6 +70,11 @@ public class LobbyJPanel extends javax.swing.JPanel {
         btnReady.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnReady.setBorderPainted(false);
         btnReady.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnReady.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReadyActionPerformed(evt);
+            }
+        });
         add(btnReady, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 600, 240, 80));
 
         btnAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
@@ -111,6 +126,10 @@ public class LobbyJPanel extends javax.swing.JPanel {
         lblAvatar3.setText("LIS");
         add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 320, 30, 20));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReadyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

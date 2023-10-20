@@ -1,6 +1,5 @@
 package ui.MainMenu;
 
-
 /**
  *
  */
@@ -13,15 +12,15 @@ public class Main {
         // TODO code application logic here
 
         // TODO use MainMenuView
-        MainMenuJFrame vista = new MainMenuJFrame();
+        MainMenuView vista = new MainMenuJFrame();
 
         vista.setMenuPanel(new MenuJPanel());
         vista.setAvatarPanel(new AvatarsJPanel());
         vista.setConfigurationPanel(new ConfigurationJPanel());
         vista.setLobbyPanel(new LobbyJPanel());
-        
+
         vista.displayMenuPanel();
-        vista.setVisible(true);
+        vista.load();
 
     }
 

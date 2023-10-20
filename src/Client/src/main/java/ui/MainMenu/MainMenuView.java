@@ -8,5 +8,19 @@ import ui.base.View;
  */
 public interface MainMenuView extends View {
 
-}
+    void displayConfigurationPanel();
 
+    void displayAvatarsPanel();
+
+    void displayLobbyPanel();
+
+    void displayMenuPanel();
+
+    void setMenuPanel(MenuJPanel panel);
+
+    void setAvatarPanel(AvatarsJPanel panel);
+
+    void setConfigurationPanel(ConfigurationJPanel panel);
+
+    void setLobbyPanel(LobbyJPanel panel);
+}
