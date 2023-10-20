@@ -48,4 +48,12 @@ public interface MainMenuView extends View {
 
     DominoGame getDominoGame();
 
+    void startGameFromMenu();
+
+    void updatePlayers(List<Player> players);
+
+    void notifyPlayers();
+
+    void toggleReadyStatus();
+    
 }

@@ -46,6 +46,7 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
             JOptionPane.showMessageDialog(this, "Favor de seleccionar una cantidad", "No selecciono ninguna cantidad", JOptionPane.QUESTION_MESSAGE);
             return;
         }
+        this.view.createDominoGame();
         this.view.setTilesPerPlayer(this.cant);
     }
     
@@ -213,6 +214,7 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
             return;
         }
         this.view.displayAvatarsPanel();
+        
     }//GEN-LAST:event_btnSelectActionPerformed
 
 
