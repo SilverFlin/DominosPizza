@@ -128,7 +128,7 @@ public class LobbyJPanel<V extends MainMenuView> extends javax.swing.JPanel impl
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
-        // TODO add your handling code here:
+        this.view.displayBoardView();
     }//GEN-LAST:event_btnReadyActionPerformed
 
 

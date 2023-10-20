@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package ui.Board;
+
+import ui.base.Presenter;
+import ui.base.View;
 
 /**
  *
- * @author Toled
+ * @param <V>
  */
-public interface BoardPresenter {
-    
+public interface BoardPresenter<V extends BoardView> extends Presenter<View> {
+
+    void loadBoard();
 }
