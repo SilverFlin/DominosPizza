@@ -16,6 +16,8 @@ public interface MainMenuView extends View {
 
     void displayMenuPanel();
 
+    void displayBoardView();
+
     void setMenuPanel(MenuJPanel panel);
 
     void setAvatarPanel(AvatarsJPanel panel);

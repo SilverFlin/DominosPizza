@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
-import ui.base.BasePanel;
 
 /**
  *
@@ -130,6 +129,18 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
         this.revalidate();
         this.repaint();
     }
+
+    @Override
+    public void displayBoardView() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void close() {
+        this.dispose();
+    }
+
+ 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
