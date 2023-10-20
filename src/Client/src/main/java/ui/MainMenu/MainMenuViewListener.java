@@ -4,12 +4,16 @@
  */
 package ui.MainMenu;
 
+import ui.Board.BoardPresenter;
+
 /**
  *
  * @author Toled
  */
 public interface MainMenuViewListener {
 
+    void setBoardPresenter(BoardPresenter presenter);
+    
     void onStartGameButton();
 
     void onGameReadyButton();

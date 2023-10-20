@@ -25,4 +25,6 @@ public interface MainMenuView extends View {
     void setConfigurationPanel(ConfigurationJPanel panel);
 
     void setLobbyPanel(LobbyJPanel panel);
+
+    void setListener(MainMenuViewListener listener);
 }

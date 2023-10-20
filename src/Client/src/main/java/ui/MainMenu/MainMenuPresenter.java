@@ -26,8 +26,7 @@ public class MainMenuPresenter implements MainMenuViewListener {
     @Override
     public void onGameReadyButton() {
         this.view.close();
-//        this.boardPresenter.loadBoard();
-
+        this.boardPresenter.loadBoard();
     }
 
 }

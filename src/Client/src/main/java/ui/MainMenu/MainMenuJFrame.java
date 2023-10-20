@@ -16,6 +16,8 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     private MenuJPanel menuPanel;
     private final List<JPanel> panels = new LinkedList<>();
 
+    private MainMenuViewListener listener;
+
     private static final int PANEL_START_X = 0;
     private static final int PANEL_START_Y = 0;
     private static final int FRAME_WIDTH = 1280;
@@ -132,7 +134,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 
     @Override
     public void displayBoardView() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.listener.onGameReadyButton();
     }
 
     @Override
@@ -140,7 +142,10 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
         this.dispose();
     }
 
- 
+    @Override
+    public void setListener(final MainMenuViewListener listener) {
+        this.listener = listener;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
