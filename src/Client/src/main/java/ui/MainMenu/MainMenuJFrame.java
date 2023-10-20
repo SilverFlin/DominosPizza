@@ -7,13 +7,15 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
- * @author Toled
  */
 public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 
     private JPanel avatarPanel;
     private JPanel lobbyPanel;
-    private final List<JPanel> panels;
+    private JPanel configurationPanel;
+    private JPanel menuPanel;
+    private final List<JPanel> panels = new LinkedList<>();
+    ;
 
     private static final int PANEL_START_X = 0;
     private static final int PANEL_START_Y = 0;
@@ -33,15 +35,17 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
      */
     public MainMenuJFrame() {
         initComponents();
-        this.panels = new LinkedList<>();
+    }
+
+    public void addPanel(final JPanel panel) {
+        panels.add(panel);
+        this.add(panel);
     }
 
     public void setAvatarPanel(final JPanel avatarPanel) {
         this.avatarPanel = avatarPanel;
         this.add(this.avatarPanel, CONSTRAINTS);
-        if (!this.panels.contains(avatarPanel)) {
-            this.panels.add(this.avatarPanel);
-        }
+        this.avatarPanel.setVisible(false);
     }
 
     public void displayAvatarPanel() {
@@ -52,11 +56,36 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     public void setLobbyPanel(final JPanel lobbyPanel) {
         this.lobbyPanel = lobbyPanel;
         this.add(this.lobbyPanel, CONSTRAINTS);
+        this.lobbyPanel.setVisible(false);
     }
 
     public void displayLobbyPanel() {
         this.hidePanels();
         this.lobbyPanel.setVisible(true);
+    }
+
+    public void setConfigurationPanel(final JPanel configurationPanel) {
+        this.configurationPanel = configurationPanel;
+        this.add(this.configurationPanel, CONSTRAINTS);
+        this.configurationPanel.setVisible(false);
+
+    }
+
+    public void displayConfigurationPanel() {
+        this.hidePanels();
+        this.configurationPanel.setVisible(true);
+    }
+
+    public void setMenuPanel(final JPanel menuPanel) {
+        this.menuPanel = menuPanel;
+        this.add(this.menuPanel, CONSTRAINTS);
+        this.menuPanel.setVisible(false);
+
+    }
+
+    public void displayMenuPanel() {
+        this.hidePanels();
+        this.menuPanel.setVisible(true);
     }
 
     private void hidePanels() {

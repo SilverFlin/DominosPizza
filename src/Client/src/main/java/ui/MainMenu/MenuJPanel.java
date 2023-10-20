@@ -10,12 +10,12 @@ import java.util.Observer;
  *
  * @author edemb
  */
-public class MenuPanel extends javax.swing.JPanel{
+public class MenuJPanel extends javax.swing.JPanel{
 
     /**
      * Creates new form MenuPanel
      */
-    public MenuPanel() {
+    public MenuJPanel() {
         initComponents();
     }
 

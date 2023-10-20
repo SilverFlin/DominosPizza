@@ -13,7 +13,7 @@ import javax.swing.border.MatteBorder;
  *
  * @author edemb
  */
-public class ConfigurationPanel extends javax.swing.JPanel {
+public class ConfigurationJPanel extends javax.swing.JPanel {
 
     private JButton lastButtonClicked = null;
     private MatteBorder border = BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black);
@@ -22,7 +22,7 @@ public class ConfigurationPanel extends javax.swing.JPanel {
     /**
      * Creates new form ConfigurationPanel
      */
-    public ConfigurationPanel() {
+    public ConfigurationJPanel() {
         initComponents();
     }
 
