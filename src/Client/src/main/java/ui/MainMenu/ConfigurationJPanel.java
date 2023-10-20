@@ -3,6 +3,7 @@ package ui.MainMenu;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 import ui.base.BasePanel;
 
@@ -17,6 +18,7 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
     private MatteBorder border = BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black);
     private MatteBorder borderNull = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black);
     private V view;
+    private int cant = 0;
 
     /**
      * Creates new form ConfigurationPanel
@@ -37,6 +39,18 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
     @Override
     public void setView(V view) {
         this.view = view;
+    }
+
+    private void setTilesPerPlayer() {
+        if (cantIsZero()) {
+            JOptionPane.showMessageDialog(this, "Favor de seleccionar una cantidad", "No selecciono ninguna cantidad", JOptionPane.QUESTION_MESSAGE);
+            return;
+        }
+        this.view.setTilesPerPlayer(this.cant);
+    }
+    
+    private boolean cantIsZero(){
+    return cant==0;
     }
 
     /**
@@ -140,6 +154,7 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
         // TODO add your handling code here:
         removeBorder();
         this.lastButtonClicked = this.jButton1;
+        this.cant = 2;
         this.jButton1.setBorder(border);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -147,6 +162,7 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
         // TODO add your handling code here:
         removeBorder();
         this.lastButtonClicked = this.jButton2;
+        this.cant = 3;
         this.jButton2.setBorder(border);
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -155,6 +171,7 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
         // TODO add your handling code here:
         removeBorder();
         this.lastButtonClicked = this.jButton3;
+        this.cant = 4;
         this.jButton3.setBorder(border);
 
 
@@ -164,6 +181,7 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
         // TODO add your handling code here:
         removeBorder();
         this.lastButtonClicked = this.jButton4;
+        this.cant = 5;
         this.jButton4.setBorder(border);
 
 
@@ -173,6 +191,7 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
         // TODO add your handling code here:
         removeBorder();
         this.lastButtonClicked = this.jButton5;
+        this.cant = 6;
         this.jButton5.setBorder(border);
 
 
@@ -182,12 +201,17 @@ public class ConfigurationJPanel<V extends MainMenuView> extends javax.swing.JPa
         // TODO add your handling code here:
         removeBorder();
         this.lastButtonClicked = this.jButton8;
+        this.cant = 7;
         this.jButton8.setBorder(border);
 
 
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+        this.setTilesPerPlayer();
+        if (cantIsZero()) {
+            return;
+        }
         this.view.displayAvatarsPanel();
     }//GEN-LAST:event_btnSelectActionPerformed
 

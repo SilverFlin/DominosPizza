@@ -1,5 +1,7 @@
 package ui.MainMenu;
 
+import data.dominio.Avatar;
+import javax.swing.JOptionPane;
 import ui.base.BasePanel;
 
 /**
@@ -9,6 +11,8 @@ import ui.base.BasePanel;
 public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V> {
 
     private V view;
+    private String avatarName = "";
+    private String avatarImage = "";
 
     /**
      * Creates new form AvatarsJPanel.
@@ -22,6 +26,18 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
         this.view = view;
     }
 
+    private void createAvatar() {
+        if (!this.avatarWasSelected()) {
+            JOptionPane.showMessageDialog(this, "No se a seleccionado un avatar", "Avatar no seleccionado", JOptionPane.QUESTION_MESSAGE);
+            return;
+        }
+        view.createAvatar(avatarName, avatarImage);
+    }
+
+    private boolean avatarWasSelected(){
+    return !avatarName.equalsIgnoreCase("");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +71,11 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
         btnAvatar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar1.setBorderPainted(false);
         btnAvatar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAvatar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvatar1ActionPerformed(evt);
+            }
+        });
         add(btnAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 130, 130));
 
         btnAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
@@ -63,6 +84,11 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
         btnAvatar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar2.setBorderPainted(false);
         btnAvatar2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAvatar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvatar2ActionPerformed(evt);
+            }
+        });
         add(btnAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 130, 130));
 
         btnAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
@@ -71,6 +97,11 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
         btnAvatar3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar3.setBorderPainted(false);
         btnAvatar3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAvatar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvatar3ActionPerformed(evt);
+            }
+        });
         add(btnAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 130, 130));
 
         btnAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
@@ -79,6 +110,11 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
         btnAvatar4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar4.setBorderPainted(false);
         btnAvatar4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAvatar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvatar4ActionPerformed(evt);
+            }
+        });
         add(btnAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 130, 130));
 
         btnAvatar5.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
@@ -87,6 +123,11 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
         btnAvatar5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar5.setBorderPainted(false);
         btnAvatar5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAvatar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvatar5ActionPerformed(evt);
+            }
+        });
         add(btnAvatar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 180, 130, 130));
 
         lblAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
@@ -134,8 +175,47 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+        this.createAvatar();
+        if (!this.avatarWasSelected()) {
+            return;
+        }
         this.view.displayLobbyPanel();
+        
     }//GEN-LAST:event_btnSelectActionPerformed
+
+    private void btnAvatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar1ActionPerformed
+        // TODO add your handling code here:
+        this.avatarName = "SIR";
+        this.avatarImage = "imagen1";
+    }//GEN-LAST:event_btnAvatar1ActionPerformed
+
+    private void btnAvatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar2ActionPerformed
+        // TODO add your handling code here:
+        this.avatarName = "ORK";
+        this.avatarImage = "imagen2";
+
+    }//GEN-LAST:event_btnAvatar2ActionPerformed
+
+    private void btnAvatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar3ActionPerformed
+        // TODO add your handling code here:
+        this.avatarName = "LIS";
+        this.avatarImage = "imagen3";
+
+    }//GEN-LAST:event_btnAvatar3ActionPerformed
+
+    private void btnAvatar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar4ActionPerformed
+        // TODO add your handling code here:
+        this.avatarName = "ION";
+        this.avatarImage = "imagen4";
+
+    }//GEN-LAST:event_btnAvatar4ActionPerformed
+
+    private void btnAvatar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar5ActionPerformed
+        // TODO add your handling code here:
+        this.avatarName = "DON";
+        this.avatarImage = "imagen5";
+
+    }//GEN-LAST:event_btnAvatar5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

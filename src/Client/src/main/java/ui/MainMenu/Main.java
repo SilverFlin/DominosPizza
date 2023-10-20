@@ -1,7 +1,9 @@
 package ui.MainMenu;
 
+import data.ModelManager;
 import ui.Board.BoardJFrame;
 import ui.Board.BoardPresenterImpl;
+import ui.base.Model;
 
 /**
  *
@@ -22,6 +24,8 @@ public class Main {
         vista.setConfigurationPanel(new ConfigurationJPanel());
         vista.setLobbyPanel(new LobbyJPanel());
         MainMenuViewListener presenter = new MainMenuPresenter(vista);
+        Model model = new ModelManager();
+        presenter.setModel(model);
         presenter.setBoardPresenter(new BoardPresenterImpl(new BoardJFrame()));
         vista.setListener(presenter);
 
