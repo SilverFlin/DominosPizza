@@ -16,7 +16,7 @@ Figure 1. Diagrama de Clase de Iniciar Partida
 
 ## Secuencia
 
-### Iniciar Partida
+### DS Iniciar Partida
 
 ![Figure1](/docs/imgs/SD_iniciar_partida.png)
 
