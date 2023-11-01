@@ -1,5 +1,5 @@
-*.drawio.bkp
-*.drawio.dtmp
+*.bkp
+*.dtmp
 
 # Netbeans
 **/nbproject/private/
