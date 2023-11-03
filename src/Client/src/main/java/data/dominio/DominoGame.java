@@ -31,7 +31,15 @@ public class DominoGame {
 
     }
 
+    /**
+     * Agrega un jugador al juego que no esté ya agregado.
+     * @param player Objeto que representa un jugador/Player
+     */
     public void addPlayer(Player player) {
+        for(var p : players)
+            if(p.equals(player))
+                return;
+
         players.add(player);
     }
 
