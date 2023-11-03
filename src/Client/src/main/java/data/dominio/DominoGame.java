@@ -36,11 +36,12 @@ public class DominoGame {
      * @param player Objeto que representa un jugador/Player
      */
     public void addPlayer(Player player) {
-        for(var p : players)
-            if(p.getAvatar().getName().compareTo(player.getAvatar().getName())==0)
-                return;
-
+        if(!players.isEmpty())
+            for(var p : players)
+                if(p.getAvatar().getName().compareTo(player.getAvatar().getName())==0)
+                    return;
         players.add(player);
+        
     }
 
     public DominoGame getInstance() {
