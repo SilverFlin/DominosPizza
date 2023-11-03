@@ -37,7 +37,7 @@ public class DominoGame {
      */
     public void addPlayer(Player player) {
         for(var p : players)
-            if(p.equals(player))
+            if(p.getAvatar().getName().compareTo(player.getAvatar().getName())==0)
                 return;
 
         players.add(player);
