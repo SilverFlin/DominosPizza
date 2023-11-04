@@ -18,6 +18,8 @@ public class Player {
     List<DominoTile> tilesHand;
     //Obejto Avatar
     Avatar avatar;
+    //Representa al jugador dueño de sala
+    boolean isAdmin;
 
     /**
      * Constructor solo 
@@ -71,6 +73,22 @@ public class Player {
      */
     public void removeTile(DominoTile tile) {
         this.tilesHand.remove(tile);
+    }
+
+    /**
+     * Regresa el valor si el jugador es el dueño de la partida
+     * @return Booleano que contesta si es o no el dueño de la partida
+     */
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+
+    /**
+     * Estable que este jugador es el dueño de la partida
+     * @param isAdmin Booleano que contesta si es o no el dueño de la partida
+     */
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
 }
