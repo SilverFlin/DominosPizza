@@ -15,11 +15,11 @@ import java.util.List;
 public class Player {
 
     //Lista de las fichas
-    List<DominoTile> tilesHand;
+    private List<DominoTile> tilesHand;
     //Obejto Avatar
-    Avatar avatar;
+    private Avatar avatar;
     //Representa al jugador dueño de sala
-    boolean isAdmin;
+    private boolean isAdmin;
 
     /**
      * Constructor solo 
