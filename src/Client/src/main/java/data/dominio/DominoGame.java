@@ -78,5 +78,9 @@ public class DominoGame {
     public void setBoard(Board board) {
         this.board = board;
     }
+    
+    public void putTileInBoard(DominoTile BoardTile){
+        this.board.addTile(BoardTile);
+    }
 
 }
