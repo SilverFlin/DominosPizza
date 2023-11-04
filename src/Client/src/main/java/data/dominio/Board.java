@@ -47,6 +47,25 @@ public class Board {
     public void addTile(DominoTile tile) {
         this.tiles.add(tile);
     }
-
-
+    
+    /**
+     * Pone una ficha en el tren de fichas.
+     * @param tile Ficha de domino
+     */
+    public void putTile(DominoTile tile){
+        this.tiles.add(tile);
+    }
+    
+    /**
+     * Valida que la ficha se puede poner en el tren de fichas, tomando en cuenta su estado actual.
+     * @param tile 
+     */
+    public boolean validateMove(DominoTile tile){
+        var ficha = this.tiles.getFirst();
+        var fichaf = this.tiles.getLast();
+        if(ficha.getLeftValue()!=tile.getLeftValue() || ficha.getRightValue()!=tile.getRightValue())
+            if(fichaf.getLeftValue()!=tile.getLeftValue() || fichaf.getRightValue()!=tile.getRightValue())
+                return false;
+        return true;
+    }
 }
