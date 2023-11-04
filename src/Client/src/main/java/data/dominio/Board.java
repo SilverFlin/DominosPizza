@@ -15,7 +15,7 @@ import java.util.List;
 public class Board {
 
     //Lista de fichas del Tablero
-    List<DominoTile> tiles;
+    private List<DominoTile> tiles;
 
     /**
      * Constructor solo
