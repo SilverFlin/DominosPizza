@@ -7,12 +7,16 @@ package data.dominio;
 import java.util.List;
 
 /**
- *
+ * Clase que representa un jugador con su avatar y sus fichas
  * @author edemb
+ * @version 4/11/2023
+ * @see  <a href = "https://github.com/SilverFlin/DominosPizza/blob/main/docs/diagrams/DD_client.md" /> Diagrama de Dominio </a>
  */
 public class Player {
 
+    //Lista de las fichas
     List<DominoTile> tilesHand;
+    //Obejto Avatar
     Avatar avatar;
 
     /**
