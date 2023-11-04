@@ -79,6 +79,10 @@ public class DominoGame {
         this.board = board;
     }
     
+    /**
+     * Metodo para agregar una ficha al tablero
+     * @param BoardTile Objeto que representa una ficha
+     */
     public void putTileInBoard(DominoTile BoardTile){
         this.board.addTile(BoardTile);
     }
