@@ -1,6 +1,8 @@
 ![Figure1](/docs/imgs/Components_Diagram.png)
 
-Figure 1. Diagrama de Componentes
+_Figure 1. Diagrama de Componentes_
+
+El diagrama editable se encuentra en [este link](https://drive.google.com/file/d/1KSK3JYQj29Y-LiQc0bgaoM_J2dPtsWK6/view?usp=sharing).
 
 | Componente  | Definición                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -8,3 +10,4 @@ Figure 1. Diagrama de Componentes
 | Server      | Por definir...                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Domain      | Contiene las clases de dominio del juego de Dominó que el Cliente y el Servidor utilizan.                                                                                                                                                                                                                                                                                                                                                          |
 | EventSchema | Contiene la estructura de los eventos.                                                                                                                                                                                                                                                                                                                                                                                                             |
+

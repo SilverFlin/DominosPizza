@@ -9,6 +9,8 @@ Event Schema es un proyecto que contiene las clases necesarias para la comunicac
 
 _Figure 1. Diagrama de Clase EventSchema_
 
+El diagrama editable se encuentra en [este link](https://drive.google.com/file/d/1L8goLXjtjNdpqko_fellfQhiEebuI1PW/view?usp=drive_link).
+
 | Componente                    | Definición                                                                                                                                                                                                                                                     |
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Event                         | Clase abstracta, representa la estructura base de un Evento <ul><li>`type:EventType`: Representa el tipo de evento, sirve para diferenciarlos a la hora de recibirlos.</li><li>`payLoad:T`: Representa la información que el evento va a transmitir.</li></ul> |
