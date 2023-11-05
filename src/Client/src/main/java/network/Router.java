@@ -9,5 +9,5 @@ package network;
  * @author darks
  */
 public interface Router {
-    
+    public void joinToWaitingRoom(Player DTO);
 }
