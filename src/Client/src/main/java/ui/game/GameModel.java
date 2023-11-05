@@ -8,9 +8,9 @@ package ui.game;
  *
  * @author darks
  */
-public interface GameViewModel {
-    public BoardDTO getBoard();
-    public PlayerDTO PlayerDTO();
-    public int getramainigTileInPool();
-    public List<PlayerDTO> getRoom();
+public interface GameModel {
+    public DominoDTO getTileFromPool();
+    public void putTileInBoard(DominoDTO);
+    public void takeFromPool(PlayerDTO);
+    public void updateGame(GameDTO);
 }
