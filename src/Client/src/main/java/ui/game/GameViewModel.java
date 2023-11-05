@@ -11,6 +11,6 @@ package ui.game;
 public interface GameViewModel {
     public BoardDTO getBoard();
     public PlayerDTO PlayerDTO();
-    public int getramainigTileInPool();
+    public int getRemainigTileInPool();
     public List<PlayerDTO> getRoom();
 }
