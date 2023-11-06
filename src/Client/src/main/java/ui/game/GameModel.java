@@ -6,11 +6,11 @@ package ui.game;
 
 /**
  *
- * @author darks
+ * @author JIVB
  */
 public interface GameModel {
     public DominoDTO getTileFromPool();
-    public void putTileInBoard(DominoDTO);
-    public void takeFromPool(PlayerDTO);
-    public void updateGame(GameDTO);
+    public void putTileInBoard(DominoDTO domino);
+    public void takeFromPool(PlayerDTO player);
+    public void updateGame(GameDTO game);
 }

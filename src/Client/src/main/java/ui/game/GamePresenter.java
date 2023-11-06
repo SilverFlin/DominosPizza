@@ -6,13 +6,13 @@ package ui.game;
 
 /**
  *
- * @author darks
+ * @author JIVB
  */
 public interface GamePresenter {
-    public void putTileInBoard(DominoDTO);
-    public void updateGame(GameDTO);
+    public void putTileInBoard(DominoDTO domino);
+    public void updateGame(GameDTO game);
     public void loadBoard(WaitingRoomDTO waitingRoom,PlayerDTO player);
-    public void updateGame(GameDTO);
+    public void updateGame(GameDTO game);
     public boolean validateMove();
-    public void takeFromPool(PlayerDTO);
+    public void takeFromPool(PlayerDTO player);
 }
