@@ -42,7 +42,7 @@ public class Board {
      * Método que agrega una ficha de domino
      * @param tile Ficha a añadir
      */
-    public void addTile(DominoTile tile) {
+    public void putTile(BoardTile tile) {
         this.tiles.add(tile);
     }
 }

@@ -14,6 +14,7 @@ public class Player {
     // ATRIBUTOS
     List<DominoTile> tilesHand;
     Avatar avatar;
+    boolean isAdmin;
 
     // CONSTRUCTORES
     /**
@@ -51,20 +52,34 @@ public class Player {
     public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
     }
+    /**
+     * Verifica si el jugador es un administrador
+     * @return True en caso de que si sea, false en caso contrario
+     */
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+    /**
+     * Método que permite asignar el estado de admin a un jugador
+     * @param isAdmin
+     */
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     // MÉTODOS
     /**
      * Método que permite añadir una ficha de la mano del jugador
      * @param tile Ficha a añadir
      */
-    public void addTile(DominoTile tile) {
+    public void addTile(PlayerTile tile) {
         this.tilesHand.add(tile);
     }
     /**
      * Método que permite eliminar una ficha de la mano del jugador
      * @param tile Ficha a eliminar
      */
-    public void removeTile(DominoTile tile) {
+    public void removeTile(PlayerTile tile) {
         this.tilesHand.remove(tile);
     }
 }

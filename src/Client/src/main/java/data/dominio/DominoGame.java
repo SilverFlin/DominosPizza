@@ -61,6 +61,20 @@ public class DominoGame {
     public DominoGame getInstance() {
         return this;
     }
+    /**
+     * Método que obtiene una ficha del pool y la asigna a un jugador
+     * @param player Jugador al cual se le asigna la ficha
+     */
+    public void takeFromPool(Player player){
+        if (pool == null){
+            System.out.println("No hay fichas en el pool");
+            return;
+        }
+        int random = (int)(Math.random() * pool.getDominoes().size());
+        PlayerTile selectedTile = (PlayerTile) pool.getDominoes().get(random);
+        player.addTile(selectedTile);
+        pool.getDominoes().remove(random);
+    }
 
     // GETTERS & SETTERS
     /**
