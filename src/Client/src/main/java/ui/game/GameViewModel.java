@@ -6,7 +6,7 @@ package ui.game;
 
 /**
  *
- * @author darks
+ * @author JIVB
  */
 public interface GameViewModel {
     public BoardDTO getBoard();
