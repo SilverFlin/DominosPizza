@@ -47,7 +47,12 @@ public class DominoGame {
      * @param player Jugador a añadir
      */
     public void addPlayer(Player player) {
+        if(!players.isEmpty())
+            for(var p : players)
+                if(p.getAvatar().getName().compareTo(player.getAvatar().getName())==0)
+                    return;
         players.add(player);
+        
     }
     /**
      * Método que obtiene una instancia de la clase DominoGame
