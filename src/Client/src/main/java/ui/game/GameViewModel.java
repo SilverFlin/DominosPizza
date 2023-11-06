@@ -4,13 +4,12 @@
  */
 package ui.game;
 
-/**
- *
- * @author JIVB
- */
+
+
 public interface GameViewModel {
     public BoardDTO getBoard();
-    public PlayerDTO PlayerDTO();
+    public PlayerDTO getMyPlayer();
+    public int getramainigTileInPool();
     public int getRemainigTileInPool();
     public List<PlayerDTO> getRoom();
 }
