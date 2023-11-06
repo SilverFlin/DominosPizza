@@ -15,7 +15,7 @@ import java.util.List;
 public class Player {
 
     //Lista de las fichas
-    private List<DominoTile> tilesHand;
+    private List<PlayerTile> playerTile;
     //Obejto Avatar
     private Avatar avatar;
     //Representa al jugador dueño de sala
@@ -31,16 +31,16 @@ public class Player {
      * Regresa una lista de las fichas
      * @return Objeto que represeta una lista de fichas
      */
-    public List<DominoTile> getTilesHand() {
-        return tilesHand;
+    public List<PlayerTile> getTilesHand() {
+        return playerTile;
     }
 
     /**
      * Establece una lista de fichas
      * @param tilesHand Lista de fichas
      */
-    public void setTilesHand(List<DominoTile> tilesHand) {
-        this.tilesHand = tilesHand;
+    public void setTilesHand(List<PlayerTile> tilesHand) {
+        this.playerTile = tilesHand;
     }
 
     /**
@@ -63,8 +63,8 @@ public class Player {
      * Agrega una ficha
      * @param tile Objeto que representa una ficha
      */
-    public void addTile(DominoTile tile) {
-        this.tilesHand.add(tile);
+    public void addTile(PlayerTile tile) {
+        this.playerTile.add(tile);
     }
 
     /**
@@ -72,7 +72,7 @@ public class Player {
      * @param tile Objeto que representa una ficha que sera removida
      */
     public void removeTile(DominoTile tile) {
-        this.tilesHand.remove(tile);
+        this.playerTile.remove(tile);
     }
 
     /**
