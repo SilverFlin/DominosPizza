@@ -1,7 +1,6 @@
 package ui.MainMenu;
 
 import data.ModelManager;
-import network.EventRouterStub;
 import ui.Board.BoardJFrame;
 import ui.Board.BoardPresenterImpl;
 import ui.base.Model;
@@ -24,9 +23,7 @@ public class Main {
         vista.setAvatarPanel(new AvatarsJPanel());
         vista.setConfigurationPanel(new ConfigurationJPanel());
         vista.setLobbyPanel(new LobbyJPanel());
-        
         MainMenuViewListener presenter = new MainMenuPresenter(vista);
-        presenter.setEventRouter(new EventRouterStub());
         Model model = new ModelManager();
         presenter.setModel(model);
         presenter.setBoardPresenter(new BoardPresenterImpl(new BoardJFrame()));

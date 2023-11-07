@@ -8,7 +8,6 @@ import data.dominio.Avatar;
 import data.dominio.DominoGame;
 import data.dominio.Player;
 import java.util.List;
-import network.EventRouter;
 import ui.Board.BoardPresenter;
 import ui.base.Model;
 
@@ -24,11 +23,7 @@ public interface MainMenuViewListener {
 
     void onGameReadyButton();
 
-    void notifyPlayers();
-
     void setModel(Model model);
-
-    void setEventRouter(EventRouter eventRouter);
 
     void setTilesPerPlayer(int cant);
 
@@ -45,13 +40,5 @@ public interface MainMenuViewListener {
     void createTurnController();
 
     DominoGame getDominoGame();
-
-    boolean verifyExistentGame();
-
-    void notifyPlayersInLobby();
-
-    void setPlayers(List<Player> players);
-    
-    void toggleReadyStatus();
 
 }

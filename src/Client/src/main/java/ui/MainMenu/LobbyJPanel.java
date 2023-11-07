@@ -128,8 +128,6 @@ public class LobbyJPanel<V extends MainMenuView> extends javax.swing.JPanel impl
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
-        this.view.toggleReadyStatus();
-        this.view.notifyPlayers();
         this.view.displayBoardView();
     }//GEN-LAST:event_btnReadyActionPerformed
 

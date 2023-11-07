@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package data;
 
 import data.dominio.Avatar;
@@ -8,12 +12,12 @@ import java.util.List;
 
 /**
  *
+ * @author Toled
  */
 public class ModelManager implements Model {
 
     Config configuration;
     Avatar avatar;
-    Player player;
     TurnController turnController;
     List<Player> players;
     DominoGame dominoGame;
@@ -48,7 +52,6 @@ public class ModelManager implements Model {
     public void createPlayer(Avatar avatar) {
         Player newPlayer = new Player();
         newPlayer.setAvatar(avatar);
-        this.player = newPlayer;
         this.players.add(newPlayer);
     }
 
@@ -77,16 +80,6 @@ public class ModelManager implements Model {
     @Override
     public DominoGame getDominoGame() {
         return this.dominoGame;
-    }
-
-    @Override
-    public void setPlayers(final List<Player> players) {
-        this.dominoGame.setPlayers(players);
-    }
-
-    @Override
-    public Player getPlayer() {
-        return this.player;
     }
 
 }

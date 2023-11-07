@@ -11,9 +11,9 @@ import java.util.List;
  * @author edemb
  */
 public class Player {
-
-    List<DominoTile> tilesHand;
-    Avatar avatar;
+List<DominoTile> tilesHand;
+Avatar avatar;
+   
 
     public Player() {
     }

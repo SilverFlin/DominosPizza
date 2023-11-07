@@ -73,7 +73,6 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     public void displayLobbyPanel() {
         this.hidePanels();
         this.lobbyPanel.setVisible(true);
-        
     }
 
     @Override
@@ -190,31 +189,6 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     public DominoGame getDominoGame() {
         return listener.getDominoGame();
     }
-
-    @Override
-    public void startGameFromMenu() {
-        this.listener.onStartGameButton();
-    }
-
-    @Override
-    public void updatePlayers(final List<Player> players) {
-//        this.lobbyPanel.updatePlayers();
-        System.out.println("TODO");
-    }
-
-    @Override
-    public void notifyPlayers() {
-        this.listener.notifyPlayers();
-    }
-
-    @Override
-    public void toggleReadyStatus() {
-        this.listener.toggleReadyStatus();
-    }
-
-   
-    
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

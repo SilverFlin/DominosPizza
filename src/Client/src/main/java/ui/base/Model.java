@@ -1,6 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
 package ui.base;
 
 import data.dominio.Avatar;
+import data.dominio.Config;
 import data.dominio.DominoGame;
 import data.dominio.Player;
 import java.util.List;
@@ -14,10 +19,8 @@ public interface Model {
     void setTilesPerPlayer(int cant);
 
     void createAvatar(String name, String Image);
-
-    Avatar getAvatar();
     
-    Player getPlayer();
+    Avatar getAvatar();
 
     void createPlayer(Avatar avatar);
 
@@ -30,7 +33,5 @@ public interface Model {
     void createTurnController();
 
     DominoGame getDominoGame();
-
-    void setPlayers(List<Player> players);
 
 }
