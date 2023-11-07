@@ -7,15 +7,18 @@ import ui.base.BasePanel;
  * @author Toled
  * @param <V>
  */
-public class LobbyJPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V>  {
+public class WaitingRoomJPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V>  {
 
     private V view;
 
     /**
      * Creates new form LobbyJPanel.
      */
-    public LobbyJPanel() {
+    public WaitingRoomJPanel() {
         initComponents();
+    }
+    
+    public void updateWaitingRoom(MainMenuViewModel viewModel){
     }
 
     @Override
@@ -128,9 +131,9 @@ public class LobbyJPanel<V extends MainMenuView> extends javax.swing.JPanel impl
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
-        this.view.toggleReadyStatus();
-        this.view.notifyPlayers();
-        this.view.displayBoardView();
+//        this.view.toggleReadyStatus();
+//        this.view.notifyPlayers();
+//        this.view.displayBoardView();
     }//GEN-LAST:event_btnReadyActionPerformed
 
 

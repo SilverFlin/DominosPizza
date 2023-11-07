@@ -1,59 +1,47 @@
 package ui.MainMenu;
 
-import data.dominio.Avatar;
-import data.dominio.DominoGame;
-import data.dominio.Player;
+
 import java.util.List;
-import ui.base.View;
 
-/**
- *
- * @author Toled
- */
-public interface MainMenuView extends View {
+public interface MainMenuView {
+    /**
+     * Representa la interacción del usuario, de ir a la pantalla de avatares.
+     */
+    public void goToAvatarPanel();
 
-    void displayConfigurationPanel();
+    /**
+     * Termina la instancia de esta vista, para ser cambiada a otra vista.
+     */
+    public void close();
 
-    void displayAvatarsPanel();
+    /**
+     * Es llamada al recibir cambios del presentador para actualizar la sala de
+     * espera.
+     *
+     * @param viewModel
+     */
+    public void updateWaitingRoom(MainMenuViewModel viewModel);
 
-    void displayLobbyPanel();
+    /**
+     * Cambia al panel de Lobby.
+     *
+     * @param viewModel
+     */
+    public void showLobbyPanel(MainMenuViewModel viewModel);
 
-    void displayMenuPanel();
+    /**
+     * Muestra al usuario un error de nombre invalido, debido a la existencia de
+     * ese nombre en la sala de espera.
+     */
+    public void showInvalidNameError();
 
-    void displayBoardView();
+    /**
+     * Representa la interacción de usuario, de ir a la sala de espera.
+     */
+    public void goToWaitingRoom();
 
-    void setMenuPanel(MenuJPanel panel);
-
-    void setAvatarPanel(AvatarsJPanel panel);
-
-    void setConfigurationPanel(ConfigurationJPanel panel);
-
-    void setLobbyPanel(LobbyJPanel panel);
-
-    void setListener(MainMenuViewListener listener);
-
-    void setTilesPerPlayer(int cant);
-
-    void createAvatar(String name, String Image);
-
-    Avatar getAvatar();
-
-    void createPlayer(Avatar avatar);
-
-    void removePlayer(Player player);
-
-    void createDominoGame();
-
-    void createTurnController();
-
-    DominoGame getDominoGame();
-
-    void startGameFromMenu();
-
-    void updatePlayers(List<Player> players);
-
-    void notifyPlayers();
-
-    void toggleReadyStatus();
-    
+    /**
+     * Cambia al panel de selección de Avatar.
+     */
+    public void showAvatarPanel();
 }

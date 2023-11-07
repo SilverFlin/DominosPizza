@@ -1,8 +1,5 @@
 package ui.MainMenu;
 
-import data.dominio.Avatar;
-import data.dominio.DominoGame;
-import data.dominio.Player;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -13,13 +10,10 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
  */
 public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 
-    private AvatarsJPanel avatarPanel;
-    private LobbyJPanel lobbyPanel;
-    private ConfigurationJPanel<MainMenuJFrame> configurationPanel;
+    private PlayerSetupPanel avatarPanel;
+    private WaitingRoomJPanel lobbyPanel;
     private MenuJPanel menuPanel;
     private final List<JPanel> panels = new LinkedList<>();
-
-    private MainMenuViewListener listener;
 
     private static final int PANEL_START_X = 0;
     private static final int PANEL_START_Y = 0;
@@ -49,59 +43,59 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
         panel.setVisible(false);
     }
 
-    @Override
-    public void setAvatarPanel(final AvatarsJPanel avatarPanel) {
-        this.avatarPanel = avatarPanel;
-        this.addPanel(avatarPanel);
-        this.avatarPanel.setView(this);
-    }
-
-    @Override
-    public void displayAvatarsPanel() {
-        this.hidePanels();
-        this.avatarPanel.setVisible(true);
-    }
-
-    @Override
-    public void setLobbyPanel(final LobbyJPanel lobbyPanel) {
-        this.lobbyPanel = lobbyPanel;
-        this.addPanel(lobbyPanel);
-        this.lobbyPanel.setView(this);
-    }
-
-    @Override
-    public void displayLobbyPanel() {
-        this.hidePanels();
-        this.lobbyPanel.setVisible(true);
-        
-    }
-
-    @Override
-    public void setConfigurationPanel(final ConfigurationJPanel configurationPanel) {
-        this.configurationPanel = configurationPanel;
-        this.addPanel(configurationPanel);
-        this.configurationPanel.setView(this);
-    }
-
-    @Override
-    public void displayConfigurationPanel() {
-        this.hidePanels();
-        this.configurationPanel.setVisible(true);
-    }
-
-    @Override
-    public void setMenuPanel(final MenuJPanel menuPanel) {
-        this.menuPanel = menuPanel;
-        this.addPanel(menuPanel);
-        this.menuPanel.setView(this);
-
-    }
-
-    @Override
-    public void displayMenuPanel() {
-        this.hidePanels();
-        this.menuPanel.setVisible(true);
-    }
+//    @Override
+//    public void setAvatarPanel(final PlayerSetupPanel avatarPanel) {
+//        this.avatarPanel = avatarPanel;
+//        this.addPanel(avatarPanel);
+//        this.avatarPanel.setView(this);
+//    }
+//
+//    @Override
+//    public void displayAvatarsPanel() {
+//        this.hidePanels();
+//        this.avatarPanel.setVisible(true);
+//    }
+//
+//    @Override
+//    public void setLobbyPanel(final WaitingRoomJPanel lobbyPanel) {
+//        this.lobbyPanel = lobbyPanel;
+//        this.addPanel(lobbyPanel);
+//        this.lobbyPanel.setView(this);
+//    }
+//
+//    @Override
+//    public void displayLobbyPanel() {
+//        this.hidePanels();
+//        this.lobbyPanel.setVisible(true);
+//        
+//    }
+//
+//    @Override
+//    public void setConfigurationPanel(final ConfigurationJPanel configurationPanel) {
+//        this.configurationPanel = configurationPanel;
+//        this.addPanel(configurationPanel);
+//        this.configurationPanel.setView(this);
+//    }
+//
+//    @Override
+//    public void displayConfigurationPanel() {
+//        this.hidePanels();
+//        this.configurationPanel.setVisible(true);
+//    }
+//
+//    @Override
+//    public void setMenuPanel(final MenuJPanel menuPanel) {
+//        this.menuPanel = menuPanel;
+//        this.addPanel(menuPanel);
+//        this.menuPanel.setView(this);
+//
+//    }
+//
+//    @Override
+//    public void displayMenuPanel() {
+//        this.hidePanels();
+//        this.menuPanel.setVisible(true);
+//    }
 
     private void hidePanels() {
         for (JPanel panel : panels) {
@@ -130,87 +124,122 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
-    public void load() {
-        this.setVisible(true);
-        this.revalidate();
-        this.repaint();
-    }
-
-    @Override
-    public void displayBoardView() {
-        this.listener.onGameReadyButton();
+    public void goToAvatarPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void close() {
-        this.dispose();
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void setListener(final MainMenuViewListener listener) {
-        this.listener = listener;
+    public void updateWaitingRoom(MainMenuViewModel viewModel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void setTilesPerPlayer(int cant) {
-        listener.setTilesPerPlayer(cant);
+    public void showLobbyPanel(MainMenuViewModel viewModel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void createAvatar(String name, String Image) {
-        listener.createAvatar(name, Image);
+    public void showInvalidNameError() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Avatar getAvatar() {
-        return listener.getAvatar();
+    public void goToWaitingRoom() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void createPlayer(Avatar avatar) {
-        listener.createPlayer(avatar);
+    public void showAvatarPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public void removePlayer(Player player) {
-        listener.removePlayer(player);
-    }
-
-    @Override
-    public void createDominoGame() {
-        listener.createDominoGame();
-    }
-
-    @Override
-    public void createTurnController() {
-        listener.createTurnController();
-    }
-
-    @Override
-    public DominoGame getDominoGame() {
-        return listener.getDominoGame();
-    }
-
-    @Override
-    public void startGameFromMenu() {
-        this.listener.onStartGameButton();
-    }
-
-    @Override
-    public void updatePlayers(final List<Player> players) {
-//        this.lobbyPanel.updatePlayers();
-        System.out.println("TODO");
-    }
-
-    @Override
-    public void notifyPlayers() {
-        this.listener.notifyPlayers();
-    }
-
-    @Override
-    public void toggleReadyStatus() {
-        this.listener.toggleReadyStatus();
-    }
+//    @Override
+//    public void load() {
+//        this.setVisible(true);
+//        this.revalidate();
+//        this.repaint();
+//    }
+//
+//    @Override
+//    public void displayBoardView() {
+//        this.listener.onGameReadyButton();
+//    }
+//
+//    @Override
+//    public void close() {
+//        this.dispose();
+//    }
+//
+//    @Override
+//    public void setListener(final MainMenuViewListener listener) {
+//        this.listener = listener;
+//    }
+//
+//    @Override
+//    public void setTilesPerPlayer(int cant) {
+//        listener.setTilesPerPlayer(cant);
+//    }
+//
+//    @Override
+//    public void createAvatar(String name, String Image) {
+//        listener.createAvatar(name, Image);
+//    }
+//
+//    @Override
+//    public Avatar getAvatar() {
+//        return listener.getAvatar();
+//    }
+//
+//    @Override
+//    public void createPlayer(Avatar avatar) {
+//        listener.createPlayer(avatar);
+//    }
+//
+//    @Override
+//    public void removePlayer(Player player) {
+//        listener.removePlayer(player);
+//    }
+//
+//    @Override
+//    public void createDominoGame() {
+//        listener.createDominoGame();
+//    }
+//
+//    @Override
+//    public void createTurnController() {
+//        listener.createTurnController();
+//    }
+//
+//    @Override
+//    public DominoGame getDominoGame() {
+//        return listener.getDominoGame();
+//    }
+//
+//    @Override
+//    public void startGameFromMenu() {
+//        this.listener.onStartGameButton();
+//    }
+//
+//    @Override
+//    public void updatePlayers(final List<Player> players) {
+////        this.lobbyPanel.updatePlayers();
+//        System.out.println("TODO");
+//    }
+//
+//    @Override
+//    public void notifyPlayers() {
+//        this.listener.notifyPlayers();
+//    }
+//
+//    @Override
+//    public void toggleReadyStatus() {
+//        this.listener.toggleReadyStatus();
+//    }
 
    
     

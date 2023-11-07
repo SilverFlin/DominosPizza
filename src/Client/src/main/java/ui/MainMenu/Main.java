@@ -18,22 +18,22 @@ public class Main {
         // TODO code application logic here
 
         // TODO use MainMenuView
-        MainMenuView vista = new MainMenuJFrame();
-
-        vista.setMenuPanel(new MenuJPanel());
-        vista.setAvatarPanel(new AvatarsJPanel());
-        vista.setConfigurationPanel(new ConfigurationJPanel());
-        vista.setLobbyPanel(new LobbyJPanel());
-        
-        MainMenuViewListener presenter = new MainMenuPresenter(vista);
-        presenter.setEventRouter(new EventRouterStub());
-        Model model = new ModelManager();
-        presenter.setModel(model);
-        presenter.setBoardPresenter(new BoardPresenterImpl(new BoardJFrame()));
-        vista.setListener(presenter);
-
-        vista.displayMenuPanel();
-        vista.load();
+//        MainMenuView vista = new MainMenuJFrame();
+//
+//        vista.setMenuPanel(new MenuJPanel());
+//        vista.setAvatarPanel(new PlayerSetupPanel());
+//        vista.setConfigurationPanel(new ConfigurationJPanel());
+//        vista.setLobbyPanel(new WaitingRoomJPanel());
+//        
+//        MainMenuViewListener presenter = new MainMenuPresenter(vista);
+//        presenter.setEventRouter(new EventRouterStub());
+//        Model model = new ModelManager();
+//        presenter.setModel(model);
+//        presenter.setBoardPresenter(new BoardPresenterImpl(new BoardJFrame()));
+//        vista.setListener(presenter);
+//
+//        vista.displayMenuPanel();
+//        vista.load();
 
     }
 
