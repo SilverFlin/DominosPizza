@@ -15,7 +15,7 @@ import java.util.List;
 public class Board {
 
     //Lista de fichas del Tablero
-    private List<DominoTile> tiles;
+    private List<BoardTile> tiles;
 
     /**
      * Constructor solo
@@ -28,7 +28,7 @@ public class Board {
      * Regresa una lista de fichas
      * @return Lista de fichas
      */
-    public List<DominoTile> getTiles() {
+    public List<BoardTile> getTiles() {
         return tiles;
     }
 
@@ -36,7 +36,7 @@ public class Board {
      * Establece una lista de Fichas
      * @param tiles Lista de fichas
      */
-    public void setTiles(List<DominoTile> tiles) {
+    public void setTiles(List<BoardTile> tiles) {
         this.tiles = tiles;
     }
 
@@ -44,7 +44,7 @@ public class Board {
      * Agrega una ficha
      * @param tile 
      */
-    public void addTile(DominoTile tile) {
+    public void addTile(BoardTile tile) {
         this.tiles.add(tile);
     }
     
@@ -52,7 +52,7 @@ public class Board {
      * Pone una ficha en el tren de fichas.
      * @param tile Ficha de domino
      */
-    public void putTile(DominoTile tile){
+    public void putTile(BoardTile tile){
         this.tiles.add(tile);
     }
     
@@ -60,7 +60,7 @@ public class Board {
      * Valida que la ficha se puede poner en el tren de fichas, tomando en cuenta su estado actual.
      * @param tile 
      */
-    public boolean validateMove(DominoTile tile){
+    public boolean validateMove(BoardTile tile){
         var ficha = this.tiles.getFirst();
         var fichaf = this.tiles.getLast();
         if(ficha.getLeftValue()!=tile.getLeftValue() || ficha.getRightValue()!=tile.getRightValue())
