@@ -15,8 +15,10 @@ public class Player {
     LinkedList<PlayerTile> tilesInHand;
     Avatar avatar;
     boolean isAdmin;
+    boolean isReady;
 
     public Player() {
+        isReady = false;
     }
 
     public LinkedList<PlayerTile> getTilesInHand() {
@@ -50,5 +52,13 @@ public class Player {
 
     public void removeTile(PlayerTile tile) {
         this.tilesInHand.remove(tile);
+    }
+
+    public boolean isReady() {
+        return isReady;
+    }
+
+    public void setReady() {
+        this.isReady = true;
     }
 }

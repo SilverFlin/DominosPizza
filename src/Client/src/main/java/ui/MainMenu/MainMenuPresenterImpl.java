@@ -4,21 +4,29 @@
  */
 package ui.MainMenu;
 
+import ui.Board.GamePresenter;
+
 /**
  *
  * @author edemb
  */
-public class MainMenuPresenterImpl implements MainMenuPresenter{
+public class MainMenuPresenterImpl implements MainMenuPresenter {
 
     MainMenuView view;
     MainMenuModel model;
-    
+    Router router;
+    PlayerDTO myPlayer;
+    GamePresenter gamePresenter;
+    WaitingRoomDTO waitingRoom;
+
     public MainMenuPresenterImpl() {
     }
 
-    public MainMenuPresenterImpl(MainMenuView view, MainMenuModel model) {
+    public MainMenuPresenterImpl(MainMenuView view, MainMenuModel model, Router router,GamePresenter gamePresenter) {
         this.view = view;
         this.model = model;
+        this.router = router;
+        this.gamePresenter = gamePresenter;
     }
 
     public void setView(MainMenuView view) {
@@ -29,17 +37,16 @@ public class MainMenuPresenterImpl implements MainMenuPresenter{
         this.model = model;
     }
 
-    
-    
-    
     @Override
     public void goToAvatarPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        view.showAvatarPanel((MainMenuViewModel) model);
     }
 
     @Override
     public void goToWaitingRoom(PlayerDTO player) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.myPlayer = player;
+        this.router.joinToWaitingRoom(player);
+
     }
 
     @Override
@@ -48,8 +55,33 @@ public class MainMenuPresenterImpl implements MainMenuPresenter{
     }
 
     @Override
-    public void updateWaitingRoom() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void updateWaitingRoom(WaitingRoomDTO waitingRoom) {
+        this.waitingRoom=waitingRoom;
+        this.model.configurateWaitingRoom(myPlayer, waitingRoom);
+        this.view.showLobbyPanel((MainMenuViewModel) model);
+
     }
-    
+
+    @Override
+    public void newPlayerHasJoined(WaitingRoomDTO waitingRoom) {
+        this.waitingRoom = waitingRoom;
+        model.setWaitingRoom(waitingRoom);
+        if (model.isReady()) {
+
+            gamePresenter.loadBoard(waitingRoom, myPlayer);
+            view.close();
+        } else {
+
+            view.updateWaitingRoom((MainMenuViewModel) this.model);
+
+        }
+
+    }
+
+    @Override
+    public void foreStart() {
+        gamePresenter.loadBoard(this.waitingRoom, myPlayer);
+        view.close();
+    }
+
 }

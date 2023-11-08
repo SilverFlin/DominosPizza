@@ -4,6 +4,7 @@
  */
 package ui.MainMenu;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -11,22 +12,22 @@ import java.util.List;
  * @author edemb
  */
 public class WaitingRoomDTO {
-    private List<PlayerDTO> players;
+    private LinkedList<PlayerDTO> players;
     private int initialTiles;
 
     public WaitingRoomDTO() {
     }
 
-    public WaitingRoomDTO(List<PlayerDTO> players, int initialTiles) {
+    public WaitingRoomDTO(LinkedList<PlayerDTO> players, int initialTiles) {
         this.players = players;
         this.initialTiles = initialTiles;
     }
 
-    public List<PlayerDTO> getPlayers() {
+    public LinkedList<PlayerDTO> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<PlayerDTO> players) {
+    public void setPlayers(LinkedList<PlayerDTO> players) {
         this.players = players;
     }
 

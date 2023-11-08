@@ -27,12 +27,12 @@ public interface MainMenuModel {
  * y regresa la lista de jugadores actualizada.
  * @return 
  */
-    public List<PlayerDTO> setPlayerAdmin();
+    public void setPlayerAdmin();
     /**
      *  Actualiza la sala de espera, 
      * por lo general guando hay cambios nuevos de fuera.
      */
-    public void setWaitingRoom(WaitingRoomDTO waitingRoom);
+//    public void setWaitingRoom(WaitingRoomDTO waitingRoom);
 /**
  * Inicializa al jugador de la sesión actual.
  * @param player 
@@ -47,6 +47,6 @@ public interface MainMenuModel {
     public boolean isReady();
 
 
-
+    public void setWaitingRoom(WaitingRoomDTO waitingRoom);
 
         }

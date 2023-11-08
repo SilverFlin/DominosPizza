@@ -6,8 +6,6 @@ package ui.MainMenu;
 
 import java.util.List;
 import network.EventRouter;
-import ui.Board.BoardPresenter;
-import ui.base.Model;
 
 /**
  *
@@ -18,11 +16,7 @@ import ui.base.Model;
     /**
      * Cambia al panel de selección de Avatar.
      */
-    public  List<PlayerDTO> getAvatars();
-    /**
-     * Regresa la información del jugador actual.
-     */
-    public PlayerDTO getMyPlayer();
+    public  List<AvatarDTO> getAvatars();
     /**
      * Regresa información de la sala de espera.
      */

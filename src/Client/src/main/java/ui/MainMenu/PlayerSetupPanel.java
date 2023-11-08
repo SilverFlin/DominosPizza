@@ -1,17 +1,18 @@
 package ui.MainMenu;
 
+import java.util.List;
 import javax.swing.JOptionPane;
-import ui.base.BasePanel;
 
 /**
  *
  * @param <V>
  */
-public class PlayerSetupPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V> {
+public class PlayerSetupPanel extends javax.swing.JPanel {
 
-    private V view;
+    private MainMenuView view;
     private String avatarName = "";
     private String avatarImage = "";
+    private List<AvatarDTO> avatars;
 
     /**
      * Creates new form AvatarsJPanel.
@@ -19,16 +20,26 @@ public class PlayerSetupPanel<V extends MainMenuView> extends javax.swing.JPanel
     public PlayerSetupPanel() {
         initComponents();
     }
-    
-    public void updateAvatarPanel(MainMenuViewModel viewModel){
-    }
-    
-    public void showInvalidNameError(){
+
+    public void setView(MainMenuView view) {
+        this.view = view;
     }
 
-    @Override
-    public void setView(final V view) {
-        this.view = view;
+    public void updateAvatarPanel(MainMenuViewModel viewModel) {
+
+        this.avatars = viewModel.getAvatars();
+        this.setAvatars();
+    }
+    
+    private void setAvatars(){
+    this.btnAvatar1.setText(this.avatars.get(0).image);
+    this.btnAvatar2.setText(this.avatars.get(1).image);
+    this.btnAvatar3.setText(this.avatars.get(2).image);
+    this.btnAvatar4.setText(this.avatars.get(3).image);
+    this.btnAvatar5.setText(this.avatars.get(4).image);
+    }
+
+    public void showInvalidNameError() {
     }
 
 //    private void createAvatar() {
@@ -39,11 +50,9 @@ public class PlayerSetupPanel<V extends MainMenuView> extends javax.swing.JPanel
 //        this.view.createAvatar(avatarName, avatarImage);
 //        this.view.createPlayer(view.getAvatar());
 //    }
-
 //    private boolean avatarWasSelected() {
 //        return !avatarName.equalsIgnoreCase("");
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +74,7 @@ public class PlayerSetupPanel<V extends MainMenuView> extends javax.swing.JPanel
         lblAvatar3 = new javax.swing.JLabel();
         lblAvatar5 = new javax.swing.JLabel();
         btnSelect = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setForeground(new java.awt.Color(204, 255, 51));
@@ -138,8 +148,8 @@ public class PlayerSetupPanel<V extends MainMenuView> extends javax.swing.JPanel
 
         lblAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar4.setForeground(new java.awt.Color(0, 153, 153));
-        lblAvatar4.setText("ION");
-        add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 320, 60, 20));
+        lblAvatar4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 320, 130, 20));
 
         lblTitle.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 48)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(0, 153, 153));
@@ -148,23 +158,23 @@ public class PlayerSetupPanel<V extends MainMenuView> extends javax.swing.JPanel
 
         lblAvatar1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar1.setForeground(new java.awt.Color(0, 153, 153));
-        lblAvatar1.setText("SIR");
-        add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 40, 20));
+        lblAvatar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 130, 20));
 
         lblAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar2.setForeground(new java.awt.Color(0, 153, 153));
-        lblAvatar2.setText("ORK");
-        add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 50, 20));
+        lblAvatar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 130, 20));
 
         lblAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar3.setForeground(new java.awt.Color(0, 153, 153));
-        lblAvatar3.setText("LIS");
-        add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, 30, 20));
+        lblAvatar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 130, 20));
 
         lblAvatar5.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar5.setForeground(new java.awt.Color(0, 153, 153));
-        lblAvatar5.setText("DON");
-        add(lblAvatar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 320, 60, 20));
+        lblAvatar5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblAvatar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 320, 130, 20));
 
         btnSelect.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 36)); // NOI18N
         btnSelect.setForeground(new java.awt.Color(0, 153, 153));
@@ -178,48 +188,44 @@ public class PlayerSetupPanel<V extends MainMenuView> extends javax.swing.JPanel
             }
         });
         add(btnSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 610, 240, 80));
+
+        txtName.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        txtName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 460, 90));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-//        this.createAvatar();
-//        if (!this.avatarWasSelected()) {
-//            return;
-//        }
-//        this.view.displayLobbyPanel();
-
+        PlayerDTO player = new PlayerDTO();
+        player.setAvatar(new AvatarDTO(this.txtName.getText(), avatarImage));
+        this.view.goToWaitingRoom(player);
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btnAvatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar1ActionPerformed
         // TODO add your handling code here:
-        this.avatarName = "SIR";
-        this.avatarImage = "imagen1";
+        this.avatarImage = this.btnAvatar1.getText();
     }//GEN-LAST:event_btnAvatar1ActionPerformed
 
     private void btnAvatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar2ActionPerformed
         // TODO add your handling code here:
-        this.avatarName = "ORK";
-        this.avatarImage = "imagen2";
+        this.avatarImage = this.btnAvatar2.getText();
 
     }//GEN-LAST:event_btnAvatar2ActionPerformed
 
     private void btnAvatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar3ActionPerformed
         // TODO add your handling code here:
-        this.avatarName = "LIS";
-        this.avatarImage = "imagen3";
+        this.avatarImage = this.btnAvatar3.getText();
 
     }//GEN-LAST:event_btnAvatar3ActionPerformed
 
     private void btnAvatar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar4ActionPerformed
         // TODO add your handling code here:
-        this.avatarName = "ION";
-        this.avatarImage = "imagen4";
+        this.avatarImage = this.btnAvatar4.getText();
 
     }//GEN-LAST:event_btnAvatar4ActionPerformed
 
     private void btnAvatar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar5ActionPerformed
         // TODO add your handling code here:
-        this.avatarName = "DON";
-        this.avatarImage = "imagen5";
+        this.avatarImage = this.btnAvatar5.getText();
 
     }//GEN-LAST:event_btnAvatar5ActionPerformed
 
@@ -237,6 +243,7 @@ public class PlayerSetupPanel<V extends MainMenuView> extends javax.swing.JPanel
     private javax.swing.JLabel lblAvatar4;
     private javax.swing.JLabel lblAvatar5;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
 }
