@@ -6,6 +6,8 @@
 
 _Figure 1. Diagrama de Clase Graphic Manager_
 
+El diagrama editable se encuentra en [este link](https://drive.google.com/file/d/1oVkypOHVZoRctvRNdiAn43A0KUSMi_EH/view?usp=drive_link).
+
 | Componente       | Definición                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | GraphicComponent | Es la interfaz base del patrón Composite. <ul><li>`draw():void`: Asegura que el componente se puede dibujar.<_/li></ul>                                                                                                                                                                                                                                                                                                                               |
