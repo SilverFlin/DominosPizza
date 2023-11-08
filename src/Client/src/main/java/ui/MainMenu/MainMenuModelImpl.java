@@ -4,6 +4,7 @@
  */
 package ui.MainMenu;
 
+import domain.DominoGame;
 import java.util.List;
 
 /**
