@@ -2,23 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package data.dominio;
+package domain;
 
 /**
  *
  * @author edemb
  */
 public class Avatar {
+    private String name;
+    private String image;
 
-    String name;
-    String image;
-
-    public Avatar() {
-    }
-
-
-    public void paint()throws Exception{
-        throw new Exception("No sirve wey!!!!!!");
+    public Avatar(String name, String image) {
+        this.name = name;
+        this.image = image;
     }
 
     public String getName() {
@@ -36,5 +32,6 @@ public class Avatar {
     public void setImage(String image) {
         this.image = image;
     }
-
+    
+    
 }

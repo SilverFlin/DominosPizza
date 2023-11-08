@@ -1,6 +1,5 @@
 package ui.MainMenu;
 
-import data.dominio.Avatar;
 import javax.swing.JOptionPane;
 import ui.base.BasePanel;
 
@@ -8,7 +7,7 @@ import ui.base.BasePanel;
  *
  * @param <V>
  */
-public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V> {
+public class PlayerSetupPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V> {
 
     private V view;
     private String avatarName = "";
@@ -17,8 +16,14 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
     /**
      * Creates new form AvatarsJPanel.
      */
-    public AvatarsJPanel() {
+    public PlayerSetupPanel() {
         initComponents();
+    }
+    
+    public void updateAvatarPanel(MainMenuViewModel viewModel){
+    }
+    
+    public void showInvalidNameError(){
     }
 
     @Override
@@ -26,18 +31,18 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
         this.view = view;
     }
 
-    private void createAvatar() {
-        if (!this.avatarWasSelected()) {
-            JOptionPane.showMessageDialog(this, "No se a seleccionado un avatar", "Avatar no seleccionado", JOptionPane.QUESTION_MESSAGE);
-            return;
-        }
-        this.view.createAvatar(avatarName, avatarImage);
-        this.view.createPlayer(view.getAvatar());
-    }
+//    private void createAvatar() {
+//        if (!this.avatarWasSelected()) {
+//            JOptionPane.showMessageDialog(this, "No se a seleccionado un avatar", "Avatar no seleccionado", JOptionPane.QUESTION_MESSAGE);
+//            return;
+//        }
+//        this.view.createAvatar(avatarName, avatarImage);
+//        this.view.createPlayer(view.getAvatar());
+//    }
 
-    private boolean avatarWasSelected() {
-        return !avatarName.equalsIgnoreCase("");
-    }
+//    private boolean avatarWasSelected() {
+//        return !avatarName.equalsIgnoreCase("");
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,11 +181,11 @@ public class AvatarsJPanel<V extends MainMenuView> extends javax.swing.JPanel im
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        this.createAvatar();
-        if (!this.avatarWasSelected()) {
-            return;
-        }
-        this.view.displayLobbyPanel();
+//        this.createAvatar();
+//        if (!this.avatarWasSelected()) {
+//            return;
+//        }
+//        this.view.displayLobbyPanel();
 
     }//GEN-LAST:event_btnSelectActionPerformed
 

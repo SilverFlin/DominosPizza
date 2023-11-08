@@ -57,7 +57,7 @@ public class MenuJPanel<V extends MainMenuView> extends javax.swing.JPanel imple
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.view.displayConfigurationPanel();
+        this.view.goToAvatarPanel();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

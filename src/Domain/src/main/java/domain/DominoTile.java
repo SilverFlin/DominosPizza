@@ -2,28 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package data.dominio;
+package domain;
 
 /**
  *
  * @author edemb
  */
 public class DominoTile {
+   private int leftValue;
+   private int rightValue;
 
-    int leftValue;
-    int rightValue;
-
-    public DominoTile() {
-    }
-
-    public void paint() throws Exception {
-        throw new Exception("No sirve wey!!!!!!");
-
-    }
-
-    public void removePaint() throws Exception {
-        throw new Exception("No sirve wey!!!!!!");
-
+    public DominoTile(int leftValue, int rightValue) {
+        this.leftValue = leftValue;
+        this.rightValue = rightValue;
     }
 
     public int getLeftValue() {
@@ -41,5 +32,6 @@ public class DominoTile {
     public void setRightValue(int rightValue) {
         this.rightValue = rightValue;
     }
-
+   
+   
 }
