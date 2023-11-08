@@ -2,8 +2,6 @@ package ui.MainMenu;
 
 import java.util.List;
 import network.EventRouter;
-import ui.Board.BoardPresenter;
-import ui.base.Model;
 
 /**
  *
@@ -33,6 +31,11 @@ public interface MainMenuPresenter {
      * Es el método por el cual el Router le manda nueva información al
      * presentador.
      */
-    public void updateWaitingRoom();
+    public void updateWaitingRoom(WaitingRoomDTO waitingRoom);
+
+    public void newPlayerHasJoined(WaitingRoomDTO waitingRoom);
+    
+        public void foreStart();
+
 
 }

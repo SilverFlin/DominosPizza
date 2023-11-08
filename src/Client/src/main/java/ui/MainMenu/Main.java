@@ -1,10 +1,15 @@
 package ui.MainMenu;
 
 import data.ModelManager;
+import domain.DominoGame;
+import domain.Player;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import network.EventRouterStub;
 import ui.Board.BoardJFrame;
-import ui.Board.BoardPresenterImpl;
-import ui.base.Model;
+import ui.Board.GamePresenter;
+import ui.Board.GamePresenterImpl;
 
 /**
  *
@@ -34,7 +39,29 @@ public class Main {
 //
 //        vista.displayMenuPanel();
 //        vista.load();
+        MainMenuView view = new MainMenuJFrame();
+        view.setMenuPanel(new MenuJPanel());
+        view.setPlayerSetupPanel(new PlayerSetupPanel());
+        view.setWaitingRoomPanel(new WaitingRoomJPanel());
 
+        List<AvatarDTO> avatars = new ArrayList<>();
+        avatars.add(new AvatarDTO("", "123"));
+        avatars.add(new AvatarDTO("", "dfs"));
+        avatars.add(new AvatarDTO("", "12hj,h3"));
+        avatars.add(new AvatarDTO("", "<zx"));
+        avatars.add(new AvatarDTO("", "12dg3"));
+        MainMenuModel model = new MainMenuModelImpl(DominoGame.getInstance(), avatars);
+
+        Router router = new RouterImpl(new LinkedList<>());
+
+        GamePresenter gamePresenter = new GamePresenterImpl();
+        
+        MainMenuPresenter presenter = new MainMenuPresenterImpl(view, model, router,gamePresenter);
+        view.setPresenter(presenter);
+        router.setMainMenuPresenter(presenter);
+
+        view.displayMenuPanel();
+        view.load();
     }
 
 }

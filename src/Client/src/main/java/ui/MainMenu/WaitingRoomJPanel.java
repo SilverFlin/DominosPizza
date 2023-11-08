@@ -1,15 +1,19 @@
 package ui.MainMenu;
 
-import ui.base.BasePanel;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
  * @author Toled
  * @param <V>
  */
-public class WaitingRoomJPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V>  {
+public class WaitingRoomJPanel extends javax.swing.JPanel {
 
-    private V view;
+    private MainMenuView view;
+    private WaitingRoomDTO waitingRoom;
 
     /**
      * Creates new form LobbyJPanel.
@@ -17,13 +21,41 @@ public class WaitingRoomJPanel<V extends MainMenuView> extends javax.swing.JPane
     public WaitingRoomJPanel() {
         initComponents();
     }
-    
-    public void updateWaitingRoom(MainMenuViewModel viewModel){
+
+    public void setView(MainMenuView view) {
+        this.view = view;
     }
 
-    @Override
-    public void setView(final V view) {
-        this.view = view;
+    public void updateWaitingRoom(MainMenuViewModel viewModel) {
+        this.waitingRoom = viewModel.getWaitingRoom();
+        setPlayers();
+
+    }
+
+    private void setPlayers() {
+        List<JButton> buttons = new ArrayList<>();
+        buttons.add(this.btnAvatar1);
+        buttons.add(this.btnAvatar2);
+        buttons.add(this.btnAvatar3);
+        buttons.add(this.btnAvatar4);
+
+        List<JLabel> labels = new ArrayList<>();
+        labels.add(this.lblAvatar1);
+        labels.add(this.lblAvatar2);
+        labels.add(this.lblAvatar3);
+        labels.add(this.lblAvatar4);
+
+        for (int i = 0; i < buttons.size(); i++) {
+            if (i >= waitingRoom.getPlayers().size()) {
+                labels.get(i).setText("?");
+                buttons.get(i).setText("?");
+            } else {
+                labels.get(i).setText(this.waitingRoom.getPlayers().get(i).getAvatar().getNombre());
+                buttons.get(i).setText(this.waitingRoom.getPlayers().get(i).getAvatar().getImage());
+
+            }
+        }
+
     }
 
     /**
@@ -106,8 +138,8 @@ public class WaitingRoomJPanel<V extends MainMenuView> extends javax.swing.JPane
 
         lblAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar4.setForeground(new java.awt.Color(0, 153, 153));
-        lblAvatar4.setText("ION");
-        add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 320, 60, 20));
+        lblAvatar4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 320, 130, 20));
 
         lblTitle.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 48)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(0, 153, 153));
@@ -116,24 +148,25 @@ public class WaitingRoomJPanel<V extends MainMenuView> extends javax.swing.JPane
 
         lblAvatar1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar1.setForeground(new java.awt.Color(0, 153, 153));
-        lblAvatar1.setText("SIR");
-        add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 40, 20));
+        lblAvatar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 130, 20));
 
         lblAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar2.setForeground(new java.awt.Color(0, 153, 153));
-        lblAvatar2.setText("ORK");
-        add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 50, 20));
+        lblAvatar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 130, 20));
 
         lblAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar3.setForeground(new java.awt.Color(0, 153, 153));
-        lblAvatar3.setText("LIS");
-        add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 320, 30, 20));
+        lblAvatar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, 130, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
-//        this.view.toggleReadyStatus();
-//        this.view.notifyPlayers();
-//        this.view.displayBoardView();
+    
+        view.foreStart();
+        
+        
     }//GEN-LAST:event_btnReadyActionPerformed
 
 

@@ -10,10 +10,11 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
  */
 public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 
-    private PlayerSetupPanel avatarPanel;
-    private WaitingRoomJPanel lobbyPanel;
+    private PlayerSetupPanel playerSetupPanel;
+    private WaitingRoomJPanel waitingRoomPanel;
     private MenuJPanel menuPanel;
     private final List<JPanel> panels = new LinkedList<>();
+    private MainMenuPresenter presenter;
 
     private static final int PANEL_START_X = 0;
     private static final int PANEL_START_Y = 0;
@@ -44,24 +45,31 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     }
 
 //    @Override
-//    public void setAvatarPanel(final PlayerSetupPanel avatarPanel) {
-//        this.avatarPanel = avatarPanel;
-//        this.addPanel(avatarPanel);
-//        this.avatarPanel.setView(this);
-//    }
+    public void setPlayerSetupPanel(final PlayerSetupPanel playerSetupPanel) {
+        this.playerSetupPanel = playerSetupPanel;
+        this.addPanel(playerSetupPanel);
+        this.playerSetupPanel.setView(this);
+    }
 //
 //    @Override
-//    public void displayAvatarsPanel() {
-//        this.hidePanels();
-//        this.avatarPanel.setVisible(true);
-//    }
+
+    public void displayPlayerSetupPanel() {
+        this.hidePanels();
+        this.playerSetupPanel.setVisible(true);
+    }
 //
 //    @Override
-//    public void setLobbyPanel(final WaitingRoomJPanel lobbyPanel) {
-//        this.lobbyPanel = lobbyPanel;
-//        this.addPanel(lobbyPanel);
-//        this.lobbyPanel.setView(this);
-//    }
+
+    public void setWaitingRoomPanel(final WaitingRoomJPanel waitingRoomPanel) {
+        this.waitingRoomPanel = waitingRoomPanel;
+        this.addPanel(waitingRoomPanel);
+        this.waitingRoomPanel.setView(this);
+    }
+
+    public void setPresenter(MainMenuPresenter presenter) {
+        this.presenter = presenter;
+    }
+
 //
 //    @Override
 //    public void displayLobbyPanel() {
@@ -78,24 +86,26 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 //    }
 //
 //    @Override
-//    public void displayConfigurationPanel() {
-//        this.hidePanels();
-//        this.configurationPanel.setVisible(true);
-//    }
+    public void displayWaitingRoomPanel() {
+        this.hidePanels();
+        this.waitingRoomPanel.setVisible(true);
+    }
 //
 //    @Override
-//    public void setMenuPanel(final MenuJPanel menuPanel) {
-//        this.menuPanel = menuPanel;
-//        this.addPanel(menuPanel);
-//        this.menuPanel.setView(this);
-//
-//    }
+
+    public void setMenuPanel(final MenuJPanel menuPanel) {
+        this.menuPanel = menuPanel;
+        this.addPanel(menuPanel);
+        this.menuPanel.setView(this);
+
+    }
 //
 //    @Override
-//    public void displayMenuPanel() {
-//        this.hidePanels();
-//        this.menuPanel.setVisible(true);
-//    }
+
+    public void displayMenuPanel() {
+        this.hidePanels();
+        this.menuPanel.setVisible(true);
+    }
 
     private void hidePanels() {
         for (JPanel panel : panels) {
@@ -125,22 +135,26 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 
     @Override
     public void goToAvatarPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.presenter.goToAvatarPanel();
     }
 
     @Override
     public void close() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.dispose();
+
     }
 
     @Override
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        updateWaitingRoom(viewModel);
     }
 
     @Override
     public void showLobbyPanel(MainMenuViewModel viewModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        this.displayWaitingRoomPanel();
+        this.waitingRoomPanel.updateWaitingRoom(viewModel);
+
     }
 
     @Override
@@ -149,21 +163,24 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     }
 
     @Override
-    public void goToWaitingRoom() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void goToWaitingRoom(PlayerDTO player) {
+
+        presenter.goToWaitingRoom(player);
+
     }
 
     @Override
-    public void showAvatarPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void showAvatarPanel(MainMenuViewModel viewModel) {
+        this.displayPlayerSetupPanel();
+        this.playerSetupPanel.updateAvatarPanel(viewModel);
     }
 
 //    @Override
-//    public void load() {
-//        this.setVisible(true);
-//        this.revalidate();
-//        this.repaint();
-//    }
+    public void load() {
+        this.setVisible(true);
+        this.revalidate();
+        this.repaint();
+    }
 //
 //    @Override
 //    public void displayBoardView() {
@@ -241,9 +258,10 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 //        this.listener.toggleReadyStatus();
 //    }
 
-   
-    
-    
+    @Override
+    public void foreStart() {
+        this.presenter.foreStart();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -95,7 +95,7 @@ public class DominoGame {
 
     }
 
-    public DominoGame getInstance() {
+    public static DominoGame getInstance() {
         if (DominoGame.dominoGame == null) {
             DominoGame.dominoGame = new DominoGame();
         }
@@ -106,15 +106,22 @@ public class DominoGame {
         this.config.setTilesPerPlayer(cantTile);
     }
 
-    public void startGame(){
+    public boolean startGame() {
+
+        for (Player player : this.dominoGame.getPlayers()) {
+            if (!player.isReady) {
+                return false;
+            }
+        }
+        return true;
     }
-    
-    public void putTileBoard(DominoTile tile){
+
+    public void putTileBoard(DominoTile tile) {
         this.board.putTile(tile);
     }
-    
-    public void takeFromPool(Player player){
-    player.addTile(this.pool.takeTile());
+
+    public void takeFromPool(Player player) {
+        player.addTile(this.pool.takeTile());
     }
-    
+
 }

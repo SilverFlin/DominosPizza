@@ -11,14 +11,20 @@ package ui.MainMenu;
 public class PlayerDTO {
     private boolean isAdmin;
     private int id;
+    private AvatarDTO avatar;
 
     public PlayerDTO() {
+        this.isAdmin = true;
     }
 
-    public PlayerDTO(boolean isAdmin, int id) {
-        this.isAdmin = isAdmin;
-        this.id = id;
+    public AvatarDTO getAvatar() {
+        return avatar;
     }
+
+    public void setAvatar(AvatarDTO avatar) {
+        this.avatar = avatar;
+    }
+
 
     public boolean isIsAdmin() {
         return isAdmin;

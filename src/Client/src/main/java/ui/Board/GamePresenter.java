@@ -2,16 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package ui.base;
+package ui.Board;
 
-import ui.MainMenu.MainMenuView;
+import ui.MainMenu.PlayerDTO;
+import ui.MainMenu.WaitingRoomDTO;
 
 /**
  *
- * @author Toled
- * @param <V>
+ * @author edemb
  */
-public interface BasePanel<V extends MainMenuView> {
-
-    void setView(final V view);
+public interface GamePresenter {
+    void loadBoard(WaitingRoomDTO waitingRoom,PlayerDTO player);
 }

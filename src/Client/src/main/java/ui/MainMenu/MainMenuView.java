@@ -38,10 +38,21 @@ public interface MainMenuView {
     /**
      * Representa la interacción de usuario, de ir a la sala de espera.
      */
-    public void goToWaitingRoom();
+    public void goToWaitingRoom(PlayerDTO player);
 
     /**
      * Cambia al panel de selección de Avatar.
      */
-    public void showAvatarPanel();
+    public void showAvatarPanel(MainMenuViewModel viewModel);
+
+    public void setPresenter(MainMenuPresenter presenter);
+    public void setPlayerSetupPanel(final PlayerSetupPanel playerSetupPanel);
+    public void displayPlayerSetupPanel();
+    public void setWaitingRoomPanel(final WaitingRoomJPanel waitingRoomPanel);
+    public void setMenuPanel(final MenuJPanel menuPanel);
+    public void displayMenuPanel();
+    public void load();
+    public void foreStart();
+    
+    
 }
