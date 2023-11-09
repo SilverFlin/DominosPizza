@@ -1,16 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ui.MainMenu;
 
+import base.BasePresenter;
 import ui.Board.GamePresenter;
 
 /**
  *
  * @author edemb
  */
-public class MainMenuPresenterImpl implements MainMenuPresenter {
+public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPresenter {
 
     MainMenuView view;
     MainMenuModel model;
@@ -22,7 +19,7 @@ public class MainMenuPresenterImpl implements MainMenuPresenter {
     public MainMenuPresenterImpl() {
     }
 
-    public MainMenuPresenterImpl(MainMenuView view, MainMenuModel model, Router router,GamePresenter gamePresenter) {
+    public MainMenuPresenterImpl(MainMenuView view, MainMenuModel model, Router router, GamePresenter gamePresenter) {
         this.view = view;
         this.model = model;
         this.router = router;
@@ -56,7 +53,7 @@ public class MainMenuPresenterImpl implements MainMenuPresenter {
 
     @Override
     public void updateWaitingRoom(WaitingRoomDTO waitingRoom) {
-        this.waitingRoom=waitingRoom;
+        this.waitingRoom = waitingRoom;
         this.model.configurateWaitingRoom(myPlayer, waitingRoom);
         this.view.showLobbyPanel((MainMenuViewModel) model);
 
