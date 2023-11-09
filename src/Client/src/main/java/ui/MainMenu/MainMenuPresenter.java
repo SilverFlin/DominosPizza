@@ -1,8 +1,5 @@
 package ui.MainMenu;
 
-import java.util.List;
-import network.EventRouter;
-
 /**
  *
  * @author Luis Fernando Aguilar Ortiz 228419 ITSON ISW obregon-Camp-Nainari
@@ -18,6 +15,8 @@ public interface MainMenuPresenter {
     /**
      * Es el método por el cual la vista le avisa al presentador de que el
      * usuario quiere cambiar al panel de la sala de espera.
+     *
+     * @param player
      */
     public void goToWaitingRoom(PlayerDTO player);
 
@@ -30,12 +29,13 @@ public interface MainMenuPresenter {
     /**
      * Es el método por el cual el Router le manda nueva información al
      * presentador.
+     *
+     * @param waitingRoom
      */
     public void updateWaitingRoom(WaitingRoomDTO waitingRoom);
 
     public void newPlayerHasJoined(WaitingRoomDTO waitingRoom);
-    
-        public void foreStart();
 
+    public void foreStart();
 
 }

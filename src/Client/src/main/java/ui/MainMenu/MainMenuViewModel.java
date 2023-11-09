@@ -5,18 +5,18 @@
 package ui.MainMenu;
 
 import java.util.List;
-import network.EventRouter;
 
 /**
  *
  * @author Toled
  */
- interface MainMenuViewModel {
+interface MainMenuViewModel {
 
     /**
      * Cambia al panel de selección de Avatar.
      */
-    public  List<AvatarDTO> getAvatars();
+    public List<AvatarDTO> getAvatars();
+
     /**
      * Regresa información de la sala de espera.
      */
