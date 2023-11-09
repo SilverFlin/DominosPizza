@@ -6,9 +6,9 @@ package network;
  */
 public interface NetworkConnection<T> {
 
-    void stopConnection(String ip, int port);
+    void startConnection(String ip, int port);
 
-    void startConnection();
+    void stopConnection();
 
     void sendMessage(T message);
 }
