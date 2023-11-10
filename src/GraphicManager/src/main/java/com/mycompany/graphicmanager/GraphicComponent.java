@@ -4,10 +4,13 @@
  */
 package com.mycompany.graphicmanager;
 
+import java.util.List;
+
 /**
  *
  * @author JIVB
  */
 public class GraphicComponent {
     
+    public void draw(){}
 }
