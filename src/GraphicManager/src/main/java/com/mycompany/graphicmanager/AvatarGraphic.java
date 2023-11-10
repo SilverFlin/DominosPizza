@@ -1,0 +1,40 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.graphicmanager;
+
+import java.awt.image.BufferedImage;
+
+/**
+ *
+ * @author JIVB
+ */
+public class AvatarGraphic extends GraphicComponent {
+    
+    private String name;
+    private BufferedImage image;
+
+    public AvatarGraphic(String name, BufferedImage image) {
+        super();
+        this.name = name;
+        this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+    
+}
