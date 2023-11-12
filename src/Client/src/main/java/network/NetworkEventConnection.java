@@ -13,24 +13,28 @@ import java.util.logging.Logger;
 /**
  *
  */
-public class NetworkEventConnection implements NetworkConnection<Event>, EventSubject {
+public class NetworkEventConnection implements NetworkConnection<Event>, EventSubject, Runnable {
 
     private Socket socket;
     private ObjectInputStream in;
     private ObjectOutputStream out;
-    private List<EventConsumer> observers;
+    private final List<EventConsumer> observers;
+    private final String ip;
+    private final int port;
 
     private static final Logger LOG
             = Logger.getLogger(NetworkEventConnection.class.getName());
 
-    public NetworkEventConnection() {
+    public NetworkEventConnection(final String ip, final int port) {
         this.observers = new ArrayList<>();
+        this.ip = ip;
+        this.port = port;
     }
 
     @Override
-    public void startConnection(final String ip, final int port) {
+    public void startConnection() {
         try {
-            this.socket = new Socket(ip, port);
+            this.socket = new Socket(this.ip, this.port);
             this.out = new ObjectOutputStream(socket.getOutputStream());
             this.in = new ObjectInputStream(socket.getInputStream());
         } catch (IOException ex) {
@@ -75,4 +79,21 @@ public class NetworkEventConnection implements NetworkConnection<Event>, EventSu
         }
     }
 
+    @Override
+    public void run() {
+
+        this.startConnection();
+        LOG.log(Level.INFO, "Connection ready");
+
+        Event input;
+
+        try {
+            while ((input = (Event) in.readObject()) != null) {
+                notifyObservers(input);
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            LOG.log(Level.SEVERE, "Error at handling socket message: " + ex);
+        }
+
+    }
 }

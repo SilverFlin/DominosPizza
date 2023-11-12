@@ -2,11 +2,14 @@ package network;
 
 import client.GameSystemFacadeImpl;
 import domain.Avatar;
-import domain.DominoGame;
 import domain.Player;
+import edu.itson.eventschema.DuplicatedNameErrorEvent;
 import edu.itson.eventschema.Event;
+import edu.itson.eventschema.GameOverEvent;
 import edu.itson.eventschema.PlayerJoinsEvent;
+import edu.itson.eventschema.PlayerLeaveEvent;
 import edu.itson.eventschema.UpdateGameEvent;
+import edu.itson.eventschema.UpdateWaitingRoomEvent;
 import interfaces.GameSystemFacade;
 import ui.Board.GameDTO;
 import ui.MainMenu.AvatarDTO;
@@ -18,11 +21,13 @@ import ui.MainMenu.PlayerDTO;
 public class EventManager implements EventProducer, EventConsumer {
 
     private GameSystemFacade gameSystem;
-    private NetworkConnection connection;
+    private NetworkEventConnection connection;
 
     public EventManager(final NetworkEventConnection connection) {
         this.connection = connection;
+        this.connection.addObserver(this);
         this.gameSystem = new GameSystemFacadeImpl();
+
     }
 
     @Override
@@ -40,12 +45,27 @@ public class EventManager implements EventProducer, EventConsumer {
 
     @Override
     public void updateGame(GameDTO game) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void consumeEvent(final Event event) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        if (event instanceof DuplicatedNameErrorEvent) {
+            this.gameSystem.showInvalidNameError();
+        } else if (event instanceof GameOverEvent) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        } else if (event instanceof PlayerJoinsEvent) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        } else if (event instanceof PlayerLeaveEvent) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        } else if (event instanceof UpdateGameEvent) {
+            throw new UnsupportedOperationException("Not supported yet.");
+//            this.gameSystem.updateGame(((UpdateGameEvent) event).getPayload());
+        } else if (event instanceof UpdateWaitingRoomEvent) {
+            throw new UnsupportedOperationException("Not supported yet.");
+//            this.gameSystem.updateGame(((UpdateWaitingRoomEvent) event).getPayload());
+        }
 
     }
 

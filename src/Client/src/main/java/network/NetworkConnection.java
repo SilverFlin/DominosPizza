@@ -6,7 +6,7 @@ package network;
  */
 public interface NetworkConnection<T> {
 
-    void startConnection(String ip, int port);
+    void startConnection();
 
     void stopConnection();
 
