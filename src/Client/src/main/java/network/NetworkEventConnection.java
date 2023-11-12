@@ -11,7 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Implementación de la interfaz NetworkConnection que maneja conexiones de
+ * eventos a través de sockets. Además, implementa EventSubject y Runnable para
+ * observar eventos y ejecutar en un hilo separado.
  */
 public class NetworkEventConnection implements NetworkConnection<Event>, EventSubject, Runnable {
 
@@ -25,12 +27,22 @@ public class NetworkEventConnection implements NetworkConnection<Event>, EventSu
     private static final Logger LOG
             = Logger.getLogger(NetworkEventConnection.class.getName());
 
+    /**
+     * Constructor de NetworkEventConnection.
+     *
+     * @param ip La dirección IP del servidor al que se conectará.
+     * @param port El puerto al que se conectará.
+     */
     public NetworkEventConnection(final String ip, final int port) {
         this.observers = new ArrayList<>();
         this.ip = ip;
         this.port = port;
     }
 
+    /**
+     * Inicia la conexión estableciendo el socket y los flujos de
+     * entrada/salida.
+     */
     @Override
     public void startConnection() {
         try {
@@ -42,6 +54,9 @@ public class NetworkEventConnection implements NetworkConnection<Event>, EventSu
         }
     }
 
+    /**
+     * Detiene la conexión cerrando los flujos de entrada/salida y el socket.
+     */
     @Override
     public void stopConnection() {
         try {
@@ -53,6 +68,11 @@ public class NetworkEventConnection implements NetworkConnection<Event>, EventSu
         }
     }
 
+    /**
+     * Envía un mensaje a través de la conexión.
+     *
+     * @param message El evento que se va a enviar.
+     */
     @Override
     public void sendMessage(final Event message) {
         try {
@@ -62,16 +82,31 @@ public class NetworkEventConnection implements NetworkConnection<Event>, EventSu
         }
     }
 
+    /**
+     * Agrega un observador a la lista de observadores.
+     *
+     * @param observer El observador que se va a agregar.
+     */
     @Override
     public void addObserver(final EventConsumer observer) {
         this.observers.add(observer);
     }
 
+    /**
+     * Elimina un observador de la lista de observadores.
+     *
+     * @param observer El observador que se va a eliminar.
+     */
     @Override
-    public void removeObsever(final EventConsumer observer) {
+    public void removeObserver(final EventConsumer observer) {
         this.observers.remove(observer);
     }
 
+    /**
+     * Notifica a todos los observadores sobre un evento recibido.
+     *
+     * @param event El evento que se va a notificar a los observadores.
+     */
     @Override
     public void notifyObservers(final Event event) {
         for (EventConsumer observer : observers) {
@@ -79,9 +114,12 @@ public class NetworkEventConnection implements NetworkConnection<Event>, EventSu
         }
     }
 
+    /**
+     * Implementación del método run de la interfaz Runnable. Se encarga de
+     * recibir eventos continuamente y notificar a los observadores.
+     */
     @Override
     public void run() {
-
         this.startConnection();
         LOG.log(Level.INFO, "Connection ready");
 
@@ -94,6 +132,5 @@ public class NetworkEventConnection implements NetworkConnection<Event>, EventSu
         } catch (IOException | ClassNotFoundException ex) {
             LOG.log(Level.SEVERE, "Error at handling socket message: " + ex);
         }
-
     }
 }

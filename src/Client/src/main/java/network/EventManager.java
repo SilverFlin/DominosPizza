@@ -1,6 +1,5 @@
 package network;
 
-import client.GameSystemFacadeImpl;
 import domain.Avatar;
 import domain.Player;
 import edu.itson.eventschema.DuplicatedNameErrorEvent;
@@ -16,20 +15,33 @@ import ui.MainMenu.AvatarDTO;
 import ui.MainMenu.PlayerDTO;
 
 /**
- *
+ * Gestor de eventos que implementa las interfaces EventProducer y
+ * EventConsumer. Actúa como intermediario entre el sistema de juego y la
+ * conexión de eventos de red.
  */
 public class EventManager implements EventProducer, EventConsumer {
 
-    private GameSystemFacade gameSystem;
-    private NetworkEventConnection connection;
+    private final GameSystemFacade gameSystem;
+    private final NetworkEventConnection connection;
 
-    public EventManager(final NetworkEventConnection connection) {
+    /**
+     * Constructor de la clase EventManager.
+     *
+     * @param connection La conexión de eventos de red.
+     * @param gamesystem El sistema de juego.
+     */
+    public EventManager(final NetworkEventConnection connection, final GameSystemFacade gamesystem) {
         this.connection = connection;
         this.connection.addObserver(this);
-        this.gameSystem = new GameSystemFacadeImpl();
-
+        this.gameSystem = gamesystem;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param playerDTO La información del jugador que se va a unir a la sala de
+     * espera.
+     */
     @Override
     public void joinToWaitingRoom(final PlayerDTO playerDTO) {
         Player player = new Player();
@@ -43,11 +55,21 @@ public class EventManager implements EventProducer, EventConsumer {
         this.connection.sendMessage(updateWaitingRoomEvent);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param game El estado actualizado del juego.
+     */
     @Override
     public void updateGame(GameDTO game) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param event El evento que se va a consumir.
+     */
     @Override
     public void consumeEvent(final Event event) {
 

@@ -1,18 +1,32 @@
 package client;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
-
+import interfaces.GameSystemFacade;
+import network.EventManager;
+import network.NetworkEventConnection;
 
 /**
- *
- * @author Toled
+ * Clase principal de la aplicación.
  */
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        // TODO
+        // Crear GameSystemFacade
+        GameSystemFacade gameSystemFacade = new GameSystemFacadeImpl();
+
+        // Crear Event Manager
+        NetworkEventConnection eventConnection = new NetworkEventConnection("127.0.0.1", 6666);
+        EventManager eventManager = new EventManager(eventConnection, gameSystemFacade);
+
+        // Crear Presentadores
+        // TODO: Crear instancias de los presentadores (por ejemplo, MainMenuPresenter y GamePresenter)
+        // Pasarle el Producer a los presentadores
+        // TODO: Settear el EventManager como el EventProducer para los presentadores
+        // Settear presentadores al gamesystem
+        // TODO: Settear los presentadores al GameSystemFacade
+        // Iniciar hilo de la conexión.
+        Thread eventConnectionThread = new Thread(eventConnection);
+        eventConnectionThread.start();
     }
+
 }
