@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domain;
+
+import java.io.Serializable;
 
 /**
  *
- * @author edemb
  */
-public class Config {
+public class Config implements Serializable {
+
     int tilesPerPlayer;
 
     public Config() {
@@ -21,6 +19,5 @@ public class Config {
     public void setTilesPerPlayer(int tilesPerPlayer) {
         this.tilesPerPlayer = tilesPerPlayer;
     }
-    
-    
+
 }

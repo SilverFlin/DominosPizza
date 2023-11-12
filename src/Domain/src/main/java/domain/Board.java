@@ -1,27 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domain;
 
-import java.util.LinkedList;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  *
- * @author edemb
  */
-public class Board {
+public class Board implements Serializable {
 
-    LinkedList<BoardTile> tiles;
+    List<BoardTile> tiles;
 
     public Board() {
     }
 
-    public LinkedList<BoardTile> getTiles() {
+    public List<BoardTile> getTiles() {
         return tiles;
     }
 
-    public void setTiles(LinkedList<BoardTile> tiles) {
+    public void setTiles(List<BoardTile> tiles) {
         this.tiles = tiles;
     }
 
@@ -30,6 +26,6 @@ public class Board {
     }
 
     public boolean validateMove(DominoTile tile) {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

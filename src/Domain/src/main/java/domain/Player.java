@@ -1,18 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domain;
 
-import java.util.LinkedList;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  *
- * @author edemb
  */
-public class Player {
+public class Player implements Serializable{
 
-    LinkedList<PlayerTile> tilesInHand;
+    List<PlayerTile> tilesInHand;
     Avatar avatar;
     boolean isAdmin;
     boolean isReady;
@@ -21,11 +17,11 @@ public class Player {
         isReady = false;
     }
 
-    public LinkedList<PlayerTile> getTilesInHand() {
+    public List<PlayerTile> getTilesInHand() {
         return tilesInHand;
     }
 
-    public void setTilesInHand(LinkedList<PlayerTile> tilesInHand) {
+    public void setTilesInHand(List<PlayerTile> tilesInHand) {
         this.tilesInHand = tilesInHand;
     }
 

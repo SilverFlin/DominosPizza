@@ -1,12 +1,10 @@
 package ui.MainMenu;
 
-import data.ModelManager;
 import domain.DominoGame;
 import domain.Player;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import network.EventRouterStub;
 import ui.Board.BoardJFrame;
 import ui.Board.GamePresenter;
 import ui.Board.GamePresenterImpl;
@@ -55,8 +53,8 @@ public class Main {
         Router router = new RouterImpl(new LinkedList<>());
 
         GamePresenter gamePresenter = new GamePresenterImpl();
-        
-        MainMenuPresenter presenter = new MainMenuPresenterImpl(view, model, router,gamePresenter);
+
+        MainMenuPresenter presenter = new MainMenuPresenterImpl(view, model, router, gamePresenter);
         view.setPresenter(presenter);
         router.setMainMenuPresenter(presenter);
 

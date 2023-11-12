@@ -25,5 +25,10 @@ public enum EventType {
     /**
      * Tipo de evento para actualizaciones durante el juego.
      */
-    UPDATE_GAME
+    UPDATE_GAME,
+    /**
+     * Tipo de evento para cuando un jugador entra a la partida.
+     */
+    PLAYER_JOINS
+
 }
