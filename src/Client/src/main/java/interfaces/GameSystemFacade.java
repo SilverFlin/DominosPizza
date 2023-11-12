@@ -1,5 +1,7 @@
 package interfaces;
 
+import exceptions.MissingGamePresenterException;
+import exceptions.MissingMainMenuPresenterException;
 import ui.Board.GameDTO;
 import ui.MainMenu.WaitingRoomDTO;
 
@@ -8,13 +10,12 @@ import ui.MainMenu.WaitingRoomDTO;
  */
 public interface GameSystemFacade {
 
-    void goToAvatarPanel();
+    void goToAvatarPanel() throws MissingMainMenuPresenterException;
 
-    void goToWaitingRoom(WaitingRoomDTO waitingRoomDTO);
+    void updateWaitingRoom(WaitingRoomDTO waitingRoomDTO) throws MissingMainMenuPresenterException;
 
-    void updateWaitingRoom(WaitingRoomDTO waitingRoomDTO);
+    void updateGame(GameDTO game) throws MissingGamePresenterException;
 
-    void updateGame(GameDTO game);
-
-    void showInvalidNameError();
+    void showInvalidNameError() throws MissingMainMenuPresenterException;
+;
 }
