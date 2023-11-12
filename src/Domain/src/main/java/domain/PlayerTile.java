@@ -1,17 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domain;
+
+import java.io.Serializable;
 
 /**
  *
- * @author edemb
  */
-public class PlayerTile extends DominoTile{
-    
+public class PlayerTile extends DominoTile implements Serializable {
+
     public PlayerTile(int leftValue, int rightValue) {
         super(leftValue, rightValue);
     }
-    
+
 }

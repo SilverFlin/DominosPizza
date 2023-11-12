@@ -1,10 +1,12 @@
 package edu.itson.eventschema;
 
+import java.io.Serializable;
+
 /**
  * Clase que representa un resumen de un error en el sistema. Contiene un
  * mensaje descriptivo del error.
  */
-public class ErrorSummary {
+public class ErrorSummary implements Serializable{
 
     /**
      * Mensaje descriptivo del error.

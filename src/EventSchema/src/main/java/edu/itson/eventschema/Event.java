@@ -1,11 +1,13 @@
 package edu.itson.eventschema;
 
+import java.io.Serializable;
+
 /**
  * Clase abstracta que representa un evento genérico.
  *
  * @param <T> Tipo de datos asociado al evento.
  */
-public abstract class Event<T> {
+public abstract class Event<T> implements Serializable{
 
     /**
      * Tipo de evento.
