@@ -10,10 +10,11 @@ import javax.swing.JLabel;
  * @author Toled
  * @param <V>
  */
-public class WaitingRoomJPanel extends javax.swing.JPanel {
+public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent {
 
     private MainMenuView view;
     private WaitingRoomDTO waitingRoom;
+    private MainMenuPresenter presenter;
 
     /**
      * Creates new form LobbyJPanel.
@@ -163,10 +164,10 @@ public class WaitingRoomJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
-    
+
         view.foreStart();
-        
-        
+
+
     }//GEN-LAST:event_btnReadyActionPerformed
 
 
@@ -183,4 +184,9 @@ public class WaitingRoomJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblAvatar4;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setPresenter(MainMenuPresenter presenter) {
+        this.presenter = presenter;
+    }
 }

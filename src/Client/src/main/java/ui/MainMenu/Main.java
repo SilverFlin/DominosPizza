@@ -37,10 +37,13 @@ public class Main {
 //
 //        vista.displayMenuPanel();
 //        vista.load();
+        ViewParent menuPanel = new MenuJPanel();
+        ViewParent setUpPanel = new PlayerSetupPanel();
+        ViewParent waitingPanel = new WaitingRoomJPanel();
         MainMenuView view = new MainMenuJFrame();
-        view.setMenuPanel(new MenuJPanel());
-        view.setPlayerSetupPanel(new PlayerSetupPanel());
-        view.setWaitingRoomPanel(new WaitingRoomJPanel());
+        view.setMenuPanel((MenuJPanel) menuPanel);
+        view.setPlayerSetupPanel((PlayerSetupPanel) setUpPanel);
+        view.setWaitingRoomPanel((WaitingRoomJPanel)waitingPanel);
 
         List<AvatarDTO> avatars = new ArrayList<>();
         avatars.add(new AvatarDTO("", "123"));
@@ -56,6 +59,9 @@ public class Main {
 
         MainMenuPresenter presenter = new MainMenuPresenterImpl(view, model, router, gamePresenter);
         view.setPresenter(presenter);
+        menuPanel.setPresenter(presenter);
+        setUpPanel.setPresenter(presenter);
+        waitingPanel.setPresenter(presenter);
         router.setMainMenuPresenter(presenter);
 
         view.displayMenuPanel();
