@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ public class Pool implements Serializable {
      * Constructor de la clase Pool.
      */
     public Pool() {
+        this.dominoes = new ArrayList<>();
     }
 
     /**
