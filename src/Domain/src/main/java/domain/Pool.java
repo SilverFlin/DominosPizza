@@ -46,6 +46,9 @@ public class Pool implements Serializable {
      * @return Ficha de dominó tomada de la piscina.
      */
     public PoolTile takeTile() {
+        if (this.dominoes.isEmpty()) {
+            return null;
+        }
         return this.dominoes.remove(this.dominoes.size() - 1);
     }
 

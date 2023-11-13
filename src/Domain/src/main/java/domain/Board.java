@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class Board implements Serializable {
      * No realiza ninguna acción especial en la inicialización del tablero.
      */
     public Board() {
-        // No hace falta hacer nada.
+        this.tiles = new ArrayList<>();
     }
 
     /**

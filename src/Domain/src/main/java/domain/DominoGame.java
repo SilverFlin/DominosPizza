@@ -1,84 +1,152 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
+ * Clase que representa un juego de dominó.
  *
+ * Esta clase implementa la interfaz Serializable para permitir la serialización
+ * de objetos DominoGame.
  */
 public class DominoGame implements Serializable {
 
     private boolean isReady;
     private Pool pool;
     private Board board;
-    private Config config;
+    private final Config config;
     private List<Player> players;
     private TurnController turnController;
 
     private static DominoGame dominoGame;
 
+    /**
+     * Constructor privado de la clase DominoGame. Se utiliza el patrón
+     * Singleton para garantizar una única instancia de la clase.
+     */
     private DominoGame() {
+        this.config = new Config();
+        this.turnController = new TurnController();
+        this.players = new ArrayList<>();
+        this.board = new Board();
+        this.pool = new Pool();
     }
 
+    /**
+     * Obtiene el estado de preparación del juego.
+     *
+     * @return true si el juego está listo para comenzar, false de lo contrario.
+     */
     public boolean isIsReady() {
         return isReady;
     }
 
+    /**
+     * Establece el estado de preparación del juego.
+     *
+     * @param isReady true si el juego está listo para comenzar, false de lo
+     * contrario.
+     */
     public void setIsReady(final boolean isReady) {
         this.isReady = isReady;
     }
 
+    /**
+     * Obtiene la piscina de fichas del juego.
+     *
+     * @return Piscina de fichas del juego.
+     */
     public Pool getPool() {
         return pool;
     }
 
+    /**
+     * Establece la piscina de fichas del juego.
+     *
+     * @param pool Nueva piscina de fichas del juego.
+     */
     public void setPool(final Pool pool) {
         this.pool = pool;
     }
 
+    /**
+     * Obtiene el tablero del juego.
+     *
+     * @return Tablero del juego.
+     */
     public Board getBoard() {
         return board;
     }
 
+    /**
+     * Establece el tablero del juego.
+     *
+     * @param board Nuevo tablero del juego.
+     */
     public void setBoard(final Board board) {
         this.board = board;
     }
 
+    /**
+     * Obtiene la configuración del juego.
+     *
+     * @return Configuración del juego.
+     */
     public Config getConfig() {
         return config;
     }
 
-    public void setConfig(final Config config) {
-        this.config = config;
-    }
-
+    /**
+     * Obtiene la lista de jugadores en el juego.
+     *
+     * @return Lista de jugadores en el juego.
+     */
     public List<Player> getPlayers() {
         return players;
     }
 
+    /**
+     * Establece la lista de jugadores en el juego.
+     *
+     * @param players Nueva lista de jugadores en el juego.
+     */
     public void setPlayers(final List<Player> players) {
         this.players = players;
     }
 
-    public TurnController getTurnController() {
-        return turnController;
-    }
-
-    public void setTurnController(TurnController turnController) {
-        this.turnController = turnController;
-    }
-
+    /**
+     * Baraja aleatoriamente la lista de jugadores en el juego.
+     */
     public void shufflePlayers() {
-        Collections.shuffle(players);
+        List<Player> mutablePlayers = new ArrayList<>(players);
+        Collections.shuffle(mutablePlayers);
+        players = mutablePlayers;
     }
 
+    /**
+     * Cambia el turno actual de los jugadores en el juego.
+     */
     public void changeTurn() {
         List<Player> sortedPlayers = this.turnController.changeTurn(players);
         this.players = sortedPlayers;
-
     }
 
+    /**
+     * Obtiene al jugador activo actual.
+     *
+     * @return Jugador activo.
+     */
+    public Player getCurrentPlayer() {
+        return this.players.get(0);
+    }
+
+    /**
+     * Agrega un jugador al juego.
+     *
+     * @param player Jugador que se agregará al juego.
+     */
     public void addPlayer(final Player player) {
         if (!players.isEmpty()) {
             for (var p : players) {
@@ -88,9 +156,14 @@ public class DominoGame implements Serializable {
             }
         }
         players.add(player);
-
     }
 
+    /**
+     * Obtiene la instancia única de la clase DominoGame utilizando el patrón
+     * Singleton.
+     *
+     * @return Instancia única de DominoGame.
+     */
     public static DominoGame getInstance() {
         if (DominoGame.dominoGame == null) {
             DominoGame.dominoGame = new DominoGame();
@@ -98,12 +171,22 @@ public class DominoGame implements Serializable {
         return DominoGame.dominoGame;
     }
 
+    /**
+     * Establece la cantidad de fichas en la configuración del juego.
+     *
+     * @param cantTile Cantidad de fichas por jugador.
+     */
     public void setTileAmountConfig(final int cantTile) {
         this.config.setTilesPerPlayer(cantTile);
     }
 
+    /**
+     * Inicia el juego verificando si todos los jugadores están listos.
+     *
+     * @return true si el juego se inicia correctamente, false si algún jugador
+     * no está listo.
+     */
     public boolean startGame() {
-
         for (Player player : this.getPlayers()) {
             if (!player.isReady()) {
                 return false;
@@ -112,12 +195,22 @@ public class DominoGame implements Serializable {
         return true;
     }
 
+    /**
+     * Coloca una ficha en el tablero del juego.
+     *
+     * @param tile Ficha de dominó que se colocará en el tablero.
+     */
     public void putTileBoard(final DominoTile tile) {
-        this.board.putTile(tile);
+        BoardTile boardTile = new BoardTile(tile.getLeftValue(), tile.getRightValue());
+        this.board.putTile(boardTile);
     }
 
+    /**
+     * Toma una ficha de la piscina y la asigna a un jugador.
+     *
+     * @param player Jugador que tomará la ficha.
+     */
     public void takeFromPool(final Player player) {
         player.addTile(this.pool.takeTile());
     }
-
 }
