@@ -2,19 +2,19 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
  */
 public class DominoGame implements Serializable {
 
-    boolean isReady;
-    Pool pool;
-    Board board;
-    Config config;
-    LinkedList<Player> players;
-    TurnController turnController;
+    private boolean isReady;
+    private Pool pool;
+    private Board board;
+    private Config config;
+    private List<Player> players;
+    private TurnController turnController;
 
     private static DominoGame dominoGame;
 
@@ -25,7 +25,7 @@ public class DominoGame implements Serializable {
         return isReady;
     }
 
-    public void setIsReady(boolean isReady) {
+    public void setIsReady(final boolean isReady) {
         this.isReady = isReady;
     }
 
@@ -33,7 +33,7 @@ public class DominoGame implements Serializable {
         return pool;
     }
 
-    public void setPool(Pool pool) {
+    public void setPool(final Pool pool) {
         this.pool = pool;
     }
 
@@ -41,7 +41,7 @@ public class DominoGame implements Serializable {
         return board;
     }
 
-    public void setBoard(Board board) {
+    public void setBoard(final Board board) {
         this.board = board;
     }
 
@@ -49,15 +49,15 @@ public class DominoGame implements Serializable {
         return config;
     }
 
-    public void setConfig(Config config) {
+    public void setConfig(final Config config) {
         this.config = config;
     }
 
-    public LinkedList<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(LinkedList<Player> players) {
+    public void setPlayers(final List<Player> players) {
         this.players = players;
     }
 
@@ -69,17 +69,17 @@ public class DominoGame implements Serializable {
         this.turnController = turnController;
     }
 
-    public void sifflePlayer() {
+    public void shufflePlayers() {
         Collections.shuffle(players);
     }
 
     public void changeTurn() {
-
-        this.turnController.changeTurn(players);
+        List<Player> sortedPlayers = this.turnController.changeTurn(players);
+        this.players = sortedPlayers;
 
     }
 
-    public void addPlayer(Player player) {
+    public void addPlayer(final Player player) {
         if (!players.isEmpty()) {
             for (var p : players) {
                 if (p.getAvatar().getName().compareTo(player.getAvatar().getName()) == 0) {
@@ -98,25 +98,25 @@ public class DominoGame implements Serializable {
         return DominoGame.dominoGame;
     }
 
-    public void setTileAmountConfig(int cantTile) {
+    public void setTileAmountConfig(final int cantTile) {
         this.config.setTilesPerPlayer(cantTile);
     }
 
     public boolean startGame() {
 
-        for (Player player : this.dominoGame.getPlayers()) {
-            if (!player.isReady) {
+        for (Player player : this.getPlayers()) {
+            if (!player.isReady()) {
                 return false;
             }
         }
         return true;
     }
 
-    public void putTileBoard(DominoTile tile) {
+    public void putTileBoard(final DominoTile tile) {
         this.board.putTile(tile);
     }
 
-    public void takeFromPool(Player player) {
+    public void takeFromPool(final Player player) {
         player.addTile(this.pool.takeTile());
     }
 
