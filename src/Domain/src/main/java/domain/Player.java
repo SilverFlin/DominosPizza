@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,8 @@ public class Player implements Serializable {
      * false por defecto.
      */
     public Player() {
-        isReady = false;
+        this.isReady = false;
+        this.tilesInHand = new ArrayList<>();
     }
 
     /**
