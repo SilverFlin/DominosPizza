@@ -25,7 +25,7 @@ public class TurnController implements Serializable {
      * @return Lista de jugadores con el turno cambiado.
      */
     public List<Player> changeTurn(final List<Player> players) {
-        LinkedList<Player> sortedPlayers = (LinkedList<Player>) players;
+        LinkedList<Player> sortedPlayers = new LinkedList<>(List.copyOf(players));
         Player player = sortedPlayers.pop();
         sortedPlayers.addLast(player);
         return sortedPlayers;
