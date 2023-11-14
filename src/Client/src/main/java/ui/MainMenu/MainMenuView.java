@@ -4,10 +4,6 @@ package ui.MainMenu;
 import java.util.List;
 
 public interface MainMenuView {
-    /**
-     * Representa la interacción del usuario, de ir a la pantalla de avatares.
-     */
-    public void goToAvatarPanel();
 
     /**
      * Termina la instancia de esta vista, para ser cambiada a otra vista.
@@ -34,11 +30,6 @@ public interface MainMenuView {
      * ese nombre en la sala de espera.
      */
     public void showInvalidNameError();
-
-    /**
-     * Representa la interacción de usuario, de ir a la sala de espera.
-     */
-    public void goToWaitingRoom(PlayerDTO player);
 
     /**
      * Cambia al panel de selección de Avatar.

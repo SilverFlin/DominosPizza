@@ -1,14 +1,14 @@
 package ui.MainMenu;
 
-
 /**
  *
  * @author edemb
  * @param <V>
  */
-public class MenuJPanel extends javax.swing.JPanel {
+public class MenuJPanel extends javax.swing.JPanel implements ViewParent {
 
     private MainMenuView view;
+    private MainMenuPresenter presenter;
 
     /**
      * Creates new form MenuPanel
@@ -20,8 +20,6 @@ public class MenuJPanel extends javax.swing.JPanel {
     public void setView(MainMenuView view) {
         this.view = view;
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,12 +60,12 @@ public class MenuJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.view.goToAvatarPanel();
+        this.presenter.goToAvatarPanel();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        view.goToAvatarPanel();
+        presenter.goToAvatarPanel();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -76,4 +74,9 @@ public class MenuJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setPresenter(MainMenuPresenter presenter) {
+        this.presenter = presenter;
+    }
 }

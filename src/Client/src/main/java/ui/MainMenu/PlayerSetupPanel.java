@@ -7,12 +7,13 @@ import javax.swing.JOptionPane;
  *
  * @param <V>
  */
-public class PlayerSetupPanel extends javax.swing.JPanel {
+public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
 
     private MainMenuView view;
     private String avatarName = "";
     private String avatarImage = "";
     private List<AvatarDTO> avatars;
+    private MainMenuPresenter presenter;
 
     /**
      * Creates new form AvatarsJPanel.
@@ -30,13 +31,13 @@ public class PlayerSetupPanel extends javax.swing.JPanel {
         this.avatars = viewModel.getAvatars();
         this.setAvatars();
     }
-    
-    private void setAvatars(){
-    this.btnAvatar1.setText(this.avatars.get(0).image);
-    this.btnAvatar2.setText(this.avatars.get(1).image);
-    this.btnAvatar3.setText(this.avatars.get(2).image);
-    this.btnAvatar4.setText(this.avatars.get(3).image);
-    this.btnAvatar5.setText(this.avatars.get(4).image);
+
+    private void setAvatars() {
+        this.btnAvatar1.setText(this.avatars.get(0).image);
+        this.btnAvatar2.setText(this.avatars.get(1).image);
+        this.btnAvatar3.setText(this.avatars.get(2).image);
+        this.btnAvatar4.setText(this.avatars.get(3).image);
+        this.btnAvatar5.setText(this.avatars.get(4).image);
     }
 
     public void showInvalidNameError() {
@@ -197,7 +198,7 @@ public class PlayerSetupPanel extends javax.swing.JPanel {
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         PlayerDTO player = new PlayerDTO();
         player.setAvatar(new AvatarDTO(this.txtName.getText(), avatarImage));
-        this.view.goToWaitingRoom(player);
+        this.presenter.goToWaitingRoom(player);
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btnAvatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar1ActionPerformed
@@ -245,5 +246,10 @@ public class PlayerSetupPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setPresenter(MainMenuPresenter presenter) {
+        this.presenter=presenter;
+    }
 
 }
