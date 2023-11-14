@@ -8,7 +8,7 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
 /**
  *
  */
-public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
+public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView,ViewParent {
 
     private PlayerSetupPanel playerSetupPanel;
     private WaitingRoomJPanel waitingRoomPanel;
@@ -45,6 +45,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     }
 
 //    @Override
+    @Override
     public void setPlayerSetupPanel(final PlayerSetupPanel playerSetupPanel) {
         this.playerSetupPanel = playerSetupPanel;
         this.addPanel(playerSetupPanel);
@@ -53,6 +54,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 //
 //    @Override
 
+    @Override
     public void displayPlayerSetupPanel() {
         this.hidePanels();
         this.playerSetupPanel.setVisible(true);
@@ -60,12 +62,14 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 //
 //    @Override
 
+    @Override
     public void setWaitingRoomPanel(final WaitingRoomJPanel waitingRoomPanel) {
         this.waitingRoomPanel = waitingRoomPanel;
         this.addPanel(waitingRoomPanel);
         this.waitingRoomPanel.setView(this);
     }
 
+    @Override
     public void setPresenter(MainMenuPresenter presenter) {
         this.presenter = presenter;
     }
@@ -93,6 +97,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 //
 //    @Override
 
+    @Override
     public void setMenuPanel(final MenuJPanel menuPanel) {
         this.menuPanel = menuPanel;
         this.addPanel(menuPanel);
@@ -102,6 +107,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
 //
 //    @Override
 
+    @Override
     public void displayMenuPanel() {
         this.hidePanels();
         this.menuPanel.setVisible(true);
@@ -133,10 +139,6 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    @Override
-    public void goToAvatarPanel() {
-        this.presenter.goToAvatarPanel();
-    }
 
     @Override
     public void close() {
@@ -162,12 +164,6 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public void goToWaitingRoom(PlayerDTO player) {
-
-        presenter.goToWaitingRoom(player);
-
-    }
 
     @Override
     public void showAvatarPanel(MainMenuViewModel viewModel) {
@@ -176,6 +172,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView {
     }
 
 //    @Override
+    @Override
     public void load() {
         this.setVisible(true);
         this.revalidate();
