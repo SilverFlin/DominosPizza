@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ui.MainMenu;
 
 import domain.Avatar;
@@ -21,13 +17,13 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
     private Player myPlayer;
     private List<AvatarDTO> avatars;
 
-    public MainMenuModelImpl(DominoGame dominoGame, List<AvatarDTO> avatars) {
+    public MainMenuModelImpl(final DominoGame dominoGame, final List<AvatarDTO> avatars) {
         this.dominoGame = dominoGame;
         this.avatars = avatars;
     }
 
     @Override
-    public void configurateWaitingRoom(PlayerDTO myPlayer, WaitingRoomDTO waitingRoom) {
+    public void configurateWaitingRoom(final PlayerDTO myPlayer, final WaitingRoomDTO waitingRoom) {
         this.dominoGame.setPlayers(parsePlayer(waitingRoom.getPlayers()));
         Config config = new Config();
         config.setTilesPerPlayer(waitingRoom.getInitialTiles());
@@ -37,8 +33,8 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
         setPlayerAdmin();
     }
 
-    private LinkedList<Player> parsePlayer(LinkedList<PlayerDTO> players) {
-        LinkedList<Player> parsedPlayers = new LinkedList<>();
+    private List<Player> parsePlayer(final List<PlayerDTO> players) {
+        List<Player> parsedPlayers = new LinkedList<>();
         for (PlayerDTO player : players) {
             Player p = new Player();
             p.setAvatar(new Avatar(player.getAvatar().getNombre(), player.getAvatar().getImage()));
@@ -48,8 +44,8 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
 
     }
 
-    private LinkedList<PlayerDTO> parsePlayerDTO(LinkedList<Player> players) {
-        LinkedList<PlayerDTO> parsedPlayers = new LinkedList<>();
+    private List<PlayerDTO> parsePlayerDTO(final List<Player> players) {
+        List<PlayerDTO> parsedPlayers = new LinkedList<>();
         for (Player player : players) {
             PlayerDTO p = new PlayerDTO();
             p.setAvatar(new AvatarDTO(player.getAvatar().getName(), player.getAvatar().getImage()));
@@ -71,16 +67,14 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
     }
 
     @Override
-    public void setMyPlayer(PlayerDTO player) {
+    public void setMyPlayer(final PlayerDTO player) {
         this.myPlayer = new Player();
         this.myPlayer.setAvatar(new Avatar(player.getAvatar().getNombre(), player.getAvatar().getImage()));
     }
 
     @Override
     public boolean isReady() {
-
         return this.dominoGame.startGame();
-        
     }
 
     @Override
@@ -94,7 +88,7 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
     }
 
     @Override
-    public void setWaitingRoom(WaitingRoomDTO waitingRoom) {
+    public void setWaitingRoom(final WaitingRoomDTO waitingRoom) {
         this.dominoGame.setPlayers(parsePlayer(waitingRoom.getPlayers()));
         Config config = new Config();
         config.setTilesPerPlayer(waitingRoom.getInitialTiles());

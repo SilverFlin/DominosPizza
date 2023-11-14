@@ -16,7 +16,7 @@ public class DominoGame implements Serializable {
     private boolean isReady;
     private Pool pool;
     private Board board;
-    private final Config config;
+    private Config config;
     private List<Player> players;
     private TurnController turnController;
 
@@ -96,6 +96,15 @@ public class DominoGame implements Serializable {
      */
     public Config getConfig() {
         return config;
+    }
+
+    /**
+     * Establece la configuración del juego.
+     *
+     * @param config Configuración del juego.
+     */
+    public void setConfig(Config config) {
+        this.config = config;
     }
 
     /**

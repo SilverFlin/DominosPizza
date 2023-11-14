@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ui.MainMenu;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,22 +7,23 @@ import java.util.List;
  * @author edemb
  */
 public class WaitingRoomDTO {
-    private LinkedList<PlayerDTO> players;
+
+    private List<PlayerDTO> players;
     private int initialTiles;
 
     public WaitingRoomDTO() {
     }
 
-    public WaitingRoomDTO(LinkedList<PlayerDTO> players, int initialTiles) {
+    public WaitingRoomDTO(final List<PlayerDTO> players, final int initialTiles) {
         this.players = players;
         this.initialTiles = initialTiles;
     }
 
-    public LinkedList<PlayerDTO> getPlayers() {
+    public List<PlayerDTO> getPlayers() {
         return players;
     }
 
-    public void setPlayers(LinkedList<PlayerDTO> players) {
+    public void setPlayers(final List<PlayerDTO> players) {
         this.players = players;
     }
 
@@ -38,6 +34,5 @@ public class WaitingRoomDTO {
     public void setInitialTiles(int initialTiles) {
         this.initialTiles = initialTiles;
     }
-    
-    
+
 }
