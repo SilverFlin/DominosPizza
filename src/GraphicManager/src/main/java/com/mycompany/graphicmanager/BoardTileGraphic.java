@@ -1,12 +1,11 @@
-
 package com.mycompany.graphicmanager;
 
 /**
  *
  * @author JIVB
  */
-public class BoardTileGraphic extends GraphicComponent {
-    
+public class BoardTileGraphic implements GraphicComponent {
+
     int left;
     int rigth;
 
@@ -30,6 +29,10 @@ public class BoardTileGraphic extends GraphicComponent {
     public void setRigth(int rigth) {
         this.rigth = rigth;
     }
-    
-    
+
+    @Override
+    public void draw() {
+
+    }
+
 }

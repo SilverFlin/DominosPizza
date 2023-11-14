@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author JIVB
  */
-public class GraphicComposite {
+public abstract class GraphicComposite {
     
     
     List<GraphicComponent> components;

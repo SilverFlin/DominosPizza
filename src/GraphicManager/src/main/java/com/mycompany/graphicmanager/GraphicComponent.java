@@ -6,7 +6,7 @@ package com.mycompany.graphicmanager;
  *
  * @author JIVB
  */
-public class GraphicComponent {
+public interface GraphicComponent {
     
-    public void draw(){}
+    public void draw();
 }

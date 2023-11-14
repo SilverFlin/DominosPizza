@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
  *
  * @author JIVB
  */
-public class AvatarGraphic extends GraphicComponent {
+public class AvatarGraphic implements GraphicComponent {
     
     private String name;
     private BufferedImage image;
@@ -32,6 +32,11 @@ public class AvatarGraphic extends GraphicComponent {
 
     public void setImage(BufferedImage image) {
         this.image = image;
+    }
+
+    @Override
+    public void draw() {
+
     }
     
 }
