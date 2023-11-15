@@ -62,7 +62,7 @@ public class Tile {
         b.setColor(Color.white);
         b.fillRoundRect(0,0, 80, 40, 15, 15);
         b.setColor(Color.black);
-        b.fillRect(38, 0, 4,40);
+        b.fillRect(38, 2, 4,38);
         
         b.drawImage(cara(playerTile.getLeftValue()), null, 0, 0);
         b.drawImage(cara(playerTile.getRightValue()), null, 40, 0);
