@@ -4,9 +4,9 @@
  */
 package graphics;
 
-import domain.PlayerTile;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
 /**
@@ -15,14 +15,21 @@ import javax.swing.JPanel;
  */
 public class GamePanel extends JPanel {
     
-    
+    DominoGameGraphic dgg;
+    RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+
+    public GamePanel() {
+        dgg = new DominoGameGraphic();
+        rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+    }
+    
     @Override
     protected void paintComponent(Graphics g) {
         var g2 = (Graphics2D)g;
-        var pt = new PlayerTile(2,3);
-        var p = new PlayerTileGraphic(new Tile(pt,120, 120), g2);
-        p.draw();
-               
+        g2.setRenderingHints(rh);
+        dgg.draw(g2);
+        
     }
 }

@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,10 @@ public abstract class GraphicComposite {
 
     List<GraphicComponent> components;
 
+    public GraphicComposite() {
+        components=new ArrayList<>();
+    }
+
     public void add(GraphicComponent gc) {
         components.add(gc);
     }
@@ -19,10 +24,10 @@ public abstract class GraphicComposite {
         components.remove(gc);
     }
 
-    public void draw() {
-        for (var component : components) {
-            component.draw();
-        }
+    public void draw(Graphics2D g2) {
+        for (var component : components) 
+            component.draw(g2);
+        
     }
 
 }

@@ -1,6 +1,8 @@
 
 package graphics;
 
+import java.awt.Graphics2D;
+
 
 /**
  *
@@ -8,5 +10,5 @@ package graphics;
  */
 public interface GraphicComponent {
     
-    public void draw();
+    public void draw(Graphics2D g2);
 }

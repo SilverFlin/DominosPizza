@@ -1,5 +1,7 @@
 package graphics;
 
+import java.awt.Graphics2D;
+
 /**
  *
  * @author JIVB
@@ -13,7 +15,7 @@ public class PoolGraphic implements GraphicComponent {
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics2D g2) {
 
     }
 

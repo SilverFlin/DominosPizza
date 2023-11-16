@@ -1,6 +1,7 @@
 
 package graphics;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -35,7 +36,7 @@ public class AvatarGraphic implements GraphicComponent {
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics2D g2) {
 
     }
     
