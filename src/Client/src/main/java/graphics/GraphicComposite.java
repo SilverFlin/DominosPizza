@@ -1,6 +1,6 @@
+package graphics;
 
-package com.mycompany.graphicmanager;
-
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,25 +9,25 @@ import java.util.List;
  * @author JIVB
  */
 public abstract class GraphicComposite {
-    
-    
+
     List<GraphicComponent> components;
 
     public GraphicComposite() {
-        components = new ArrayList<>();
+        components=new ArrayList<>();
     }
 
-    public void add(GraphicComponent gc){
+    public void add(GraphicComponent gc) {
         components.add(gc);
     }
-    
-    public void remove(GraphicComponent gc){
+
+    public void remove(GraphicComponent gc) {
         components.remove(gc);
     }
-    
-    public void draw(){
+
+    public void draw(Graphics2D g2) {
         for (var component : components) 
-            component.draw();
+            component.draw(g2);
+        
     }
-    
+
 }

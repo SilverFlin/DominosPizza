@@ -1,4 +1,6 @@
-package com.mycompany.graphicmanager;
+package graphics;
+
+import java.awt.Graphics2D;
 
 /**
  *
@@ -13,7 +15,7 @@ public class PoolGraphic implements GraphicComponent {
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics2D g2) {
 
     }
 

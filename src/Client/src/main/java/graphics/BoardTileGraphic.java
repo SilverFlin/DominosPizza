@@ -1,10 +1,15 @@
-package com.mycompany.graphicmanager;
+package graphics;
+
+import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
+
 
 /**
  *
  * @author JIVB
  */
-public class BoardTileGraphic implements GraphicComponent {
+public class BoardTileGraphic implements GraphicComponent
+{
 
     int left;
     int rigth;
@@ -31,7 +36,7 @@ public class BoardTileGraphic implements GraphicComponent {
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics2D g2) {
 
     }
 
