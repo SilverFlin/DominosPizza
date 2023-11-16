@@ -46,6 +46,8 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
 
         this.model.updateGame(gameDTO);
         this.view.updateGame((GameViewModel) this.model);
+        this.view.open();
+        
     }
 
     @Override

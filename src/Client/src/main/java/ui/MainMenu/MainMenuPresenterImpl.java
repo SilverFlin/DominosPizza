@@ -3,6 +3,8 @@ package ui.MainMenu;
 import dtos.WaitingRoomDTO;
 import dtos.PlayerDTO;
 import base.BasePresenter;
+import java.util.ArrayList;
+import java.util.List;
 import network.EventProducer;
 import ui.game.GamePresenter;
 
@@ -20,6 +22,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     WaitingRoomDTO waitingRoom;
 
     public MainMenuPresenterImpl() {
+
     }
 
     public MainMenuPresenterImpl(MainMenuView view, MainMenuModel model, EventProducer producer, GamePresenter gamePresenter) {
@@ -27,7 +30,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
         this.model = model;
         this.producer = producer;
         this.gamePresenter = gamePresenter;
-        this.view.displayMenuPanel();
+        this.view.open();
     }
 
     public void setView(MainMenuView view) {
@@ -47,6 +50,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     public void goToWaitingRoom(PlayerDTO player) {
         this.myPlayer = player;
         this.producer.joinToWaitingRoom(player);
+        this.view.displayWaitingRoomPanel();
 
     }
 
@@ -81,6 +85,10 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
 
     @Override
     public void foreStart() {
+        if (this.waitingRoom == null) {
+            this.waitingRoom = new WaitingRoomDTO();
+            this.waitingRoom.setPlayers(new ArrayList<>(List.of(this.myPlayer)));
+        }
         gamePresenter.loadBoard(this.waitingRoom, myPlayer);
         view.close();
     }

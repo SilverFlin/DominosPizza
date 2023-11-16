@@ -17,4 +17,8 @@ public interface GameView {
      */
     void updateGame(GameViewModel gameViewModel);
 
+    void open();
+
+    void close();
+
 }

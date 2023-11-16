@@ -8,7 +8,7 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
 /**
  *
  */
-public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView,ViewParent {
+public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView, ViewParent {
 
     private PlayerSetupPanel playerSetupPanel;
     private WaitingRoomJPanel waitingRoomPanel;
@@ -72,6 +72,12 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView,V
     @Override
     public void setPresenter(MainMenuPresenter presenter) {
         this.presenter = presenter;
+
+        for (JPanel panel : panels) {
+            if (panel instanceof ViewParent) {
+                ((ViewParent) panel).setPresenter(presenter);
+            }
+        }
     }
 
 //
@@ -89,7 +95,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView,V
 //        this.configurationPanel.setView(this);
 //    }
 //
-//    @Override
+    @Override
     public void displayWaitingRoomPanel() {
         this.hidePanels();
         this.waitingRoomPanel.setVisible(true);
@@ -110,6 +116,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView,V
     @Override
     public void displayMenuPanel() {
         this.hidePanels();
+        System.out.println("Display Menu");
         this.menuPanel.setVisible(true);
     }
 
@@ -139,11 +146,15 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView,V
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
     @Override
     public void close() {
         this.dispose();
+    }
 
+    @Override
+    public void open() {
+        this.setVisible(true);
+        this.displayMenuPanel();
     }
 
     @Override
@@ -163,7 +174,6 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView,V
     public void showInvalidNameError() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 
     @Override
     public void showAvatarPanel(MainMenuViewModel viewModel) {

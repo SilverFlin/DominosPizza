@@ -52,12 +52,13 @@ public class GameModelmpl implements GameModel, GameViewModel {
 
     @Override
     public void updateGame(final GameDTO game) {
-
-        List<BoardTile> boardTiles = new ArrayList<>();
-        for (DominoDTO tile : game.getBoard()) {
-            boardTiles.add(new BoardTile(tile.getLeftValue(), tile.getRightValue()));
+        if (game.getBoard() != null) {
+            List<BoardTile> boardTiles = new ArrayList<>();
+            for (DominoDTO tile : game.getBoard()) {
+                boardTiles.add(new BoardTile(tile.getLeftValue(), tile.getRightValue()));
+            }
+            this.dominoGame.getBoard().setTiles(boardTiles);
         }
-        this.dominoGame.getBoard().setTiles(boardTiles);
 
         // TODO
         var playersDTO = game.getPlayers();
