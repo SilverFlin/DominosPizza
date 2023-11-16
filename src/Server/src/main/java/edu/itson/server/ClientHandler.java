@@ -18,7 +18,7 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
     private final ObjectInputStream input;
     private final ObjectOutputStream output;
 
-    private static final Logger LOG = Logger.getLogger(Server.class.getName());
+    private static final Logger LOG = Logger.getLogger(ClientHandler.class.getName());
 
     /**
      * Constructor de la clase ClientHandler.
@@ -47,7 +47,6 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
             output.flush();
         } catch (IOException ex) {
             LOG.log(Level.SEVERE, "Error sending event back to client: " + ex.getMessage());
-            this.closeSocket();
         }
     }
 
@@ -59,29 +58,23 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
     @Override
     public void run() {
         Object receivedObject;
-        while (true) {
+        while (!this.clientSocket.isClosed()) {
             try {
                 receivedObject = this.input.readObject();
                 if (receivedObject instanceof Event message) {
-                    this.consumeEvent(message);
+                    this.publishEvent(message);
                 }
             } catch (IOException | ClassNotFoundException ex) {
                 LOG.log(Level.SEVERE, "Error processing client request: " + ex.getMessage());
-                this.closeSocket();
+                try {
+                    clientSocket.close();
+                } catch (IOException ex1) {
+                    LOG.log(Level.SEVERE, "Error closing client socket: " + ex.getMessage());
+                }
+                this.eventBus.unsubscribe(this);
+                LOG.log(Level.INFO, "Client socket closed");
             }
 
-        }
-    }
-
-    /**
-     * Cierra el socket del cliente.
-     */
-    private void closeSocket() {
-        try {
-            clientSocket.close();
-            LOG.log(Level.INFO, "Client socket closed");
-        } catch (IOException ex) {
-            LOG.log(Level.SEVERE, "Error closing client socket: " + ex.getMessage());
         }
     }
 

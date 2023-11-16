@@ -3,6 +3,8 @@ package edu.itson.server;
 import edu.itson.eventschema.Event;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase que representa un bus de eventos para la comunicación entre
@@ -13,6 +15,8 @@ public class EventBus {
     private final List<EventConsumer> consumers = new ArrayList<>();
 
     private static EventBus eventBus;
+
+    private static final Logger LOG = Logger.getLogger(EventBus.class.getName());
 
     private EventBus() {
     }
@@ -53,6 +57,7 @@ public class EventBus {
      * @param event El evento a enviar.
      */
     public void sendEvent(final Event event) {
+        LOG.log(Level.INFO, "Evento en bus: " + event);
         for (EventConsumer consumer : consumers) {
             consumer.consumeEvent(event);
         }
