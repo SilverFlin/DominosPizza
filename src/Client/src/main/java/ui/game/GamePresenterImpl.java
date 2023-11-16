@@ -1,8 +1,9 @@
 package ui.game;
 
-import ui.Board.GameDTO;
-import ui.MainMenu.PlayerDTO;
-import ui.MainMenu.WaitingRoomDTO;
+import dtos.DominoDTO;
+import dtos.GameDTO;
+import dtos.PlayerDTO;
+import dtos.WaitingRoomDTO;
 
 /**
  *
@@ -25,7 +26,7 @@ public class GamePresenterImpl implements GamePresenter {
     }
 
     @Override
-    public void takeFromPool(PlayerDTO player) {
+    public void takeFromPool() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

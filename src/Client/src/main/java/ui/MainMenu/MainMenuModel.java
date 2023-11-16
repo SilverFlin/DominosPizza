@@ -4,6 +4,8 @@
  */
 package ui.MainMenu;
 
+import dtos.WaitingRoomDTO;
+import dtos.PlayerDTO;
 import java.util.List;
 
 /**

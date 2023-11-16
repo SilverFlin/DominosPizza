@@ -3,10 +3,10 @@ package client;
 import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
 import interfaces.GameSystemFacade;
-import ui.Board.GameDTO;
+import dtos.GameDTO;
 import ui.Board.GamePresenter;
 import ui.MainMenu.MainMenuPresenter;
-import ui.MainMenu.WaitingRoomDTO;
+import dtos.WaitingRoomDTO;
 
 /**
  * Implementación de la interfaz {@link GameSystemFacade}. Actúa como una

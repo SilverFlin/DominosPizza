@@ -2,8 +2,8 @@ package interfaces;
 
 import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
-import ui.Board.GameDTO;
-import ui.MainMenu.WaitingRoomDTO;
+import dtos.GameDTO;
+import dtos.WaitingRoomDTO;
 
 /**
  * Interfaz para la Fachada del Sistema de Juego, que actúa como puente entre el sistema de juego

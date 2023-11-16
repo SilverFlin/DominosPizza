@@ -1,7 +1,7 @@
 package ui.game;
 
-import ui.Board.GameDTO;
-import ui.MainMenu.PlayerDTO;
+import dtos.DominoDTO;
+import dtos.GameDTO;
 
 /**
  * Interfaz que define el modelo del juego.
@@ -25,9 +25,8 @@ public interface GameModel {
     /**
      * Toma una ficha de la reserva para el jugador.
      *
-     * @param player El jugador que toma la ficha.
      */
-    void takeFromPool(PlayerDTO player);
+    void takeFromPool();
 
     /**
      * Actualiza la información del juego.

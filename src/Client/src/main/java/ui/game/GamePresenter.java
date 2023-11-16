@@ -1,8 +1,9 @@
 package ui.game;
 
-import ui.Board.GameDTO;
-import ui.MainMenu.PlayerDTO;
-import ui.MainMenu.WaitingRoomDTO;
+import dtos.DominoDTO;
+import dtos.GameDTO;
+import dtos.PlayerDTO;
+import dtos.WaitingRoomDTO;
 
 /**
  * Interfaz que define el presentador del juego.
@@ -37,5 +38,5 @@ public interface GamePresenter {
      *
      * @param player El jugador que toma la ficha.
      */
-    void takeFromPool(PlayerDTO player);
+    void takeFromPool();
 }

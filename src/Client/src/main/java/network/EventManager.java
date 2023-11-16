@@ -10,9 +10,9 @@ import edu.itson.eventschema.PlayerLeaveEvent;
 import edu.itson.eventschema.UpdateGameEvent;
 import edu.itson.eventschema.UpdateWaitingRoomEvent;
 import interfaces.GameSystemFacade;
-import ui.Board.GameDTO;
-import ui.MainMenu.AvatarDTO;
-import ui.MainMenu.PlayerDTO;
+import dtos.GameDTO;
+import dtos.AvatarDTO;
+import dtos.PlayerDTO;
 
 /**
  * Gestor de eventos que implementa las interfaces EventProducer y

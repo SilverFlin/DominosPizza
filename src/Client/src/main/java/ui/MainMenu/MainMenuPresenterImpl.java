@@ -1,5 +1,7 @@
 package ui.MainMenu;
 
+import dtos.WaitingRoomDTO;
+import dtos.PlayerDTO;
 import base.BasePresenter;
 import ui.Board.GamePresenter;
 

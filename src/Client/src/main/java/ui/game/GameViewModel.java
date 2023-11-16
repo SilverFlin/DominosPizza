@@ -1,7 +1,9 @@
 package ui.game;
 
+import dtos.DominoDTO;
+import dtos.OpponentDTO;
 import java.util.List;
-import ui.MainMenu.PlayerDTO;
+import dtos.PlayerDTO;
 
 /**
  * Interfaz que define el modelo de vista del juego.
@@ -9,11 +11,11 @@ import ui.MainMenu.PlayerDTO;
 public interface GameViewModel {
 
     /**
-     * Obtiene el tablero del juego.
+     * Obtiene el tren de fichas del juego.
      *
-     * @return El DTO del tablero del juego.
+     * @return Lista del tren de fichas.
      */
-    BoardDTO getBoard();
+    List<DominoDTO> getBoard();
 
     /**
      * Obtiene la información del jugador actual.
@@ -34,6 +36,6 @@ public interface GameViewModel {
      *
      * @return La lista de DTO de jugadores en la sala.
      */
-    List<PlayerDTO> getRoom();
+    List<OpponentDTO> getRoom();
 
 }

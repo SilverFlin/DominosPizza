@@ -1,5 +1,8 @@
 package ui.MainMenu;
 
+import dtos.WaitingRoomDTO;
+import dtos.PlayerDTO;
+import dtos.AvatarDTO;
 import domain.Avatar;
 import domain.Config;
 import domain.DominoGame;

@@ -1,7 +1,8 @@
 package ui.Board;
 
-import ui.MainMenu.PlayerDTO;
-import ui.MainMenu.WaitingRoomDTO;
+import dtos.GameDTO;
+import dtos.PlayerDTO;
+import dtos.WaitingRoomDTO;
 
 /**
  *

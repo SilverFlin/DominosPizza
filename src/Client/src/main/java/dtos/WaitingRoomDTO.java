@@ -1,10 +1,9 @@
-package ui.MainMenu;
+package dtos;
 
 import java.util.List;
 
 /**
  *
- * @author edemb
  */
 public class WaitingRoomDTO {
 

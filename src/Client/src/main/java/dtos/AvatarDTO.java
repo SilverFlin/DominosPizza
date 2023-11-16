@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ui.MainMenu;
+package dtos;
 
 /**
  *
  * @author edemb
  */
 public class AvatarDTO {
-    String nombre;
-    String image;
+    private String nombre;
+    private String image;
 
     public AvatarDTO() {
     }
 
-    public AvatarDTO(String nombre, String image) {
+    public AvatarDTO(final String nombre, final String image) {
         this.nombre = nombre;
         this.image = image;
     }
@@ -24,7 +24,7 @@ public class AvatarDTO {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(final String nombre) {
         this.nombre = nombre;
     }
 
@@ -32,7 +32,7 @@ public class AvatarDTO {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(final String image) {
         this.image = image;
     }
     

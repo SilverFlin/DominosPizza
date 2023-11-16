@@ -1,5 +1,8 @@
 package ui.MainMenu;
 
+import dtos.WaitingRoomDTO;
+import dtos.PlayerDTO;
+
 /**
  *
  * @author Luis Fernando Aguilar Ortiz 228419 ITSON ISW obregon-Camp-Nainari

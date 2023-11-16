@@ -1,5 +1,6 @@
 package ui.MainMenu;
 
+import dtos.AvatarDTO;
 import domain.DominoGame;
 import domain.Player;
 import java.util.ArrayList;

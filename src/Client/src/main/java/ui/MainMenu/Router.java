@@ -4,6 +4,9 @@
  */
 package ui.MainMenu;
 
+import dtos.WaitingRoomDTO;
+import dtos.PlayerDTO;
+
 /**
  *
  * @author edemb
