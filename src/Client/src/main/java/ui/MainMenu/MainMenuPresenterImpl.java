@@ -4,7 +4,7 @@ import dtos.WaitingRoomDTO;
 import dtos.PlayerDTO;
 import base.BasePresenter;
 import network.EventProducer;
-import ui.Board.GamePresenter;
+import ui.game.GamePresenter;
 
 /**
  *
@@ -27,6 +27,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
         this.model = model;
         this.producer = producer;
         this.gamePresenter = gamePresenter;
+        this.view.displayMenuPanel();
     }
 
     public void setView(MainMenuView view) {

@@ -6,6 +6,7 @@ import dtos.GameDTO;
 import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
 import java.util.List;
+import network.EventProducer;
 
 /**
  *
@@ -14,10 +15,12 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
 
     private final GameView view;
     private final GameModel model;
+    private final EventProducer producer;
 
-    public GamePresenterImpl(final GameView view, final GameModel model) {
+    public GamePresenterImpl(final GameView view, final GameModel model, final EventProducer producer) {
         this.view = view;
         this.model = model;
+        this.producer = producer;
     }
 
     @Override
