@@ -3,6 +3,7 @@ package ui.MainMenu;
 import dtos.WaitingRoomDTO;
 import dtos.PlayerDTO;
 import base.BasePresenter;
+import network.EventProducer;
 import ui.Board.GamePresenter;
 
 /**
@@ -13,7 +14,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
 
     MainMenuView view;
     MainMenuModel model;
-    Router router;
+    EventProducer producer;
     PlayerDTO myPlayer;
     GamePresenter gamePresenter;
     WaitingRoomDTO waitingRoom;
@@ -21,10 +22,10 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     public MainMenuPresenterImpl() {
     }
 
-    public MainMenuPresenterImpl(MainMenuView view, MainMenuModel model, Router router, GamePresenter gamePresenter) {
+    public MainMenuPresenterImpl(MainMenuView view, MainMenuModel model, EventProducer producer, GamePresenter gamePresenter) {
         this.view = view;
         this.model = model;
-        this.router = router;
+        this.producer = producer;
         this.gamePresenter = gamePresenter;
     }
 
@@ -44,7 +45,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     @Override
     public void goToWaitingRoom(PlayerDTO player) {
         this.myPlayer = player;
-        this.router.joinToWaitingRoom(player);
+        this.producer.joinToWaitingRoom(player);
 
     }
 
