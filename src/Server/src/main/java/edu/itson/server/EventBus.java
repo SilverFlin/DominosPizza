@@ -58,6 +58,7 @@ public class EventBus {
      */
     public void sendEvent(final Event event) {
         LOG.log(Level.INFO, "Evento en bus: " + event);
+        // TODO quitar al emisor, agregar info en eventschema, IP/PORT
         for (EventConsumer consumer : consumers) {
             consumer.consumeEvent(event);
         }

@@ -58,7 +58,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     public void showInvalidNameError() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void updateWaitingRoom(WaitingRoomDTO waitingRoom) {
         this.waitingRoom = waitingRoom;
