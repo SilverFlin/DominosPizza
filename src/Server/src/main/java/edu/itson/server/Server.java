@@ -67,6 +67,7 @@ public class Server {
         try {
             Socket clientSocket = serverSocket.accept();
             clientHandler = new ClientHandler(clientSocket, EventBus.getInstance());
+            EventBus.getInstance().subscribe(clientHandler);
             this.clients.add(clientHandler);
             LOG.log(Level.INFO, "New client connected: " + clientSocket.getInetAddress().getHostAddress());
         } catch (IOException ex) {

@@ -1,7 +1,12 @@
 package ui.MainMenu;
 
+import dtos.WaitingRoomDTO;
+import dtos.PlayerDTO;
 import base.BasePresenter;
-import ui.Board.GamePresenter;
+import java.util.ArrayList;
+import java.util.List;
+import network.EventProducer;
+import ui.game.GamePresenter;
 
 /**
  *
@@ -11,19 +16,21 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
 
     MainMenuView view;
     MainMenuModel model;
-    Router router;
+    EventProducer producer;
     PlayerDTO myPlayer;
     GamePresenter gamePresenter;
     WaitingRoomDTO waitingRoom;
 
     public MainMenuPresenterImpl() {
+
     }
 
-    public MainMenuPresenterImpl(MainMenuView view, MainMenuModel model, Router router, GamePresenter gamePresenter) {
+    public MainMenuPresenterImpl(MainMenuView view, MainMenuModel model, EventProducer producer, GamePresenter gamePresenter) {
         this.view = view;
         this.model = model;
-        this.router = router;
+        this.producer = producer;
         this.gamePresenter = gamePresenter;
+        this.view.open();
     }
 
     public void setView(MainMenuView view) {
@@ -42,7 +49,8 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     @Override
     public void goToWaitingRoom(PlayerDTO player) {
         this.myPlayer = player;
-        this.router.joinToWaitingRoom(player);
+        this.producer.joinToWaitingRoom(player);
+        this.view.displayWaitingRoomPanel();
 
     }
 
@@ -50,7 +58,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     public void showInvalidNameError() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void updateWaitingRoom(WaitingRoomDTO waitingRoom) {
         this.waitingRoom = waitingRoom;
@@ -77,6 +85,10 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
 
     @Override
     public void foreStart() {
+        if (this.waitingRoom == null) {
+            this.waitingRoom = new WaitingRoomDTO();
+            this.waitingRoom.setPlayers(new ArrayList<>(List.of(this.myPlayer)));
+        }
         gamePresenter.loadBoard(this.waitingRoom, myPlayer);
         view.close();
     }

@@ -78,7 +78,7 @@ public class NetworkEventConnection implements NetworkConnection<Event>, EventSu
         try {
             out.writeObject(message);
         } catch (IOException ex) {
-            LOG.log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, "Error al enviar mensaje al servidor.");
         }
     }
 

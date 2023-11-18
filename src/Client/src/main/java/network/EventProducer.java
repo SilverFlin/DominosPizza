@@ -1,7 +1,7 @@
 package network;
 
-import ui.Board.GameDTO;
-import ui.MainMenu.PlayerDTO;
+import dtos.GameDTO;
+import dtos.PlayerDTO;
 
 /**
  * Interfaz que define un productor de eventos relacionados con el juego.

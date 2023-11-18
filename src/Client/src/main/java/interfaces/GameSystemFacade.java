@@ -2,19 +2,22 @@ package interfaces;
 
 import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
-import ui.Board.GameDTO;
-import ui.MainMenu.WaitingRoomDTO;
+import dtos.GameDTO;
+import dtos.WaitingRoomDTO;
+import ui.MainMenu.MainMenuPresenter;
+import ui.game.GamePresenter;
 
 /**
- * Interfaz para la Fachada del Sistema de Juego, que actúa como puente entre el sistema de juego
- * y los presentadores de la interfaz de usuario (UI).
+ * Interfaz para la Fachada del Sistema de Juego, que actúa como puente entre el
+ * sistema de juego y los presentadores de la interfaz de usuario (UI).
  */
 public interface GameSystemFacade {
 
     /**
      * Navega al panel de avatares en el menú principal.
      *
-     * @throws MissingMainMenuPresenterException si no se ha establecido el MainMenuPresenter.
+     * @throws MissingMainMenuPresenterException si no se ha establecido el
+     * MainMenuPresenter.
      */
     void goToAvatarPanel() throws MissingMainMenuPresenterException;
 
@@ -22,7 +25,8 @@ public interface GameSystemFacade {
      * Actualiza la sala de espera con los datos proporcionados.
      *
      * @param waitingRoomDTO Los datos para actualizar la sala de espera.
-     * @throws MissingMainMenuPresenterException si no se ha establecido el MainMenuPresenter.
+     * @throws MissingMainMenuPresenterException si no se ha establecido el
+     * MainMenuPresenter.
      */
     void updateWaitingRoom(WaitingRoomDTO waitingRoomDTO) throws MissingMainMenuPresenterException;
 
@@ -30,15 +34,31 @@ public interface GameSystemFacade {
      * Actualiza el juego con los datos proporcionados.
      *
      * @param game Los datos para actualizar el juego.
-     * @throws MissingGamePresenterException si no se ha establecido el GamePresenter.
+     * @throws MissingGamePresenterException si no se ha establecido el
+     * GamePresenter.
      */
     void updateGame(GameDTO game) throws MissingGamePresenterException;
 
     /**
      * Muestra un error para un nombre no válido en el menú principal.
      *
-     * @throws MissingMainMenuPresenterException si no se ha establecido el MainMenuPresenter.
+     * @throws MissingMainMenuPresenterException si no se ha establecido el
+     * MainMenuPresenter.
      */
     void showInvalidNameError() throws MissingMainMenuPresenterException;
+
+    /**
+     * Establece el GamePresenter para esta fachada.
+     *
+     * @param gamePresenter El GamePresenter que se va a establecer.
+     */
+    void setGamePresenter(final GamePresenter gamePresenter);
+
+    /**
+     * Establece el MainMenuPresenter para esta fachada.
+     *
+     * @param mainMenuPresenter El MainMenuPresenter que se va a establecer.
+     */
+    void setMainMenuPresenter(final MainMenuPresenter mainMenuPresenter);
 
 }

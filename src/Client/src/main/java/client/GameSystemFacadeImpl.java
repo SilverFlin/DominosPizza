@@ -3,10 +3,10 @@ package client;
 import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
 import interfaces.GameSystemFacade;
-import ui.Board.GameDTO;
-import ui.Board.GamePresenter;
+import dtos.GameDTO;
 import ui.MainMenu.MainMenuPresenter;
-import ui.MainMenu.WaitingRoomDTO;
+import dtos.WaitingRoomDTO;
+import ui.game.GamePresenter;
 
 /**
  * Implementación de la interfaz {@link GameSystemFacade}. Actúa como una
@@ -31,6 +31,7 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
      *
      * @param gamePresenter El GamePresenter que se va a establecer.
      */
+    @Override
     public void setGamePresenter(final GamePresenter gamePresenter) {
         this.gamePresenter = gamePresenter;
     }
@@ -40,6 +41,7 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
      *
      * @param mainMenuPresenter El MainMenuPresenter que se va a establecer.
      */
+    @Override
     public void setMainMenuPresenter(final MainMenuPresenter mainMenuPresenter) {
         this.mainMenuPresenter = mainMenuPresenter;
     }

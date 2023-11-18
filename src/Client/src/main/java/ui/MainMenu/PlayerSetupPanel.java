@@ -1,5 +1,7 @@
 package ui.MainMenu;
 
+import dtos.PlayerDTO;
+import dtos.AvatarDTO;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -33,11 +35,11 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
     }
 
     private void setAvatars() {
-        this.btnAvatar1.setText(this.avatars.get(0).image);
-        this.btnAvatar2.setText(this.avatars.get(1).image);
-        this.btnAvatar3.setText(this.avatars.get(2).image);
-        this.btnAvatar4.setText(this.avatars.get(3).image);
-        this.btnAvatar5.setText(this.avatars.get(4).image);
+        this.btnAvatar1.setText(this.avatars.get(0).getImage());
+        this.btnAvatar2.setText(this.avatars.get(1).getImage());
+        this.btnAvatar3.setText(this.avatars.get(2).getImage());
+        this.btnAvatar4.setText(this.avatars.get(3).getImage());
+        this.btnAvatar5.setText(this.avatars.get(4).getImage());
     }
 
     public void showInvalidNameError() {

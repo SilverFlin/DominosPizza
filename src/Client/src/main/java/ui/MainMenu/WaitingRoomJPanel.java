@@ -1,5 +1,6 @@
 package ui.MainMenu;
 
+import dtos.WaitingRoomDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;

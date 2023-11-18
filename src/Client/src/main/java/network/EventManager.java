@@ -10,9 +10,11 @@ import edu.itson.eventschema.PlayerLeaveEvent;
 import edu.itson.eventschema.UpdateGameEvent;
 import edu.itson.eventschema.UpdateWaitingRoomEvent;
 import interfaces.GameSystemFacade;
-import ui.Board.GameDTO;
-import ui.MainMenu.AvatarDTO;
-import ui.MainMenu.PlayerDTO;
+import dtos.GameDTO;
+import dtos.AvatarDTO;
+import dtos.PlayerDTO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Gestor de eventos que implementa las interfaces EventProducer y
@@ -23,6 +25,8 @@ public class EventManager implements EventProducer, EventConsumer {
 
     private final GameSystemFacade gameSystem;
     private final NetworkEventConnection connection;
+
+    private static final Logger LOG = Logger.getLogger(EventManager.class.getName());
 
     /**
      * Constructor de la clase EventManager.
@@ -76,16 +80,16 @@ public class EventManager implements EventProducer, EventConsumer {
         if (event instanceof DuplicatedNameErrorEvent) {
             this.gameSystem.showInvalidNameError();
         } else if (event instanceof GameOverEvent) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            LOG.log(Level.WARNING, "GameOverEvent no implementado");
         } else if (event instanceof PlayerJoinsEvent) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            LOG.log(Level.WARNING, "PlayerJoinsEvent no implementado");
         } else if (event instanceof PlayerLeaveEvent) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            LOG.log(Level.WARNING, "PlayerLeaveEvent no implementado");
         } else if (event instanceof UpdateGameEvent) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            LOG.log(Level.WARNING, "UpdateGameEvent no implementado");
 //            this.gameSystem.updateGame(((UpdateGameEvent) event).getPayload());
         } else if (event instanceof UpdateWaitingRoomEvent) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            LOG.log(Level.WARNING, "UpdateWaitingRoomEvent no implementado");
 //            this.gameSystem.updateGame(((UpdateWaitingRoomEvent) event).getPayload());
         }
 
