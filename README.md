@@ -20,4 +20,6 @@ Esto igual necesitó establecer una estructura de los eventos, este se puede ver
 
 Para poder llevar a cabo el estilo arquitectónico se utilizó el patrón de diseño [Observer](https://en.wikipedia.org/wiki/Observer_pattern), el cual permite que un objeto notifique a otros objetos cuando un evento ocurre. Este patrón fue utilizado al recibir eventos en el [Servidor](/docs/diagrams/Server_Network_Manager.md) y en el [Procesador de Eventos](/docs/diagrams/Event_Processor.md), dentro del cliente.
 
+## Documentación
 
+La documentación del proyecto se encuentra en la carpeta [docs](/docs/README.md), en la cual se encuentra la documentación de la arquitectura, la documentación de los diagramas, la documentación de los DTOs, y la documentación de los eventos.
