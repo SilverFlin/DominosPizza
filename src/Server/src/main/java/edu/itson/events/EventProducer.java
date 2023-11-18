@@ -1,4 +1,4 @@
-package edu.itson.server;
+package edu.itson.events;
 
 import edu.itson.eventschema.Event;
 

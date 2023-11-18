@@ -1,5 +1,7 @@
 package edu.itson.server;
 
+import edu.itson.network.Server;
+
 /**
  * Punto de entrada principal de la aplicación.
  */
