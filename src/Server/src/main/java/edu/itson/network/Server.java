@@ -1,5 +1,7 @@
-package edu.itson.server;
+package edu.itson.network;
 
+import edu.itson.network.ClientHandler;
+import edu.itson.events.EventBus;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;

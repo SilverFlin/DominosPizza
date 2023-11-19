@@ -1,6 +1,9 @@
-package edu.itson.server;
+package edu.itson.network;
 
 import edu.itson.eventschema.Event;
+import edu.itson.events.EventBus;
+import edu.itson.events.EventConsumer;
+import edu.itson.events.EventProducer;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -35,9 +38,9 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
     }
 
     /**
-     * Consumes an event by sending it back to the client.
+     * Consume un evento, enviandolo de regreso al cliente.
      *
-     * @param event The event to be consumed and sent back.
+     * @param event El evento a consumir.
      */
     @Override
     public void consumeEvent(final Event event) {
@@ -68,11 +71,11 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
                 LOG.log(Level.SEVERE, "Error processing client request: " + ex.getMessage());
                 try {
                     clientSocket.close();
+                    this.eventBus.unsubscribe(this);
+                    LOG.log(Level.INFO, "Client socket closed");
                 } catch (IOException ex1) {
                     LOG.log(Level.SEVERE, "Error closing client socket: " + ex.getMessage());
                 }
-                this.eventBus.unsubscribe(this);
-                LOG.log(Level.INFO, "Client socket closed");
             }
 
         }

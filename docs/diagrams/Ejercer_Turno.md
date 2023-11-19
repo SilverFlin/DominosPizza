@@ -20,13 +20,21 @@ _Figure 1. Diagrama de Clase Ejercer Turno_ [^1]
 
 > Los DTOs se pueden consultar en [esta documentación](/docs/diagrams/dtos.md#clases).
 
+## Robustez
+
+### Ejercer Turno
+
+![Figure2](/docs/imgs/robustness_ejercer_turno.png)
+
+_Figure 2. Diagrama de Robustez: Ejercer Turno_
+
 ## Secuencia
 
 ### DS Ejercer Turno
 
-![Figure2](/docs/imgs/SD_ejercer_turno.png)
+![Figure3](/docs/imgs/SD_ejercer_turno.png)
 
-_Figure 2. Diagrama de Secuencia: Ejercer Turno_
+_Figure 3. Diagrama de Secuencia: Ejercer Turno_
 
 Representa el flujo de información entre las clases de Dominio y las clases relacionadas al patrón MVP al momento de ejercer un turno.
 

@@ -18,12 +18,20 @@ El diagrama editable se encuentra en [este link](https://drive.google.com/file/d
 
 > Los DTOs se pueden consultar en [esta documentación](/docs/diagrams/dtos.md#clases).
 
+## Robustez
+
+### Iniciar Partida
+
+![Figure2](/docs/imgs/robustness_iniciar_partida.png)
+
+_Figure 2. Diagrama de Robustez: Iniciar Partida_
+
 ## Secuencia
 
 ### DS Iniciar Partida
 
-![Figure1](/docs/imgs/SD_iniciar_partida.png)
+![Figure3](/docs/imgs/SD_iniciar_partida.png)
 
-_Figure 1. Diagrama de Secuencia: Ejercer Turno_
+_Figure 3. Diagrama de Secuencia: Ejercer Turno_
 
 Representa el flujo de información entre las clases de Dominio y las clases relacionadas al patrón MVP al momento de iniciar partida.
