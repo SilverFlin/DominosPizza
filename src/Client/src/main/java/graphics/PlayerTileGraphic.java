@@ -21,10 +21,14 @@ public class PlayerTileGraphic extends GraphicComponent {
         this.leftNum = leftNum;
         this.rightNum = rightNum;
         this.p=p;
+        var t=new Tile(leftNum,rightNum,(int)p.getX(),(int)p.getY());
+        rec=t.recTile.getBounds();
     }
 
     public void setP(Point2D p) {
         this.p = p;
+        var t=new Tile(leftNum,rightNum,(int)p.getX(),(int)p.getY());
+        rec=t.recTile.getBounds();
     }
 
     @Override

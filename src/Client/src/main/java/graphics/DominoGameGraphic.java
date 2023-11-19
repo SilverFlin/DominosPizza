@@ -14,11 +14,16 @@ public class DominoGameGraphic extends GraphicComposite {
         components.add(new BoardGraphic());
         components.add(new PlayerHandGraphic());
     }
+    
+    public DominoGameGraphic(Rectangle bounds) {
+        components.add(new BoardGraphic());
+        components.add(new PlayerHandGraphic(bounds));
+        setRecs(bounds);
+    }
 
     public DominoGameGraphic(PlayerHandGraphic ph, BoardGraphic bg) {
         components.add(bg);
         components.add(ph);
-        
     }
 
     @Override
@@ -32,6 +37,8 @@ public class DominoGameGraphic extends GraphicComposite {
         this.rec=bounds;
         for (var component : components) 
             component.rec=this.rec;    
+//        var x =(PlayerHandGraphic)components.get(1);
+//        x.lugaresFichas();
     }
     
     

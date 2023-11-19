@@ -20,8 +20,15 @@ public class Tile {
     }
     
     public Tile(int l,int r,int x,int y){
+        recTile.setRect(x, y, 0, 0);
+        if(l==r){
+            crearFichaVertical(l, r);
+            recTile.setRect(x, y, 40, 80);
+        }
+        else{
         crearFichaHorizontal(l, r);
-        recTile.setRect(x, y, 40, 80);
+        recTile.setRect(x, y, 80, 40);
+        }
     }
 
     public BufferedImage getImagen() {
@@ -40,7 +47,7 @@ public class Tile {
         this.recTile = rec;
     }
     
-    public  void crearFichaHorizontal(int l,int r){
+    public void crearFichaHorizontal(int l,int r){
         imagen=new BufferedImage(80, 40, BufferedImage.TRANSLUCENT);
         var b = imagen.createGraphics();
         
@@ -54,6 +61,24 @@ public class Tile {
         
         b.setPaint(Color.gray);
         b.drawRoundRect(0,0, 79, 39, 15, 15);
+    }
+    
+        public void crearFichaVertical(int ar,int ab){
+        
+        imagen=new BufferedImage(40, 80, BufferedImage.TRANSLUCENT);
+        var b = imagen.createGraphics();
+        
+        b.setColor(Color.white);
+        b.fillRoundRect(0,0, 40, 80, 15, 15);
+        b.setColor(Color.black);
+        b.fillRect(0, 38,38, 2);
+        
+        b.drawImage(cara(ar), null, 0, 0);
+        b.drawImage(cara(ab), null, 0, 40);
+        
+        b.setPaint(Color.gray);
+        b.drawRoundRect(0,0, 39, 79, 15, 15);
+        
     }
     
     public BufferedImage cara(int n){
