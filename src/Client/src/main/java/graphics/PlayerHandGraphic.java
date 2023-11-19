@@ -12,14 +12,13 @@ import java.awt.geom.Point2D;
 public class PlayerHandGraphic extends GraphicComposite {
     
     private PlayerTileGraphic selecionada;
-
+    
     public PlayerHandGraphic() {
         
     }
 
     @Override
     public void draw(Graphics2D g2) {
-        System.out.println(rec.toString());
         lugaresFichas();
         for (var component : components) 
             component.draw(g2);
@@ -28,10 +27,20 @@ public class PlayerHandGraphic extends GraphicComposite {
     
     public void lugaresFichas(){
         var r=new java.util.Random();
+        this.rec.setFrameFromDiagonal(100, 100, rec.getWidth()-100, rec.getHeight()-100);
         if(components.isEmpty())
             for (int i = 0; i < 7; i++) 
-                components.add(new PlayerTileGraphic(r.nextInt(6),r.nextInt(6),new Point2D.Double((rec.getX()+(90*i)),
-                        (int)(rec.getY()+rec.getHeight()+25))));
+                components.add(new PlayerTileGraphic(r.nextInt(6),r.nextInt(6),new Point2D.Double(rec.getX()+(90*i),rec.getY()+rec.getHeight()+25)));
+        else{
+            var newComponents=new java.util.ArrayList<GraphicComponent>();
+            for (int i = 0; i < components.size(); i++){
+                var p = (PlayerTileGraphic) components.get(i);
+                p.setP(new Point2D.Double(rec.getX()+(90*i),rec.getY()+rec.getHeight()+25));
+                newComponents.add(p);
+            }
+            components=newComponents;
+        }
+                
     }
     
 }

@@ -4,7 +4,6 @@
  */
 package graphics;
 
-import domain.PlayerTile;
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -14,21 +13,15 @@ import java.awt.image.BufferedImage;
  * @author JIVB
  */
 public class Tile {
-    PlayerTile playerTile;
     BufferedImage imagen;
-    Rectangle2D.Double rec= new Rectangle2D.Double(0,0,40,80);
+    Rectangle2D.Double recTile= new Rectangle2D.Double(0,0,40,80);
     
     public Tile() {
     }
     
-    public Tile(PlayerTile playerTile) {
-        this.playerTile=playerTile;
-    }
-
-    public Tile(PlayerTile playerTile,int x, int y) {
-        this.playerTile=playerTile;
-        rec=new Rectangle2D.Double(x,y,40,80);
-        crearFicha();
+    public Tile(int l,int r,int x,int y){
+        crearFichaHorizontal(l, r);
+        recTile.setRect(x, y, 40, 80);
     }
 
     public BufferedImage getImagen() {
@@ -40,22 +33,14 @@ public class Tile {
     }
 
     public Rectangle2D.Double getRec() {
-        return rec;
+        return recTile;
     }
 
     public void setRec(Rectangle2D.Double rec) {
-        this.rec = rec;
-    }
-
-    public PlayerTile getPlayerTile() {
-        return playerTile;
-    }
-
-    public void setPlayerTile(PlayerTile playerTile) {
-        this.playerTile = playerTile;
+        this.recTile = rec;
     }
     
-    public  void crearFicha(){
+    public  void crearFichaHorizontal(int l,int r){
         imagen=new BufferedImage(80, 40, BufferedImage.TRANSLUCENT);
         var b = imagen.createGraphics();
         
@@ -64,8 +49,8 @@ public class Tile {
         b.setColor(Color.black);
         b.fillRect(38, 0, 2,38);
         
-        b.drawImage(cara(playerTile.getLeftValue()), null, 0, 0);
-        b.drawImage(cara(playerTile.getRightValue()), null, 40, 0);
+        b.drawImage(cara(l), null, 0, 0);
+        b.drawImage(cara(r), null, 40, 0);
         
         b.setPaint(Color.gray);
         b.drawRoundRect(0,0, 79, 39, 15, 15);

@@ -8,7 +8,7 @@ import java.awt.geom.Point2D;
  *
  * @author JIVB
  */
-public class BoardTileGraphic implements GraphicComponent
+public class BoardTileGraphic extends GraphicComponent
 {
 
     int left;

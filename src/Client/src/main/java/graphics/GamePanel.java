@@ -29,6 +29,7 @@ public class GamePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         var g2 = (Graphics2D)g;
         g2.setRenderingHints(rh);
+        dgg.setRecs(this.getBounds());
         dgg.draw(g2);
         
     }

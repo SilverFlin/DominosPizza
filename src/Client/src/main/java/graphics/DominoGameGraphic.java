@@ -1,8 +1,7 @@
 package graphics;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.Rectangle;
 
 /**
  *
@@ -10,45 +9,30 @@ import java.util.List;
  */
 public class DominoGameGraphic extends GraphicComposite {
     
-    PlayersGraphic pg;
-    MyPlayerGraphic mp;
-    PlayerHandGraphic ph;
-    BoardGraphic bg;
-    List <GraphicComposite> graficos;
-
+    
     public DominoGameGraphic() {
-        graficos = new ArrayList<>();
-        bg=new BoardGraphic();
-        pg=new PlayersGraphic();
-        mp=new MyPlayerGraphic();
-        ph=new PlayerHandGraphic();
-        graficos.add(bg);
-        graficos.add(pg);
-        graficos.add(mp);
-        graficos.add(ph);
+        components.add(new BoardGraphic());
+        components.add(new PlayerHandGraphic());
     }
 
-    public DominoGameGraphic(PlayersGraphic pg, MyPlayerGraphic mp, PlayerHandGraphic ph, BoardGraphic bg) {
-        this.pg = pg;
-        this.mp = mp;
-        this.ph = ph;
-        this.bg = bg;
-        graficos = new ArrayList<>();
-        graficos.add(bg);
-        graficos.add(pg);
-        graficos.add(mp);
-        graficos.add(ph);
+    public DominoGameGraphic(PlayerHandGraphic ph, BoardGraphic bg) {
+        components.add(bg);
+        components.add(ph);
         
     }
 
     @Override
     public void draw(Graphics2D g2) {
-        for (var g : graficos) 
+        for (var g : components) 
             g.draw(g2);
         
     }
-    
-    
+
+    void setRecs(Rectangle bounds) {
+        this.rec=bounds;
+        for (var component : components) 
+            component.rec=this.rec;    
+    }
     
     
 }

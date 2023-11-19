@@ -2,13 +2,16 @@
 package graphics;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 
 /**
  *
  * @author JIVB
  */
-public interface GraphicComponent {
+public abstract class GraphicComponent {
     
-    public void draw(Graphics2D g2);
+    protected Rectangle rec;
+    
+    public abstract void draw(Graphics2D g2);
 }
