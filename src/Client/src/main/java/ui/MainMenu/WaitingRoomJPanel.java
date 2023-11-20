@@ -16,25 +16,52 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     private MainMenuView view;
     private WaitingRoomDTO waitingRoom;
     private MainMenuPresenter presenter;
+    //este boolean guarda verdadero si solo hay un jugador dentro de la sala de espera
+    private boolean primero;
 
     /**
      * Creates new form LobbyJPanel.
      */
     public WaitingRoomJPanel() {
-        initComponents();
+
+        if (waitingRoom.getPlayers().size() == 1) {
+            primero = true;  }
+tilesNum.setVisible(false);
+            initComponents();
+            
+      
+
     }
+    /**
+     * si al unirme al waiting room soy el primer jugador en la sala yo soy
+     * admin
+     */
+    //admin es verdadero si somos el unico jugador en la sala de espera,
+    //final para que no cambie cuando se unan jugadores a la sala de espera,
+    private final boolean admin = primero;
+
+    /**
+     * si al unirme al waiting room soy el primer jugador en la sala yo soy
+     * admin
+     */
 
     public void setView(MainMenuView view) {
         this.view = view;
+
     }
 
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
+        //si soy admin enseñarme config de tiles
+        if (admin == true) {
+            tilesNum.setVisible(true);
+        }tilesNum.setVisible(false);
         this.waitingRoom = viewModel.getWaitingRoom();
         setPlayers();
 
     }
 
     private void setPlayers() {
+
         List<JButton> buttons = new ArrayList<>();
         buttons.add(this.btnAvatar1);
         buttons.add(this.btnAvatar2);
@@ -80,6 +107,8 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         lblAvatar1 = new javax.swing.JLabel();
         lblAvatar2 = new javax.swing.JLabel();
         lblAvatar3 = new javax.swing.JLabel();
+        tilesNum = new javax.swing.JComboBox<>();
+        tilesNumText = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 255, 204));
         setPreferredSize(new java.awt.Dimension(1280, 800));
@@ -99,6 +128,11 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         btnAvatar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar2.setBorderPainted(false);
         btnAvatar2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAvatar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvatar2ActionPerformed(evt);
+            }
+        });
         add(btnAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 130, 130));
 
         btnReady.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 36)); // NOI18N
@@ -162,6 +196,20 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         lblAvatar3.setForeground(new java.awt.Color(0, 153, 153));
         lblAvatar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, 130, 20));
+
+        tilesNum.setBackground(new java.awt.Color(153, 204, 255));
+        tilesNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 Fichas", "3 Fichas", "4 Fichas", "5 Fichas", "6 Fichas", "7 Fichas" }));
+        tilesNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tilesNumActionPerformed(evt);
+            }
+        });
+        add(tilesNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, -1, -1));
+
+        tilesNumText.setBackground(new java.awt.Color(255, 204, 204));
+        tilesNumText.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+        tilesNumText.setText("Numero de fichas inciales:");
+        add(tilesNumText, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 160, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
@@ -170,6 +218,17 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
 
 
     }//GEN-LAST:event_btnReadyActionPerformed
+
+    private void tilesNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tilesNumActionPerformed
+        // minimo de 2 fichas a elegir maximo de 7
+        // settear a la waitingroomDTO
+
+        waitingRoom.setInitialTiles(tilesNum.getSelectedIndex() + 1);
+    }//GEN-LAST:event_tilesNumActionPerformed
+
+    private void btnAvatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAvatar2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,6 +243,8 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     private javax.swing.JLabel lblAvatar3;
     private javax.swing.JLabel lblAvatar4;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JComboBox<String> tilesNum;
+    private javax.swing.JLabel tilesNumText;
     // End of variables declaration//GEN-END:variables
 
     @Override
