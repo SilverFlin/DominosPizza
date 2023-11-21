@@ -16,34 +16,31 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     private MainMenuView view;
     private WaitingRoomDTO waitingRoom;
     private MainMenuPresenter presenter;
-    //este boolean guarda verdadero si solo hay un jugador dentro de la sala de espera
-    private boolean primero;
+      private boolean admin = false;
 
     /**
      * Creates new form LobbyJPanel.
      */
     public WaitingRoomJPanel() {
-
-        if (waitingRoom.getPlayers().size() == 1) {
-            primero = true;  }
-tilesNum.setVisible(false);
+        GameModelmpl gModelImpl = new GameModelmpl();
+        
+        for (int x = 0; x < waitingRoom.getPlayers().size(); x++) {
+            if (waitingRoom.getPlayers().get(x).getName()
+                    .equalsIgnoreCase(gModelImpl
+                            .getMyPlayer().getName())) {
+if(waitingRoom.getPlayers().get(x).isIsAdmin()==true){
+    admin=true;
+}
+            }
+        }
             initComponents();
             
       
 
     }
-    /**
-     * si al unirme al waiting room soy el primer jugador en la sala yo soy
-     * admin
-     */
-    //admin es verdadero si somos el unico jugador en la sala de espera,
-    //final para que no cambie cuando se unan jugadores a la sala de espera,
-    private final boolean admin = primero;
+  
 
-    /**
-     * si al unirme al waiting room soy el primer jugador en la sala yo soy
-     * admin
-     */
+  
 
     public void setView(MainMenuView view) {
         this.view = view;
@@ -51,10 +48,7 @@ tilesNum.setVisible(false);
     }
 
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
-        //si soy admin enseñarme config de tiles
-        if (admin == true) {
-            tilesNum.setVisible(true);
-        }tilesNum.setVisible(false);
+       
         this.waitingRoom = viewModel.getWaitingRoom();
         setPlayers();
 
