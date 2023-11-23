@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import ui.game.GameModelmpl;
 
 /**
  *
@@ -16,31 +17,25 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     private MainMenuView view;
     private WaitingRoomDTO waitingRoom;
     private MainMenuPresenter presenter;
-      private boolean admin = false;
 
     /**
      * Creates new form LobbyJPanel.
      */
     public WaitingRoomJPanel() {
-        GameModelmpl gModelImpl = new GameModelmpl();
-        
-        for (int x = 0; x < waitingRoom.getPlayers().size(); x++) {
-            if (waitingRoom.getPlayers().get(x).getName()
-                    .equalsIgnoreCase(gModelImpl
-                            .getMyPlayer().getName())) {
-if(waitingRoom.getPlayers().get(x).isIsAdmin()==true){
-    admin=true;
-}
-            }
-        }
-            initComponents();
-            
-      
+//        GameModelmpl gModelImpl = new GameModelmpl();
+//
+//        for (int x = 0; x < waitingRoom.getPlayers().size(); x++) {
+//            if (waitingRoom.getPlayers().get(x).getName()
+//                    .equalsIgnoreCase(gModelImpl
+//                            .getMyPlayer().getName())) {
+//                if (waitingRoom.getPlayers().get(x).isIsAdmin() == true) {
+//                    admin = true;
+//                }
+//            }
+//        }
+        initComponents();
 
     }
-  
-
-  
 
     public void setView(MainMenuView view) {
         this.view = view;
@@ -48,10 +43,16 @@ if(waitingRoom.getPlayers().get(x).isIsAdmin()==true){
     }
 
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
-       
+
         this.waitingRoom = viewModel.getWaitingRoom();
+        this.isAdmin(viewModel.isAdmin());
         setPlayers();
 
+    }
+
+    private void isAdmin(boolean isAdmin) {
+        this.tilesNum.setVisible(isAdmin);
+        this.tilesNumText.setVisible(isAdmin);
     }
 
     private void setPlayers() {
@@ -207,9 +208,7 @@ if(waitingRoom.getPlayers().get(x).isIsAdmin()==true){
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
-
-        view.foreStart();
-
+        //view.foreStart();
 
     }//GEN-LAST:event_btnReadyActionPerformed
 

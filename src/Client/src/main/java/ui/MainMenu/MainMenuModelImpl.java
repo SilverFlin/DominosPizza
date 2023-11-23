@@ -98,4 +98,9 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
         this.dominoGame.setConfig(config);
     }
 
+    @Override
+    public boolean isAdmin() {
+        return this.myPlayer.isAdmin();
+    }
+
 }

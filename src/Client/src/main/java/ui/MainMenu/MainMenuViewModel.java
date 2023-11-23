@@ -23,4 +23,6 @@ interface MainMenuViewModel {
      * Regresa información de la sala de espera.
      */
     public WaitingRoomDTO getWaitingRoom();
+    
+    public boolean isAdmin();
 }
