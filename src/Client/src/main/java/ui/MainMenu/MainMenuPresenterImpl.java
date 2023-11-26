@@ -64,7 +64,6 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
         this.waitingRoom = waitingRoom;
         this.model.configurateWaitingRoom(myPlayer, waitingRoom);
         this.view.showLobbyPanel((MainMenuViewModel) model);
-
     }
 
     @Override
