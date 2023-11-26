@@ -26,7 +26,7 @@ public class DominoGame implements Serializable {
      * Constructor privado de la clase DominoGame. Se utiliza el patrón
      * Singleton para garantizar una única instancia de la clase.
      */
-    private DominoGame() {
+    public DominoGame() {
         this.config = new Config();
         this.turnController = new TurnController();
         this.players = new ArrayList<>();
