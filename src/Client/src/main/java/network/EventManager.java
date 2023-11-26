@@ -1,6 +1,7 @@
 package network;
 
 import domain.Avatar;
+import domain.DominoGame;
 import domain.Player;
 import edu.itson.eventschema.DuplicatedNameErrorEvent;
 import edu.itson.eventschema.Event;
@@ -13,8 +14,10 @@ import interfaces.GameSystemFacade;
 import dtos.GameDTO;
 import dtos.AvatarDTO;
 import dtos.PlayerDTO;
+import dtos.WaitingRoomDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utils.Utils;
 
 /**
  * Gestor de eventos que implementa las interfaces EventProducer y
@@ -89,10 +92,13 @@ public class EventManager implements EventProducer, EventConsumer {
             LOG.log(Level.WARNING, "UpdateGameEvent no implementado");
 //            this.gameSystem.updateGame(((UpdateGameEvent) event).getPayload());
         } else if (event instanceof UpdateWaitingRoomEvent) {
-            LOG.log(Level.WARNING, "UpdateWaitingRoomEvent no implementado");
-//            this.gameSystem.updateGame(((UpdateWaitingRoomEvent) event).getPayload());
+            LOG.log(Level.WARNING, "------>>UpdateWaitingRoomEvent implementado<<------");
+            DominoGame dominoGame =((UpdateWaitingRoomEvent) event).getPayload();
+            this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
         }
 
     }
+    
+
 
 }
