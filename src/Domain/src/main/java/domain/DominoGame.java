@@ -19,7 +19,6 @@ public class DominoGame implements Serializable {
     private Config config;
     private List<Player> players;
     private TurnController turnController;
-
     private static DominoGame dominoGame;
 
     /**

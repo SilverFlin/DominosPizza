@@ -8,9 +8,7 @@ import javax.swing.JLabel;
 import ui.game.GameModelmpl;
 
 /**
- *
- * @author Toled
- * @param <V>
+ * @author Toledo
  */
 public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent {
 
@@ -39,15 +37,12 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
 
     public void setView(MainMenuView view) {
         this.view = view;
-
     }
 
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
-
         this.waitingRoom = viewModel.getWaitingRoom();
         this.isAdmin(viewModel.isAdmin());
         setPlayers();
-
     }
 
     private void isAdmin(boolean isAdmin) {

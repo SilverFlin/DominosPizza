@@ -14,7 +14,7 @@ import interfaces.GameSystemFacade;
 import dtos.GameDTO;
 import dtos.AvatarDTO;
 import dtos.PlayerDTO;
-import dtos.WaitingRoomDTO;
+import edu.itson.eventschema.PlayerReadyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utils;
@@ -95,10 +95,8 @@ public class EventManager implements EventProducer, EventConsumer {
             LOG.log(Level.WARNING, "------>>UpdateWaitingRoomEvent implementado<<------");
             DominoGame dominoGame =((UpdateWaitingRoomEvent) event).getPayload();
             this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
+        } else if (event instanceof PlayerReadyEvent) {
+            
         }
-
     }
-    
-
-
 }

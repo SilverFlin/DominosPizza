@@ -4,10 +4,20 @@
  */
 package edu.itson.eventschema;
 
+import domain.Player;
+
 /**
  * @author Victor
  * @version IDE 17
  */
-public class PlayerReadyEvent {
-    
+public class PlayerReadyEvent extends Event<Player> {
+    // CONSTRUCTORES
+    /**
+     * Constructor de la clase PlayerReadyEvent
+     * @param payload Objeto Player que indica el estado actual del jugador
+     */
+    public PlayerReadyEvent(final Player payload) {
+        super(payload);
+        this.type = EventType.PLAYER_READY;
+    }
 }

@@ -19,5 +19,4 @@ public class UpdateWaitingRoomEvent extends Event<DominoGame> {
         super(payload);
         this.type = EventType.UPDATE_WAITINGROOM;
     }
-
 }
