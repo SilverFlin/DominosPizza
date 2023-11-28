@@ -56,8 +56,8 @@ public class EventBus {
      *
      * @param event El evento a enviar.
      */
-    public void sendEvent(final Event event) {
-        LOG.log(Level.INFO, "Evento en bus: " + event);
+    public synchronized void sendEvent(final Event event) {
+        LOG.log(Level.INFO, "Evento en bus: " + event + " notificando a " + this.consumers.size() + " clientes\n");
         // TODO quitar al emisor, agregar info en eventschema, IP/PORT
         for (EventConsumer consumer : consumers) {
             consumer.consumeEvent(event);

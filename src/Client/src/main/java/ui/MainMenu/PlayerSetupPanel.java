@@ -201,6 +201,8 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
         PlayerDTO player = new PlayerDTO();
         player.setAvatar(new AvatarDTO(this.txtName.getText(), avatarImage));
         this.presenter.goToWaitingRoom(player);
+        btnSelect.setEnabled(false);
+        
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btnAvatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar1ActionPerformed

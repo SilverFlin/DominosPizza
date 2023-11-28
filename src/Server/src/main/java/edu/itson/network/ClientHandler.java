@@ -21,17 +21,17 @@ import java.util.logging.Logger;
  * Clase que maneja la comunicación con un cliente.
  */
 public class ClientHandler implements EventConsumer, EventProducer, Runnable {
-    
+
     private final Socket clientSocket;
     private final EventBus eventBus;
     private final ObjectInputStream input;
     private final ObjectOutputStream output;
     private int idClient;
-    
+
     public void setIdClient(final int idClient) {
         this.idClient = idClient;
     }
-    
+
     private static final Logger LOG = Logger.getLogger(ClientHandler.class.getName());
 
     /**
@@ -55,40 +55,46 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
      */
     @Override
     public void consumeEvent(final Event event) {
-        
+
         try {
-            LOG.log(Level.INFO, "ID Client " + this.idClient + ": consumed " + event);
             if (event instanceof PlayerJoinsEvent evt) {
+
                 Player player = evt.getPayload();
                 DominoGame dominoGame = new DominoGame();
-                if (this.idClient == 0) {
-                    LOG.log(Level.INFO, "Admin ready");
+                if (Server.getClientsSize() == 1) {
+                    LOG.log(Level.INFO, "Admin ready\n");
                     player.setIsAdmin(true);
                     Pool pool = new Pool();
                     pool.setDominoes(DominioUtils.createAllTiles());
                     dominoGame.setPool(pool);
                 }
-                Server.addPlayer(player);
+                if (!Server.getPlayers().contains(player)) {
+                    Server.addPlayer(player);
+                }
                 dominoGame.setPlayers(Server.getPlayers());
                 UpdateWaitingRoomEvent updateWaitingRoomEvent = new UpdateWaitingRoomEvent(dominoGame);
-                
+
                 output.writeObject(updateWaitingRoomEvent);
                 output.flush();
                 return;
             }
+            if (this.isSameProducer(event)) {
+                LOG.log(Level.INFO, "Ignoring auto-event\n");
+                return;
+            }
             output.writeObject(event);
             output.flush();
-            
+
         } catch (IOException ex) {
-            LOG.log(Level.SEVERE, "Error sending event back to client: " + ex.getMessage());
+            LOG.log(Level.SEVERE, "Error sending event back to client: " + ex.getMessage() + "\n");
         }
     }
-    
+
     @Override
     public void publishEvent(final Event event) {
         this.eventBus.sendEvent(event);
     }
-    
+
     @Override
     public void run() {
         Object receivedObject;
@@ -108,8 +114,14 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
                     LOG.log(Level.SEVERE, "Error closing client socket: " + ex.getMessage());
                 }
             }
-            
+
         }
     }
-    
+
+    private boolean isSameProducer(final Event event) {
+        return event != null
+                && event.getSenderAddress()
+                        .equals(this.clientSocket.getRemoteSocketAddress().toString());
+    }
+
 }
