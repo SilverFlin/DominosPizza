@@ -1,6 +1,5 @@
 package network;
 
-import domain.Avatar;
 import domain.DominoGame;
 import domain.Player;
 import edu.itson.eventschema.DuplicatedNameErrorEvent;
@@ -12,9 +11,7 @@ import edu.itson.eventschema.UpdateGameEvent;
 import edu.itson.eventschema.UpdateWaitingRoomEvent;
 import interfaces.GameSystemFacade;
 import dtos.GameDTO;
-import dtos.AvatarDTO;
 import dtos.PlayerDTO;
-import dtos.WaitingRoomDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utils;
@@ -51,13 +48,7 @@ public class EventManager implements EventProducer, EventConsumer {
      */
     @Override
     public void joinToWaitingRoom(final PlayerDTO playerDTO) {
-        Player player = new Player();
-
-        // TODO necesita casteo?
-        AvatarDTO avatarDTO = playerDTO.getAvatar();
-        Avatar avatar = new Avatar(avatarDTO.getNombre(), avatarDTO.getImage());
-        player.setAvatar(avatar);
-
+        Player player = Utils.parsePlayerDTO(playerDTO);
         Event updateWaitingRoomEvent = new PlayerJoinsEvent(player);
         this.connection.sendMessage(updateWaitingRoomEvent);
     }
@@ -68,8 +59,24 @@ public class EventManager implements EventProducer, EventConsumer {
      * @param game El estado actualizado del juego.
      */
     @Override
-    public void updateGame(GameDTO game) {
+    public void updateGame(final GameDTO game) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Envía un evento de que un jugador ha abandonado y actualiza la interfaz
+     * gráfica.
+     *
+     * @param playerDTO La información del jugador que se va a ir.
+     */
+    @Override
+    public void playerLeaves(final PlayerDTO playerDTO) {
+
+        Player player = Utils.parsePlayerDTO(playerDTO);
+        Event playerLeaves = new PlayerLeaveEvent(player);
+        this.connection.sendMessage(playerLeaves);
     }
 
     /**
@@ -86,13 +93,15 @@ public class EventManager implements EventProducer, EventConsumer {
             LOG.log(Level.WARNING, "GameOverEvent no implementado");
         } else if (event instanceof PlayerJoinsEvent) {
             LOG.log(Level.WARNING, "PlayerJoinsEvent no implementado");
-        } else if (event instanceof PlayerLeaveEvent) {
-            LOG.log(Level.WARNING, "PlayerLeaveEvent no implementado");
+        } else if (event instanceof PlayerLeaveEvent playerLeaveEvent) {
+            LOG.log(Level.INFO, "------>>PlayerLeaveEvent implementado<<------");
+            PlayerDTO playerDTO = Utils.parsePlayer(playerLeaveEvent.getPayload());
+            this.gameSystem.removePlayer(playerDTO);
         } else if (event instanceof UpdateGameEvent) {
             LOG.log(Level.WARNING, "UpdateGameEvent no implementado");
 //            this.gameSystem.updateGame(((UpdateGameEvent) event).getPayload());
         } else if (event instanceof UpdateWaitingRoomEvent updateWaitingRoomEvent) {
-            LOG.log(Level.WARNING, "------>>UpdateWaitingRoomEvent implementado<<------");
+            LOG.log(Level.INFO, "------>>UpdateWaitingRoomEvent implementado<<------");
             DominoGame dominoGame = updateWaitingRoomEvent.getPayload();
             this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
         }

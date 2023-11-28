@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import ui.game.GameModelmpl;
 
 /**
- *
- * @author Toled
- * @param <V>
+ * Panel que representa la sala de espera donde los jugadores pueden esperar a
+ * que comience el juego.
  */
 public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent {
 
@@ -19,42 +17,48 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     private MainMenuPresenter presenter;
 
     /**
-     * Creates new form LobbyJPanel.
+     * Crea un nuevo panel de sala de espera.
      */
     public WaitingRoomJPanel() {
-//        GameModelmpl gModelImpl = new GameModelmpl();
-//
-//        for (int x = 0; x < waitingRoom.getPlayers().size(); x++) {
-//            if (waitingRoom.getPlayers().get(x).getName()
-//                    .equalsIgnoreCase(gModelImpl
-//                            .getMyPlayer().getName())) {
-//                if (waitingRoom.getPlayers().get(x).isIsAdmin() == true) {
-//                    admin = true;
-//                }
-//            }
-//        }
         initComponents();
-
     }
 
+    /**
+     * Establece la vista asociada a este panel.
+     *
+     * @param view La vista asociada.
+     */
     public void setView(MainMenuView view) {
         this.view = view;
-
     }
 
+    /**
+     * Actualiza la sala de espera con la información proporcionada por el
+     * modelo de vista.
+     *
+     * @param viewModel El modelo de vista que contiene la información de la
+     * sala de espera.
+     */
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
-
         this.waitingRoom = viewModel.getWaitingRoom();
         this.isAdmin(viewModel.isAdmin());
         setPlayers();
-
     }
 
+    /**
+     * Oculta o muestra los elementos específicos para el administrador.
+     *
+     * @param isAdmin true si el jugador es un administrador, false de lo
+     * contrario.
+     */
     private void isAdmin(boolean isAdmin) {
         this.tilesNum.setVisible(isAdmin);
         this.tilesNumText.setVisible(isAdmin);
     }
 
+    /**
+     * Configura la visualización de los jugadores en el panel.
+     */
     private void setPlayers() {
 
         List<JButton> buttons = new ArrayList<>();
@@ -115,6 +119,11 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         btnLeave.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLeave.setBorderPainted(false);
         btnLeave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLeave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeaveActionPerformed(evt);
+            }
+        });
         add(btnLeave, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 610, 260, 80));
 
         btnAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
@@ -223,6 +232,13 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAvatar2ActionPerformed
 
+    private void btnLeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeaveActionPerformed
+        this.presenter.playerLeaves();
+        this.view.close();
+
+
+    }//GEN-LAST:event_btnLeaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvatar1;
@@ -244,4 +260,5 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     public void setPresenter(MainMenuPresenter presenter) {
         this.presenter = presenter;
     }
+
 }

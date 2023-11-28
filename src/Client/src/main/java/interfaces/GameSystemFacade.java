@@ -3,6 +3,7 @@ package interfaces;
 import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
 import dtos.GameDTO;
+import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
 import ui.MainMenu.MainMenuPresenter;
 import ui.game.GamePresenter;
@@ -60,5 +61,14 @@ public interface GameSystemFacade {
      * @param mainMenuPresenter El MainMenuPresenter que se va a establecer.
      */
     void setMainMenuPresenter(final MainMenuPresenter mainMenuPresenter);
+
+    /**
+     * Remueve un jugador de la interfaz gráfica.
+     *
+     * @param payload El jugador a ser removido.
+     * @throws MissingMainMenuPresenterException si no se ha establecido el
+     * MainMenuPresenter.
+     */
+    public void removePlayer(PlayerDTO payload);
 
 }
