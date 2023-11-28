@@ -4,6 +4,7 @@ import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
 import interfaces.GameSystemFacade;
 import dtos.GameDTO;
+import dtos.PlayerDTO;
 import ui.MainMenu.MainMenuPresenter;
 import dtos.WaitingRoomDTO;
 import ui.game.GamePresenter;
@@ -104,6 +105,27 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         }
 
         this.mainMenuPresenter.showInvalidNameError();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Remueve un jugador de la interfaz gráfica.
+     *
+     * @param player El jugador a ser removido.
+     * @throws MissingMainMenuPresenterException si el MainMenuPresenter no está
+     * establecido.
+     */
+    @Override
+    public void removePlayer(final PlayerDTO player) {
+        // TODO add remove player on game presenter.
+
+        if (this.mainMenuPresenter == null) {
+            throw new MissingMainMenuPresenterException();
+        }
+
+        this.mainMenuPresenter.removePlayer(player);
+
     }
 
 }

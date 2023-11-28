@@ -1,7 +1,11 @@
 package ui.MainMenu;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
@@ -137,7 +141,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView, 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 800));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -188,6 +192,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView, 
         this.revalidate();
         this.repaint();
     }
+
 //
 //    @Override
 //    public void displayBoardView() {
@@ -264,10 +269,16 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView, 
 //    public void toggleReadyStatus() {
 //        this.listener.toggleReadyStatus();
 //    }
-
     @Override
     public void foreStart() {
         this.presenter.foreStart();
+    }
+
+    @Override
+    public void dispose() {
+        this.presenter.playerLeaves();
+        super.dispose();
+        System.exit(0);
     }
 
 
