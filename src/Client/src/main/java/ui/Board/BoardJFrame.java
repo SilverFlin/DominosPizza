@@ -4,7 +4,7 @@ package ui.Board;
  *
  * @author José Iván Vázquez Brambila
  */
-public class BoardJFrame extends javax.swing.JFrame implements BoardView {
+public class BoardJFrame extends javax.swing.JFrame{
 
     /**
      * Creates new form Ventana
@@ -50,13 +50,13 @@ public class BoardJFrame extends javax.swing.JFrame implements BoardView {
     private ui.Board.Board board;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void load() {
-        this.setVisible(true);
-    }
-
-    @Override
-    public void close() {
-        this.dispose();
-    }
+//    @Override
+//    public void load() {
+//        this.setVisible(true);
+//    }
+//
+//    @Override
+//    public void close() {
+//        this.dispose();
+//    }
 }

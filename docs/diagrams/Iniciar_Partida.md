@@ -4,7 +4,9 @@
 
 ![Figure1](/docs/imgs/CD_iniciar_partida.png)
 
-Figure 1. Diagrama de Clase de Iniciar Partida
+_Figure 1. Diagrama de Clase de Iniciar Partida_
+
+El diagrama editable se encuentra en [este link](https://drive.google.com/file/d/1IWsLf2v58zQCyrJ0lhxCQMWl16wX-IUh/view?usp=drive_link).
 
 | Componente        | Definicion                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -14,12 +16,22 @@ Figure 1. Diagrama de Clase de Iniciar Partida
 | MainMenuViewModel | Es la versión segregada del modelo, conteniendo únicamente métodos para acceder a la información de este, necesarios para ser cargados en la vista. <ul><li>`getAvatars():List<AvatarDTO>`: Regresa una lista con la información necesaria para cargar Avatares.</li><li>`getMyPlayer():PlayerDTO`: Regresa la información del jugador actual.</li><li>`getWaitingRoom():WaitingRoomDTO`: Regresa información de la sala de espera.</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | MainMenuModelImpl | Es la clase que implementa a `MainMenuModel` y `MainMenuViewModel`.<br>Tiene una referencia de la clases de Dominio `DominoGame` con la información del juego actual y `Player`, que representa al jugador actual (Ver [Clases de Domino](/docs/diagrams/DD_client.md))                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
+> Los DTOs se pueden consultar en [esta documentación](/docs/diagrams/dtos.md#clases).
+
+## Robustez
+
+### Iniciar Partida
+
+![Figure2](/docs/imgs/robustness_iniciar_partida.png)
+
+_Figure 2. Diagrama de Robustez: Iniciar Partida_
+
 ## Secuencia
 
 ### DS Iniciar Partida
 
-![Figure1](/docs/imgs/SD_iniciar_partida.png)
+![Figure3](/docs/imgs/SD_iniciar_partida.png)
 
-_Figure 1. Diagrama de Secuencia: Ejercer Turno_
+_Figure 3. Diagrama de Secuencia: Ejercer Turno_
 
 Representa el flujo de información entre las clases de Dominio y las clases relacionadas al patrón MVP al momento de iniciar partida.

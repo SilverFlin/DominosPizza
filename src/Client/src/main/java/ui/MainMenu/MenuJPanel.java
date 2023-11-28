@@ -1,15 +1,14 @@
 package ui.MainMenu;
 
-import ui.base.BasePanel;
-
 /**
  *
  * @author edemb
  * @param <V>
  */
-public class MenuJPanel<V extends MainMenuView> extends javax.swing.JPanel implements BasePanel<V> {
+public class MenuJPanel extends javax.swing.JPanel implements ViewParent {
 
-    private V view;
+    private MainMenuView view;
+    private MainMenuPresenter presenter;
 
     /**
      * Creates new form MenuPanel
@@ -18,8 +17,7 @@ public class MenuJPanel<V extends MainMenuView> extends javax.swing.JPanel imple
         initComponents();
     }
 
-    @Override
-    public void setView(final V view) {
+    public void setView(MainMenuView view) {
         this.view = view;
     }
 
@@ -42,6 +40,11 @@ public class MenuJPanel<V extends MainMenuView> extends javax.swing.JPanel imple
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton1.setText("HOW TO PLAY");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, 230, 80));
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -57,8 +60,13 @@ public class MenuJPanel<V extends MainMenuView> extends javax.swing.JPanel imple
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.view.displayConfigurationPanel();
+        this.presenter.goToAvatarPanel();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        presenter.goToAvatarPanel();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -66,4 +74,9 @@ public class MenuJPanel<V extends MainMenuView> extends javax.swing.JPanel imple
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setPresenter(MainMenuPresenter presenter) {
+        this.presenter = presenter;
+    }
 }

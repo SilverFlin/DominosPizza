@@ -1,59 +1,61 @@
 package ui.MainMenu;
 
-import data.dominio.Avatar;
-import data.dominio.DominoGame;
-import data.dominio.Player;
 import java.util.List;
-import ui.base.View;
 
-/**
- *
- * @author Toled
- */
-public interface MainMenuView extends View {
+public interface MainMenuView {
 
-    void displayConfigurationPanel();
+    /**
+     * Termina la instancia de esta vista, para ser cambiada a otra vista.
+     */
+    public void close();
 
-    void displayAvatarsPanel();
+    /**
+     * Inicia la instancia de la vista.
+     */
+    public void open();
 
-    void displayLobbyPanel();
+    /**
+     * Es llamada al recibir cambios del presentador para actualizar la sala de
+     * espera.
+     *
+     * @param viewModel
+     */
+    public void updateWaitingRoom(MainMenuViewModel viewModel);
 
-    void displayMenuPanel();
+    /**
+     * Cambia al panel de Lobby.
+     *
+     * @param viewModel
+     */
+    public void showLobbyPanel(MainMenuViewModel viewModel);
 
-    void displayBoardView();
+    /**
+     * Muestra al usuario un error de nombre invalido, debido a la existencia de
+     * ese nombre en la sala de espera.
+     */
+    public void showInvalidNameError();
 
-    void setMenuPanel(MenuJPanel panel);
+    /**
+     * Cambia al panel de selección de Avatar.
+     */
+    public void showAvatarPanel(MainMenuViewModel viewModel);
 
-    void setAvatarPanel(AvatarsJPanel panel);
+    public void setPresenter(MainMenuPresenter presenter);
 
-    void setConfigurationPanel(ConfigurationJPanel panel);
+    public void setPlayerSetupPanel(final PlayerSetupPanel playerSetupPanel);
 
-    void setLobbyPanel(LobbyJPanel panel);
+    public void displayPlayerSetupPanel();
 
-    void setListener(MainMenuViewListener listener);
+    public void setWaitingRoomPanel(final WaitingRoomJPanel waitingRoomPanel);
 
-    void setTilesPerPlayer(int cant);
+    void displayWaitingRoomPanel();
 
-    void createAvatar(String name, String Image);
+    public void setMenuPanel(final MenuJPanel menuPanel);
 
-    Avatar getAvatar();
+    public void displayMenuPanel();
 
-    void createPlayer(Avatar avatar);
+    public void load();
 
-    void removePlayer(Player player);
+    public void foreStart();
 
-    void createDominoGame();
-
-    void createTurnController();
-
-    DominoGame getDominoGame();
-
-    void startGameFromMenu();
-
-    void updatePlayers(List<Player> players);
-
-    void notifyPlayers();
-
-    void toggleReadyStatus();
-    
 }
