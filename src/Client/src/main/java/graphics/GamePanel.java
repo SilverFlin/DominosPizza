@@ -22,13 +22,14 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         dgg = new DominoGameGraphic();
         rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-
+        addMouseListener(new Puntero(this));
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         var g2 = (Graphics2D)g;
         g2.setRenderingHints(rh);
+        dgg.setRecs(this.getBounds());
         dgg.draw(g2);
         
     }

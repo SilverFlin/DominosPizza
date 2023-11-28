@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
  *
  * @author JIVB
  */
-public class PoolGraphic implements GraphicComponent {
+public class PoolGraphic extends GraphicComponent {
 
     int tileAmount;
 
