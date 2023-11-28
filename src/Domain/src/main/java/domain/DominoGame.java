@@ -222,4 +222,16 @@ public class DominoGame implements Serializable {
     public void takeFromPool(final Player player) {
         player.addTile(this.pool.takeTile());
     }
+    
+    /**
+     * Pone al jugador en listo si las condiciones se cumplen
+     * @param player Jugador que estará en listo o no
+     */
+    public void setReady(final Player player){
+        if (!startGame()){
+            player.setReady();
+        } else {
+            player.setNotReady();
+        }
+    }
 }
