@@ -22,4 +22,6 @@ public interface EventProducer {
      */
     void updateGame(GameDTO game);
 
+    void playerLeaves(PlayerDTO player);
+
 }

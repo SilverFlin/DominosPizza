@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import network.EventProducer;
 import ui.game.GamePresenter;
+import utils.Utils;
 
 /**
  *
@@ -58,7 +59,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     public void showInvalidNameError() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public void updateWaitingRoom(WaitingRoomDTO waitingRoom) {
         this.waitingRoom = waitingRoom;
@@ -90,6 +91,11 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
         }
         gamePresenter.loadBoard(this.waitingRoom, myPlayer);
         view.close();
+    }
+
+    @Override
+    public void playerLeaves() {
+        this.producer.playerLeaves(myPlayer);
     }
 
 }

@@ -15,6 +15,8 @@ import dtos.GameDTO;
 import dtos.AvatarDTO;
 import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utils;
@@ -25,10 +27,10 @@ import utils.Utils;
  * conexión de eventos de red.
  */
 public class EventManager implements EventProducer, EventConsumer {
-
+    
     private final GameSystemFacade gameSystem;
     private final NetworkEventConnection connection;
-
+    
     private static final Logger LOG = Logger.getLogger(EventManager.class.getName());
 
     /**
@@ -51,13 +53,7 @@ public class EventManager implements EventProducer, EventConsumer {
      */
     @Override
     public void joinToWaitingRoom(final PlayerDTO playerDTO) {
-        Player player = new Player();
-
-        // TODO necesita casteo?
-        AvatarDTO avatarDTO = playerDTO.getAvatar();
-        Avatar avatar = new Avatar(avatarDTO.getNombre(), avatarDTO.getImage());
-        player.setAvatar(avatar);
-
+        Player player = Utils.parsePlayerDTO(playerDTO);
         Event updateWaitingRoomEvent = new PlayerJoinsEvent(player);
         this.connection.sendMessage(updateWaitingRoomEvent);
     }
@@ -68,8 +64,15 @@ public class EventManager implements EventProducer, EventConsumer {
      * @param game El estado actualizado del juego.
      */
     @Override
-    public void updateGame(GameDTO game) {
+    public void updateGame(final GameDTO game) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public void playerLeaves(final PlayerDTO playerDTO) {
+        Player player = Utils.parsePlayerDTO(playerDTO);
+        Event playerLeaves = new PlayerLeaveEvent(player);
+        this.connection.sendMessage(playerLeaves);
     }
 
     /**
@@ -79,7 +82,7 @@ public class EventManager implements EventProducer, EventConsumer {
      */
     @Override
     public void consumeEvent(final Event event) {
-
+        
         if (event instanceof DuplicatedNameErrorEvent) {
             this.gameSystem.showInvalidNameError();
         } else if (event instanceof GameOverEvent) {
@@ -96,7 +99,7 @@ public class EventManager implements EventProducer, EventConsumer {
             DominoGame dominoGame = updateWaitingRoomEvent.getPayload();
             this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
         }
-
+        
     }
-
+    
 }

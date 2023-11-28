@@ -39,6 +39,8 @@ public interface MainMenuPresenter {
 
     public void newPlayerHasJoined(WaitingRoomDTO waitingRoom);
 
+    public void playerLeaves();
+
     public void foreStart();
 
 }
