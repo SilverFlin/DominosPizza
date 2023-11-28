@@ -53,7 +53,7 @@ public class App {
         mainMenuView.setWaitingRoomPanel(waitingRoomJPanel);
         // TODO: Agregar paneles a MainMenuJFrame
         List<AvatarDTO> avatars = createFakeAvatars();
-        MainMenuModel mainMenuModel = new MainMenuModelImpl(DominoGame.getInstance(), avatars);
+        MainMenuModel mainMenuModel = new MainMenuModelImpl(new DominoGame(), avatars);
         MainMenuPresenter mainMenuPresenter = new MainMenuPresenterImpl(mainMenuView, mainMenuModel, eventManager, gamePresenter);
         mainMenuView.setPresenter(mainMenuPresenter);
 

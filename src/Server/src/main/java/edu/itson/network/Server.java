@@ -1,11 +1,13 @@
 package edu.itson.network;
 
+import domain.Player;
 import edu.itson.network.ClientHandler;
 import edu.itson.events.EventBus;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,7 +21,8 @@ public class Server {
 
     private final int port;
     private final int maxClients;
-    private final List<ClientHandler> clients;
+    private static volatile List<ClientHandler> clients = new ArrayList<>();
+    private static volatile List<Player> players = Collections.synchronizedList(new ArrayList<>());
 
     private static final Logger LOG = Logger.getLogger(Server.class.getName());
 
@@ -31,7 +34,6 @@ public class Server {
      * manejar.
      */
     public Server(final int PORT, final int MAX_CLIENTS) {
-        this.clients = new ArrayList<>();
         this.port = PORT;
         this.maxClients = MAX_CLIENTS;
     }
@@ -43,16 +45,16 @@ public class Server {
         ExecutorService executor = Executors.newFixedThreadPool(maxClients);
         try (ServerSocket serverSocket = new ServerSocket(port)) {
 
-            LOG.log(Level.INFO, "Server started. Listening for clients...");
+            LOG.log(Level.INFO, "Server started. Listening for clients...\n");
 
             while (true) {
                 ClientHandler clientHandler = this.handleClient(serverSocket);
                 executor.execute(clientHandler);
             }
         } catch (IOException e) {
-            LOG.log(Level.SEVERE, "Error at starting the server" + e);
+            LOG.log(Level.SEVERE, "Error at starting the server" + e + "\n");
         } finally {
-            LOG.log(Level.INFO, "Server stopped. ");
+            LOG.log(Level.INFO, "Server stopped. \n");
             executor.shutdown();
         }
 
@@ -69,11 +71,12 @@ public class Server {
         try {
             Socket clientSocket = serverSocket.accept();
             clientHandler = new ClientHandler(clientSocket, EventBus.getInstance());
+            clientHandler.setIdClient(Server.clients.size());
             EventBus.getInstance().subscribe(clientHandler);
-            this.clients.add(clientHandler);
-            LOG.log(Level.INFO, "New client connected: " + clientSocket.getInetAddress().getHostAddress());
+            Server.clients.add(clientHandler);
+            LOG.log(Level.INFO, "New client connected: " + clientSocket.getInetAddress().getHostAddress() + "\n");
         } catch (IOException ex) {
-            LOG.log(Level.SEVERE, "Error at handling client" + ex);
+            LOG.log(Level.SEVERE, "Error at handling client" + ex + "\n");
         }
         return clientHandler;
     }
@@ -83,8 +86,21 @@ public class Server {
      *
      * @return Lista de clientes.
      */
-    public List<ClientHandler> getClients() {
+    public synchronized List<ClientHandler> getClients() {
         return clients;
+    }
+
+    public synchronized static int getClientsSize() {
+        return clients.size();
+    }
+
+    public static synchronized void addPlayer(final Player element) {
+        Server.players.add(element);
+
+    }
+
+    public static synchronized List<Player> getPlayers() {
+        return new ArrayList<>(Server.players);
     }
 
 }

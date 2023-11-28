@@ -159,7 +159,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView, 
 
     @Override
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
-        updateWaitingRoom(viewModel);
+        this.waitingRoomPanel.updateWaitingRoom(viewModel);
     }
 
     @Override

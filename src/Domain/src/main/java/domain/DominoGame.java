@@ -20,8 +20,6 @@ public class DominoGame implements Serializable {
     private List<Player> players;
     private TurnController turnController;
 
-    private static DominoGame dominoGame;
-
     /**
      * Constructor privado de la clase DominoGame. Se utiliza el patrón
      * Singleton para garantizar una única instancia de la clase.
@@ -165,19 +163,6 @@ public class DominoGame implements Serializable {
             }
         }
         players.add(player);
-    }
-
-    /**
-     * Obtiene la instancia única de la clase DominoGame utilizando el patrón
-     * Singleton.
-     *
-     * @return Instancia única de DominoGame.
-     */
-    public static DominoGame getInstance() {
-        if (DominoGame.dominoGame == null) {
-            DominoGame.dominoGame = new DominoGame();
-        }
-        return DominoGame.dominoGame;
     }
 
     /**

@@ -76,6 +76,7 @@ public class NetworkEventConnection implements NetworkConnection<Event>, EventSu
     @Override
     public void sendMessage(final Event message) {
         try {
+            message.setSenderAddress(this.socket.getLocalSocketAddress().toString());
             out.writeObject(message);
         } catch (IOException ex) {
             LOG.log(Level.SEVERE, "Error al enviar mensaje al servidor.");

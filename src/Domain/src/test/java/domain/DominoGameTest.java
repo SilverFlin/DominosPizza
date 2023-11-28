@@ -43,7 +43,7 @@ public class DominoGameTest {
     @Test
     public void testGetPool() {
         System.out.println("getPool");
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         Pool expResult = new Pool();
         instance.setPool(expResult);
         Pool result = instance.getPool();
@@ -57,7 +57,7 @@ public class DominoGameTest {
     public void testSetPool() {
         System.out.println("setPool");
         Pool pool = new Pool();
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         instance.setPool(pool);
         assertEquals(pool, instance.getPool());
     }
@@ -68,7 +68,7 @@ public class DominoGameTest {
     @Test
     public void testGetBoard() {
         System.out.println("getBoard");
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         Board expResult = new Board();
         instance.setBoard(expResult);
         Board result = instance.getBoard();
@@ -82,7 +82,7 @@ public class DominoGameTest {
     public void testSetBoard() {
         System.out.println("setBoard");
         Board board = new Board();
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         instance.setBoard(board);
         assertEquals(board, instance.getBoard());
     }
@@ -93,7 +93,7 @@ public class DominoGameTest {
     @Test
     public void testGetPlayers() {
         System.out.println("getPlayers");
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         List<Player> expResult = new ArrayList<>();
         instance.setPlayers(expResult);
         List<Player> result = instance.getPlayers();
@@ -107,7 +107,7 @@ public class DominoGameTest {
     public void testSetPlayers() {
         System.out.println("setPlayers");
         List<Player> players = new ArrayList<>();
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         instance.setPlayers(players);
         assertEquals(players, instance.getPlayers());
     }
@@ -118,7 +118,7 @@ public class DominoGameTest {
     @Test
     public void testShufflePlayers() {
         System.out.println("shufflePlayers");
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
 
         // Crear jugadores ficticios
         Player player1 = new Player();
@@ -161,7 +161,7 @@ public class DominoGameTest {
         System.out.println("changeTurn");
 
         // Crear una instancia de DominoGame
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
 
         // Crear jugadores ficticios
         Player player1 = new Player();
@@ -192,7 +192,7 @@ public class DominoGameTest {
         System.out.println("getCurrentPlayer");
 
         // Crear una instancia de DominoGame
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
 
         // Crear jugadores ficticios
         Player player1 = new Player();
@@ -220,7 +220,7 @@ public class DominoGameTest {
         System.out.println("addPlayer");
         Player player = new Player();
         player.setAvatar(new Avatar("name", "name.png"));
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         instance.setPlayers(new ArrayList<>());
         instance.addPlayer(player);
         assertTrue(instance.getPlayers().contains(player));
@@ -233,7 +233,7 @@ public class DominoGameTest {
     public void testSetTileAmountConfig() {
         System.out.println("setTileAmountConfig");
         int cantTile = 7;
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         instance.setTileAmountConfig(cantTile);
         assertEquals(cantTile, instance.getConfig().getTilesPerPlayer());
     }
@@ -246,7 +246,7 @@ public class DominoGameTest {
         System.out.println("startGame");
 
         // Caso: Todos los jugadores listos
-        DominoGame instanceAllReady = DominoGame.getInstance();
+        DominoGame instanceAllReady = new DominoGame();
         List<Player> playersAllReady = Arrays.asList(
                 new Player(),
                 new Player(),
@@ -259,7 +259,7 @@ public class DominoGameTest {
         assertTrue(resultAllReady, "Todos los jugadores están listos, el juego debería comenzar.");
 
         // Caso: Al menos un jugador no está listo
-        DominoGame instanceNotReady = DominoGame.getInstance();
+        DominoGame instanceNotReady = new DominoGame();
         List<Player> playersNotReady = Arrays.asList(
                 new Player(),
                 new Player(),
@@ -278,7 +278,7 @@ public class DominoGameTest {
     public void testPutTileBoard() {
         System.out.println("putTileBoard");
         DominoTile tile = new DominoTile(1, 2);
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         instance.setBoard(new Board());
         instance.putTileBoard(tile);
         BoardTile boardTile = instance.getBoard().getTiles().get(0);
@@ -293,7 +293,7 @@ public class DominoGameTest {
     public void testTakeFromPool() {
         System.out.println("takeFromPool");
         Player player = new Player();
-        DominoGame instance = DominoGame.getInstance();
+        DominoGame instance = new DominoGame();
         instance.takeFromPool(player);
         assertEquals(1, player.getTilesInHand().size());
     }
