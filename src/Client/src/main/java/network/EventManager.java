@@ -91,14 +91,12 @@ public class EventManager implements EventProducer, EventConsumer {
         } else if (event instanceof UpdateGameEvent) {
             LOG.log(Level.WARNING, "UpdateGameEvent no implementado");
 //            this.gameSystem.updateGame(((UpdateGameEvent) event).getPayload());
-        } else if (event instanceof UpdateWaitingRoomEvent) {
+        } else if (event instanceof UpdateWaitingRoomEvent updateWaitingRoomEvent) {
             LOG.log(Level.WARNING, "------>>UpdateWaitingRoomEvent implementado<<------");
-            DominoGame dominoGame =((UpdateWaitingRoomEvent) event).getPayload();
+            DominoGame dominoGame = updateWaitingRoomEvent.getPayload();
             this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
         }
 
     }
-    
-
 
 }

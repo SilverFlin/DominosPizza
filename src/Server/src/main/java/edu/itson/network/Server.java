@@ -1,11 +1,13 @@
 package edu.itson.network;
 
+import domain.Player;
 import edu.itson.network.ClientHandler;
 import edu.itson.events.EventBus;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,6 +22,8 @@ public class Server {
     private final int port;
     private final int maxClients;
     private final List<ClientHandler> clients;
+    private static final List<Player> players = Collections.synchronizedList(new ArrayList<>());
+
 
     private static final Logger LOG = Logger.getLogger(Server.class.getName());
 
@@ -69,6 +73,7 @@ public class Server {
         try {
             Socket clientSocket = serverSocket.accept();
             clientHandler = new ClientHandler(clientSocket, EventBus.getInstance());
+            clientHandler.setIdClient(this.clients.size());
             EventBus.getInstance().subscribe(clientHandler);
             this.clients.add(clientHandler);
             LOG.log(Level.INFO, "New client connected: " + clientSocket.getInetAddress().getHostAddress());
@@ -85,6 +90,15 @@ public class Server {
      */
     public List<ClientHandler> getClients() {
         return clients;
+    }
+
+    public static synchronized void addPlayer(final Player element) {
+        Server.players.add(element);
+
+    }
+
+    public static synchronized List<Player> getPlayers() {
+        return new ArrayList<>(Server.players);
     }
 
 }
