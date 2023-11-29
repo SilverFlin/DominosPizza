@@ -227,7 +227,7 @@ public class DominoGame implements Serializable {
      */
     public void setGameReady(){
         if (!startGame()){
-            if (2 <= players.size() <= 4){
+            if (players.size() <= 4 || players.size() >= 2) {
                 if (this.config != null){
                     this.isReady = true;
                 }
