@@ -4,6 +4,7 @@ import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
 import interfaces.GameSystemFacade;
 import dtos.GameDTO;
+import dtos.PlayerDTO;
 import ui.MainMenu.MainMenuPresenter;
 import dtos.WaitingRoomDTO;
 import ui.game.GamePresenter;
@@ -74,6 +75,19 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         this.mainMenuPresenter.updateWaitingRoom(waitingRoomDTO);
     }
 
+    /**
+     * {@inheritDoc}
+     * @throws MissingMainMenuPresenterException si el MainMenuPresenter no está
+     * establecido.
+     */
+    @Override
+    public void setPlayerReady(final PlayerDTO player) {
+        if (this.mainMenuPresenter == null) {
+            throw new MissingMainMenuPresenterException();
+        }
+        this.mainMenuPresenter.setPlayerReady(player);
+    }
+    
     /**
      * {@inheritDoc}
      *

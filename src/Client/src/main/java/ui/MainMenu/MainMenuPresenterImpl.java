@@ -71,15 +71,11 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
         this.waitingRoom = waitingRoom;
         model.setWaitingRoom(waitingRoom);
         if (model.isReady()) {
-
             gamePresenter.loadBoard(waitingRoom, myPlayer);
             view.close();
         } else {
-
             view.updateWaitingRoom((MainMenuViewModel) this.model);
-
         }
-
     }
 
     @Override
@@ -91,5 +87,17 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
         gamePresenter.loadBoard(this.waitingRoom, myPlayer);
         view.close();
     }
-
+    
+    /**
+     * Pone al jugador en estado de Ready
+     * @param player Jugador a poner en Ready
+     */
+    @Override
+    public void setPlayerReady(PlayerDTO player) {
+        this.myPlayer = player;
+        model.setMyPlayer(player);
+        if (model.isReady()) {
+            player.setIsReady(true);
+        }
+    }
 }

@@ -3,6 +3,7 @@ package interfaces;
 import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
 import dtos.GameDTO;
+import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
 import ui.MainMenu.MainMenuPresenter;
 import ui.game.GamePresenter;
@@ -60,5 +61,10 @@ public interface GameSystemFacade {
      * @param mainMenuPresenter El MainMenuPresenter que se va a establecer.
      */
     void setMainMenuPresenter(final MainMenuPresenter mainMenuPresenter);
-
+    
+    /**
+     * Pone al jugador en estado de Ready
+     * @param player Jugador a establecer en Ready
+     */
+    void setPlayerReady(final PlayerDTO player);
 }

@@ -96,6 +96,7 @@ public class EventManager implements EventProducer, EventConsumer {
         } else if (event instanceof PlayerReadyEvent) {
             LOG.log(Level.WARNING, "PlayerReadyEvent no implementado");
             Player player = ((PlayerReadyEvent) event).getPayload();
+            this.gameSystem.setPlayerReady(Utils.setPlayerReadyDTO(player));
         }
     }
 }

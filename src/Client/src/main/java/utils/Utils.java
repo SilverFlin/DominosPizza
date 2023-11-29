@@ -33,6 +33,11 @@ public abstract class Utils {
             parsedPlayers.add(p);
         }
         return parsedPlayers;
-
+    }
+    
+    public static PlayerDTO setPlayerReadyDTO(Player player) {
+        PlayerDTO pDTO = new PlayerDTO();
+        pDTO.setIsReady(player.isReady());
+        return pDTO;
     }
 }

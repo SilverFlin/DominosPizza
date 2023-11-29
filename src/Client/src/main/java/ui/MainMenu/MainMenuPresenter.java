@@ -39,5 +39,9 @@ public interface MainMenuPresenter {
     public void newPlayerHasJoined(WaitingRoomDTO waitingRoom);
 
     public void foreStart();
-
+    /**
+     * Pone al jugador en estado de Ready
+     * @param player Jugador a poner en Ready
+     */
+    public void setPlayerReady(PlayerDTO player);
 }

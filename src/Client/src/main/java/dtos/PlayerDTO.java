@@ -8,6 +8,7 @@ import java.util.List;
 public class PlayerDTO {
 
     private boolean isAdmin;
+    private boolean isReady;
     private List<DominoDTO> tiles;
     private String name;
     private AvatarDTO avatar;
@@ -46,6 +47,14 @@ public class PlayerDTO {
 
     public void setTiles(List<DominoDTO> tiles) {
         this.tiles = tiles;
+    }
+
+    public boolean isIsReady() {
+        return isReady;
+    }
+
+    public void setIsReady(boolean isReady) {
+        this.isReady = isReady;
     }
 
 }
