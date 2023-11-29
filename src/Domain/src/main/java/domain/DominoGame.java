@@ -190,7 +190,6 @@ public class DominoGame implements Serializable {
 
     /**
      * Inicia el juego verificando si todos los jugadores están listos.
-     *
      * @return true si el juego se inicia correctamente, false si algún jugador
      * no está listo.
      */
@@ -223,14 +222,18 @@ public class DominoGame implements Serializable {
     }
     
     /**
-     * Pone al jugador en listo si las condiciones se cumplen
-     * @param player Jugador que estará en listo o no
+     * Verifica si el juego se puede poner en listo
+     * si las condiciones se cumplen
      */
-    public void setReady(final Player player){
+    public void setGameReady(){
         if (!startGame()){
-            player.setReady();
+            if (2 <= players.size() <= 4){
+                if (this.config != null){
+                    this.isReady = true;
+                }
+            }
         } else {
-            player.setNotReady();
+            this.isReady = false;
         }
     }
 }

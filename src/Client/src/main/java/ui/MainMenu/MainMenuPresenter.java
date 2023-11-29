@@ -32,7 +32,6 @@ public interface MainMenuPresenter {
     /**
      * Es el método por el cual el Router le manda nueva información al
      * presentador.
-     *
      * @param waitingRoom
      */
     public void updateWaitingRoom(WaitingRoomDTO waitingRoom);

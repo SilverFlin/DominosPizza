@@ -203,14 +203,12 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
-        //view.foreStart();
-
+//        view.foreStart();
     }//GEN-LAST:event_btnReadyActionPerformed
 
     private void tilesNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tilesNumActionPerformed
         // minimo de 2 fichas a elegir maximo de 7
         // settear a la waitingroomDTO
-
         waitingRoom.setInitialTiles(tilesNum.getSelectedIndex() + 1);
     }//GEN-LAST:event_tilesNumActionPerformed
 

@@ -85,7 +85,6 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         if (this.gamePresenter == null) {
             throw new MissingGamePresenterException();
         }
-
         this.gamePresenter.updateGame(game);
     }
 
