@@ -57,7 +57,6 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         if (mainMenuPresenter == null) {
             throw new MissingMainMenuPresenterException();
         }
-
         this.mainMenuPresenter.goToAvatarPanel();
     }
 
@@ -72,7 +71,6 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         if (this.mainMenuPresenter == null) {
             throw new MissingMainMenuPresenterException();
         }
-
         this.mainMenuPresenter.updateWaitingRoom(waitingRoomDTO);
     }
 
@@ -93,7 +91,6 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
 
     /**
      * {@inheritDoc}
-     *
      * @throws MissingMainMenuPresenterException si el MainMenuPresenter no está
      * establecido.
      */
@@ -102,8 +99,6 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         if (mainMenuPresenter == null) {
             throw new MissingMainMenuPresenterException();
         }
-
         this.mainMenuPresenter.showInvalidNameError();
     }
-
 }

@@ -52,12 +52,10 @@ public class EventManager implements EventProducer, EventConsumer {
     @Override
     public void joinToWaitingRoom(final PlayerDTO playerDTO) {
         Player player = new Player();
-
         // TODO necesita casteo?
         AvatarDTO avatarDTO = playerDTO.getAvatar();
         Avatar avatar = new Avatar(avatarDTO.getNombre(), avatarDTO.getImage());
         player.setAvatar(avatar);
-
         Event updateWaitingRoomEvent = new PlayerJoinsEvent(player);
         this.connection.sendMessage(updateWaitingRoomEvent);
     }
@@ -96,7 +94,8 @@ public class EventManager implements EventProducer, EventConsumer {
             DominoGame dominoGame =((UpdateWaitingRoomEvent) event).getPayload();
             this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
         } else if (event instanceof PlayerReadyEvent) {
-            
+            LOG.log(Level.WARNING, "PlayerReadyEvent no implementado");
+            Player player = ((PlayerReadyEvent) event).getPayload();
         }
     }
 }
