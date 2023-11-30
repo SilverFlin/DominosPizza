@@ -48,7 +48,7 @@ public interface MainMenuModel {
      */
     public boolean isReady();
 
-
     public void setWaitingRoom(WaitingRoomDTO waitingRoom);
 
-        }
+    public PlayerDTO setPlayerReady(PlayerDTO player);
+}

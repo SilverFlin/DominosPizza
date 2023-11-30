@@ -1,11 +1,11 @@
 package ui.MainMenu;
 
+import domain.DominoGame;
 import dtos.WaitingRoomDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import ui.game.GameModelmpl;
 
 /**
  * @author Toledo
@@ -15,6 +15,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     private MainMenuView view;
     private WaitingRoomDTO waitingRoom;
     private MainMenuPresenter presenter;
+    private DominoGame dg;
 
     /**
      * Creates new form LobbyJPanel.
@@ -42,6 +43,12 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
         this.waitingRoom = viewModel.getWaitingRoom();
         this.isAdmin(viewModel.isAdmin());
+        if (viewModel.isAdmin() == true) {
+            do {
+                dg.startGame();
+                
+            } while(dg.isIsReady() == true || dg.getCurrentPlayer().isAdmin());
+        }
         setPlayers();
     }
 

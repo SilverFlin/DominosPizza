@@ -17,7 +17,7 @@ public class DominoGame implements Serializable {
     private Pool pool;
     private Board board;
     private Config config;
-    private List<Player> players;
+    public List<Player> players;
     private TurnController turnController;
     private static DominoGame dominoGame;
 

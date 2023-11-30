@@ -103,4 +103,13 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
         return this.myPlayer.isAdmin();
     }
 
+    @Override
+    public PlayerDTO setPlayerReady(PlayerDTO player) {
+        for (Player p : this.dominoGame.players) {
+            if (p.isReady() != player.isIsReady()) {
+                player.setIsReady(true);
+            }
+        }
+        return player;
+    }
 }

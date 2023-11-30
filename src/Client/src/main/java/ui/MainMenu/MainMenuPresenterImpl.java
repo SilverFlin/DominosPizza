@@ -94,10 +94,8 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
      */
     @Override
     public void setPlayerReady(PlayerDTO player) {
-        this.myPlayer = player;
-        model.setMyPlayer(player);
-        if (model.isReady()) {
-            player.setIsReady(true);
-        }
+        model.setPlayerReady(player);
+        
+        this.updateWaitingRoom(waitingRoom);
     }
 }
