@@ -122,8 +122,11 @@ public class DominoGameTest {
 
         // Crear jugadores ficticios
         Player player1 = new Player();
+        player1.setAvatar(new Avatar("1", "1"));
         Player player2 = new Player();
+        player2.setAvatar(new Avatar("2", "2"));
         Player player3 = new Player();
+        player3.setAvatar(new Avatar("3", "3"));
 
         // Establecer la lista de jugadores en la instancia
         instance.setPlayers(List.of(player1, player2, player3));
@@ -165,8 +168,11 @@ public class DominoGameTest {
 
         // Crear jugadores ficticios
         Player player1 = new Player();
+        player1.setAvatar(new Avatar("1", "1"));
         Player player2 = new Player();
+        player2.setAvatar(new Avatar("2", "2"));
         Player player3 = new Player();
+        player3.setAvatar(new Avatar("3", "3"));
 
         // Establecer la lista de jugadores en la instancia
         instance.setPlayers(Arrays.asList(player1, player2, player3));
@@ -196,8 +202,11 @@ public class DominoGameTest {
 
         // Crear jugadores ficticios
         Player player1 = new Player();
+        player1.setAvatar(new Avatar("1", "1"));
         Player player2 = new Player();
+        player2.setAvatar(new Avatar("2", "2"));
         Player player3 = new Player();
+        player3.setAvatar(new Avatar("3", "3"));
 
         // Establecer la lista de jugadores en la instancia
         instance.setPlayers(Arrays.asList(player1, player2, player3));

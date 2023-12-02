@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Clase que representa a un jugador en el juego.
@@ -113,4 +114,27 @@ public class Player implements Serializable {
     public void setReady() {
         this.isReady = true;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.avatar);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Player other = (Player) obj;
+        return Objects.equals(this.avatar.getName(), other.avatar.getName());
+    }
+
 }
