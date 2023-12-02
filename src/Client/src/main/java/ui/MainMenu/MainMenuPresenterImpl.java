@@ -144,4 +144,24 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
         this.model.removePlayer(player);
         this.view.updateWaitingRoom((MainMenuViewModel) this.model);
     }
+
+    /**
+     * Pone al jugador en estado de Ready
+     *
+     * @param player Jugador a poner en Ready
+     */
+    @Override
+    public void setMyPlayerReady() {
+        model.setMyPlayerReady();
+        PlayerDTO myPlayer = model.getMyPlayer();
+        this.producer.playerIsReady(myPlayer);
+        // this.updateWaitingRoom(waitingRoom);
+    }
+
+    @Override
+    public void setPlayerReady(PlayerDTO player) {
+
+        model.setPlayerReady(player);
+
+    }
 }

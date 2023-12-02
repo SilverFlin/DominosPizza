@@ -9,6 +9,7 @@ import domain.DominoGame;
 import domain.Player;
 import java.util.LinkedList;
 import java.util.List;
+import utils.Utils;
 
 /**
  * Implementación concreta de la interfaz {@link MainMenuModel} y
@@ -154,5 +155,39 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
             }
         }
         this.dominoGame.setPlayers(players);
+    }
+
+    @Override
+    public void setMyPlayerReady() {
+        /*List<Player> players = this.dominoGame.getPlayers();
+        for (Player p : players) {
+            if (p.isReady() != player.isIsReady()) {
+                player.setIsReady(true);
+            }
+        }
+        return player;*/
+        this.myPlayer.setReady();
+    }
+
+    @Override
+    public PlayerDTO getMyPlayer() {
+
+        PlayerDTO myPlayerDTO = Utils.parsePlayer(myPlayer);
+        return myPlayerDTO;
+
+    }
+
+    @Override
+    public void setPlayerReady(PlayerDTO player) {
+
+        for (Player p : this.dominoGame.getPlayers()) {
+
+            if (p.equals(player)) {
+                p.setReady();
+                break;
+            }
+
+        }
+
     }
 }

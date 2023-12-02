@@ -63,4 +63,11 @@ public interface MainMenuPresenter {
      */
     public void removePlayer(PlayerDTO player);
 
+    /**
+     * Pone al jugador en estado de Ready
+     *
+     */
+    public void setMyPlayerReady();
+    
+    public void setPlayerReady(PlayerDTO player);
 }

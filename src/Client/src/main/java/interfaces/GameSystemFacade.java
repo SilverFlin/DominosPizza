@@ -71,4 +71,10 @@ public interface GameSystemFacade {
      */
     public void removePlayer(PlayerDTO payload);
 
+    /**
+     * Pone al jugador en estado de Ready
+     *
+     * @param player Jugador a establecer en Ready
+     */
+    void setPlayerReady(final PlayerDTO player);
 }

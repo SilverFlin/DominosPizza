@@ -51,4 +51,10 @@ public interface MainMenuModel {
      * @param player El jugador a ser eliminado.
      */
     public void removePlayer(PlayerDTO player);
+    
+    public void setMyPlayerReady();
+    
+    public void setPlayerReady(PlayerDTO player);
+    
+    public PlayerDTO getMyPlayer();
 }

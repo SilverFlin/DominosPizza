@@ -76,6 +76,20 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
 
         this.mainMenuPresenter.updateWaitingRoom(waitingRoomDTO);
     }
+    
+    /**
+     * {@inheritDoc}
+     * @throws MissingMainMenuPresenterException si el MainMenuPresenter no está
+     * establecido.
+     */
+    @Override
+    public void setPlayerReady(final PlayerDTO player) {
+        if (this.mainMenuPresenter == null) {
+            throw new MissingMainMenuPresenterException();
+        }
+        //this.mainMenuPresenter.setPlayerReady(player);
+        
+    }
 
     /**
      * {@inheritDoc}

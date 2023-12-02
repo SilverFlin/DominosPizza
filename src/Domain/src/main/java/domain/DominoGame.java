@@ -207,4 +207,20 @@ public class DominoGame implements Serializable {
     public void takeFromPool(final Player player) {
         player.addTile(this.pool.takeTile());
     }
+
+    /**
+     * Verifica si el juego se puede poner en listo si las condiciones se
+     * cumplen
+     */
+    public void setGameReady() {
+        if (!startGame()) {
+            if (players.size() <= 4 || players.size() >= 2) {
+                if (this.config != null) {
+                    this.isReady = true;
+                }
+            }
+        } else {
+            this.isReady = false;
+        }
+    }
 }

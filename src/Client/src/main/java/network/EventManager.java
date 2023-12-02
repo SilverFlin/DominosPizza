@@ -12,6 +12,7 @@ import edu.itson.eventschema.UpdateWaitingRoomEvent;
 import interfaces.GameSystemFacade;
 import dtos.GameDTO;
 import dtos.PlayerDTO;
+import edu.itson.eventschema.PlayerReadyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utils;
@@ -80,6 +81,20 @@ public class EventManager implements EventProducer, EventConsumer {
     }
 
     /**
+     * Envia el evento de que esta Listo el jugador
+     *
+     * @param player La informacion del jugador que esta listo
+     */
+    @Override
+    public void playerIsReady(PlayerDTO player) {
+
+        Player myPlayer = Utils.parsePlayerDTO(player);
+        Event playerIsReady = new PlayerReadyEvent(myPlayer);
+        this.connection.sendMessage(playerIsReady);
+        
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @param event El evento que se va a consumir.
@@ -104,6 +119,12 @@ public class EventManager implements EventProducer, EventConsumer {
             LOG.log(Level.INFO, "------>>UpdateWaitingRoomEvent implementado<<------");
             DominoGame dominoGame = updateWaitingRoomEvent.getPayload();
             this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
+        } else if (event instanceof PlayerReadyEvent) {
+            LOG.log(Level.WARNING, "PlayerReadyEvent no implementado");
+            Player player = ((PlayerReadyEvent) event).getPayload();
+            PlayerDTO playerDTO = Utils.parsePlayer(player);
+            this.gameSystem.setPlayerReady(playerDTO);
+
         }
 
     }

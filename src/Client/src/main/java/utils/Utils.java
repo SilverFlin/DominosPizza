@@ -114,4 +114,10 @@ public class Utils {
 
         return playerDTO;
     }
+
+    public static PlayerDTO setPlayerReadyDTO(Player player) {
+        PlayerDTO pDTO = new PlayerDTO();
+        pDTO.setIsReady(player.isReady());
+        return pDTO;
+    }
 }

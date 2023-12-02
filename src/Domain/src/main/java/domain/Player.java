@@ -113,4 +113,11 @@ public class Player implements Serializable {
     public void setReady() {
         this.isReady = true;
     }
+
+    /**
+     * Establece que el jugador NO está listo para comenzar el juego.
+     */
+    public void setNotReady() {
+        this.isReady = false;
+    }
 }
