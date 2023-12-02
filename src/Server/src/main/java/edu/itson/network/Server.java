@@ -86,21 +86,52 @@ public class Server {
      *
      * @return Lista de clientes.
      */
-    public synchronized List<ClientHandler> getClients() {
+    public static synchronized List<ClientHandler> getClients() {
         return clients;
     }
 
-    public synchronized static int getClientsSize() {
+    /**
+     * Remueve un cliente de la lista de clientes.
+     *
+     * @param client El cliente a remover.
+     */
+    public static synchronized void removeClient(ClientHandler client) {
+        clients.remove(client);
+    }
+
+    /**
+     * Obtiene el tamaño actual de la lista de clientes.
+     *
+     * @return Tamaño de la lista de clientes.
+     */
+    public static synchronized int getClientsSize() {
         return clients.size();
     }
 
+    /**
+     * Agrega un jugador a la lista de jugadores.
+     *
+     * @param element El jugador a agregar.
+     */
     public static synchronized void addPlayer(final Player element) {
         Server.players.add(element);
-
     }
 
+    /**
+     * Remueve un jugador de la lista de jugadores.
+     *
+     * @param element El jugador a remover.
+     */
+    public static synchronized void removePlayer(final Player element) {
+        Server.players.remove(element);
+    }
+
+    /**
+     * Obtiene la lista de jugadores conectados al servidor.
+     *
+     * @return Lista de jugadores.
+     */
     public static synchronized List<Player> getPlayers() {
         return new ArrayList<>(Server.players);
     }
-
 }
