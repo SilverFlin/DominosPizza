@@ -54,7 +54,7 @@ public interface MainMenuPresenter {
     /**
      * Notifica al presentador que se ha iniciado el juego.
      */
-    public void foreStart();
+    public void start(int cantTiles);
 
     /**
      * Remueve un jugador de la sala de espera.

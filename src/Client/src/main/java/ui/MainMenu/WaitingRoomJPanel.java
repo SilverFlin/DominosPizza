@@ -44,11 +44,10 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
         this.waitingRoom = viewModel.getWaitingRoom();
         this.isAdmin(viewModel.isAdmin());
-        if (viewModel.isAdmin() == true) {
-            do {
-                dg.startGame();
 
-            } while (dg.isIsReady() == true || dg.getCurrentPlayer().isAdmin());
+        if (viewModel.isAdmin() && viewModel.startGame() || viewModel.isAdmin() && waitingRoom.getPlayers().size() == 4) {
+            this.tilesNum.getSelectedIndex();
+            //this.presenter.start();
         }
         setPlayers();
     }
@@ -225,8 +224,9 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
-        //view.foreStart();
-        presenter.setPlayerReady();
+        //presenter.setMyPlayerReady();
+        this.tilesNum.getSelectedIndex();
+
 
     }//GEN-LAST:event_btnReadyActionPerformed
 

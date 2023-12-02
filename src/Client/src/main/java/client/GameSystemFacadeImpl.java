@@ -87,6 +87,7 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         if (this.mainMenuPresenter == null) {
             throw new MissingMainMenuPresenterException();
         }
+        this.mainMenuPresenter.setPlayerReady(player);
         //this.mainMenuPresenter.setPlayerReady(player);
         
     }

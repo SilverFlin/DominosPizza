@@ -29,4 +29,6 @@ public interface MainMenuViewModel {
      * @return true si el usuario es un administrador, false en caso contrario.
      */
     public boolean isAdmin();
+    
+    public boolean startGame();
 }

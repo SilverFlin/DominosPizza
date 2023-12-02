@@ -269,10 +269,6 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView, 
 //    public void toggleReadyStatus() {
 //        this.listener.toggleReadyStatus();
 //    }
-    @Override
-    public void foreStart() {
-        this.presenter.foreStart();
-    }
 
     @Override
     public void dispose() {

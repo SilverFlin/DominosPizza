@@ -119,13 +119,15 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
      * {@inheritDoc}
      */
     @Override
-    public void foreStart() {
+    public void start(int cantTiles) {
+        /*
         if (this.waitingRoom == null) {
             this.waitingRoom = new WaitingRoomDTO();
             this.waitingRoom.setPlayers(new ArrayList<>(List.of(this.myPlayer)));
         }
         gamePresenter.loadBoard(this.waitingRoom, myPlayer);
         view.close();
+        */
     }
 
     /**
@@ -162,6 +164,8 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     public void setPlayerReady(PlayerDTO player) {
 
         model.setPlayerReady(player);
+        this.view.updateWaitingRoom((MainMenuViewModel) this.model);
+        
 
     }
 }

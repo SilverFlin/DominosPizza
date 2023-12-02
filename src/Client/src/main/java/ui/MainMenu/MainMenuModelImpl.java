@@ -190,4 +190,11 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
         }
 
     }
+
+    @Override
+    public boolean startGame() {
+
+        return this.dominoGame.startGame();
+        
+    }
 }
