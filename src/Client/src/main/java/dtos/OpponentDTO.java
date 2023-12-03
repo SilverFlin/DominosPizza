@@ -46,4 +46,11 @@ public class OpponentDTO {
         this.avatar = avatar;
     }
 
+    @Override
+    public String toString() {
+        return "OpponentDTO{" + "tilesLeft=" + tilesLeft + ", name=" + name + '}';
+    }
+
+    
+
 }

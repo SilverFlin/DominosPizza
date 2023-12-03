@@ -21,4 +21,9 @@ public class DominoDTO {
         return rightValue;
     }
 
+    @Override
+    public String toString() {
+        return "DominoDTO{" + "leftValue=" + leftValue + ", rightValue=" + rightValue + '}';
+    }
+
 }
