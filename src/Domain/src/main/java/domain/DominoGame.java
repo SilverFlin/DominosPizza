@@ -131,6 +131,12 @@ public class DominoGame implements Serializable {
         Collections.shuffle(mutablePlayers);
         players = mutablePlayers;
     }
+    
+    public void shuffleTiles(){
+        List<PoolTile> poolTiles = this.pool.getDominoes();
+        Collections.shuffle(poolTiles);
+        this.pool.setDominoes(poolTiles);
+    }
 
     /**
      * Cambia el turno actual de los jugadores en el juego.
@@ -205,6 +211,22 @@ public class DominoGame implements Serializable {
      * @param player Jugador que tomará la ficha.
      */
     public void takeFromPool(final Player player) {
-        player.addTile(this.pool.takeTile());
+        player.addTile((DominoTile) this.pool.takeTile());
+    }
+
+    /**
+     * Verifica si el juego se puede poner en listo si las condiciones se
+     * cumplen
+     */
+    public void setGameReady() {
+        if (!startGame()) {
+            if (players.size() <= 4 || players.size() >= 2) {
+                if (this.config != null) {
+                    this.isReady = true;
+                }
+            }
+        } else {
+            this.isReady = false;
+        }
     }
 }

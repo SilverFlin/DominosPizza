@@ -1,6 +1,8 @@
 package ui.game;
 
 import base.BasePresenter;
+import domain.DominoGame;
+import domain.Player;
 import dtos.DominoDTO;
 import dtos.GameDTO;
 import dtos.PlayerDTO;
@@ -30,21 +32,17 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
     }
 
     @Override
-    public void updateGame(GameDTO game) {
-        this.model.updateGame(game);
+    public void updateGame(DominoGame dominoGame) {
+        this.model.updateGame(dominoGame);
         this.view.updateGame((GameViewModel) this.model);
 
     }
 
     @Override
-    public void loadBoard(WaitingRoomDTO waitingRoom, PlayerDTO myPlayer) {
-        List<PlayerDTO> players = waitingRoom.getPlayers();
+    public void loadBoard(DominoGame dominoGame, Player myPlayer) {
 
-        // TODO crear y repartir fichas (en modelo)
-        System.out.println("GamePresenterImpl.loadBoard() cargando listas vacias");
-        GameDTO gameDTO = new GameDTO(null, players, null, waitingRoom.getInitialTiles());
-
-        this.model.updateGame(gameDTO);
+        this.model.setMyPlayer(myPlayer);
+        this.model.updateGame(dominoGame);
         this.view.updateGame((GameViewModel) this.model);
         this.view.open();
         

@@ -50,9 +50,25 @@ public class Utils {
         for (Player player : players) {
             PlayerDTO p = new PlayerDTO();
             p.setAvatar(new AvatarDTO(player.getAvatar().getName(), player.getAvatar().getImage()));
+            p.setIsAdmin(player.isAdmin());
+            p.setIsReady(player.isReady());
             parsedPlayers.add(p);
         }
         return parsedPlayers;
+    }
+    
+    public static List<Player> parsePlayerList(final List<PlayerDTO> players){
+        List<Player> parsedPlayers = new LinkedList<>();
+        
+        for(PlayerDTO p : players){
+        
+            Player player = new Player();
+            player.setAvatar(new Avatar(p.getAvatar().getNombre(), p.getAvatar().getImage()));
+            player.setIsAdmin(p.isIsAdmin());
+            parsedPlayers.add(player);
+        }
+        return parsedPlayers;
+        
     }
 
     /**

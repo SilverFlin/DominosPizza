@@ -9,6 +9,8 @@ import edu.itson.events.EventConsumer;
 import edu.itson.events.EventProducer;
 import edu.itson.eventschema.PlayerJoinsEvent;
 import edu.itson.eventschema.PlayerLeaveEvent;
+import edu.itson.eventschema.PlayerReadyEvent;
+import edu.itson.eventschema.StartGameEvent;
 import edu.itson.eventschema.UpdateWaitingRoomEvent;
 import edu.itson.utils.DominioUtils;
 import java.io.IOException;
@@ -63,6 +65,12 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
                 return;
             } else if (event instanceof PlayerLeaveEvent evt) {
                 this.handlePlayerLeaveEvent(evt);
+                return;
+            } else if (event instanceof StartGameEvent evt) {
+                this.handleStartGameEvent(evt);
+                return;
+            } else if (event instanceof PlayerReadyEvent evt) {
+                this.handlePlayerReadyEvent(evt);
                 return;
             }
 
@@ -139,9 +147,6 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
         if (Server.getClientsSize() == 1) {
             LOG.log(Level.INFO, "Admin ready\n");
             player.setIsAdmin(true);
-            Pool pool = new Pool();
-            pool.setDominoes(DominioUtils.createAllTiles());
-            dominoGame.setPool(pool);
         }
         if (!Server.getPlayers().contains(player)) {
             Server.addPlayer(player);
@@ -151,6 +156,18 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
 
         output.writeObject(updateWaitingRoomEvent);
         output.flush();
+    }
+
+    private void handleStartGameEvent(final StartGameEvent evt) throws IOException {
+        output.writeObject(evt);
+        output.flush();
+    }
+
+    private void handlePlayerReadyEvent(final PlayerReadyEvent evt) throws IOException {
+
+        output.writeObject(evt);
+        output.flush();
+
     }
 
     /**

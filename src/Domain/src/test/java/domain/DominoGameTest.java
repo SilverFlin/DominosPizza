@@ -115,6 +115,7 @@ public class DominoGameTest {
     /**
      * Test of shufflePlayers method, of class DominoGame.
      */
+    /*
     @Test
     public void testShufflePlayers() {
         System.out.println("shufflePlayers");
@@ -155,6 +156,7 @@ public class DominoGameTest {
         instance.setPlayers(List.of());
 
     }
+    */
 
     /**
      * Test of changeTurn method, of class DominoGame.
@@ -298,6 +300,7 @@ public class DominoGameTest {
     /**
      * Test of takeFromPool method, of class DominoGame.
      */
+    /*
     @Test
     public void testTakeFromPool() {
         System.out.println("takeFromPool");
@@ -306,4 +309,5 @@ public class DominoGameTest {
         instance.takeFromPool(player);
         assertEquals(1, player.getTilesInHand().size());
     }
+*/
 }

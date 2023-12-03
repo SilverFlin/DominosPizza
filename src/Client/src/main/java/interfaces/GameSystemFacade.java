@@ -1,5 +1,6 @@
 package interfaces;
 
+import domain.DominoGame;
 import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
 import dtos.GameDTO;
@@ -38,7 +39,7 @@ public interface GameSystemFacade {
      * @throws MissingGamePresenterException si no se ha establecido el
      * GamePresenter.
      */
-    void updateGame(GameDTO game) throws MissingGamePresenterException;
+    void updateGame(DominoGame dominoGame) throws MissingGamePresenterException;
 
     /**
      * Muestra un error para un nombre no válido en el menú principal.
@@ -71,4 +72,12 @@ public interface GameSystemFacade {
      */
     public void removePlayer(PlayerDTO payload);
 
+    /**
+     * Pone al jugador en estado de Ready
+     *
+     * @param player Jugador a establecer en Ready
+     */
+    void setPlayerReady(final PlayerDTO player);
+    
+    void startGame(final DominoGame dominoGame);
 }

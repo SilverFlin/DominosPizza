@@ -1,5 +1,6 @@
 package ui.MainMenu;
 
+import domain.DominoGame;
 import dtos.WaitingRoomDTO;
 import dtos.PlayerDTO;
 
@@ -44,7 +45,7 @@ public interface MainMenuPresenter {
      * @param waitingRoom La información de la sala de espera con el nuevo
      * jugador.
      */
-    public void newPlayerHasJoined(WaitingRoomDTO waitingRoom);
+   // public void newPlayerHasJoined(WaitingRoomDTO waitingRoom);
 
     /**
      * Notifica al presentador que un jugador ha abandonado la sala de espera.
@@ -53,8 +54,10 @@ public interface MainMenuPresenter {
 
     /**
      * Notifica al presentador que se ha iniciado el juego.
+     * @param waitingRoomDTO
+     * @param cantTiles
      */
-    public void foreStart();
+    public void start(WaitingRoomDTO waitingRoomDTO);
 
     /**
      * Remueve un jugador de la sala de espera.
@@ -63,4 +66,15 @@ public interface MainMenuPresenter {
      */
     public void removePlayer(PlayerDTO player);
 
+    /**
+     * Pone al jugador en estado de Ready
+     *
+     */
+    public void setMyPlayerReady();
+    
+    public void setPlayerReady(PlayerDTO player);
+    
+    public void startGame(DominoGame dominoGame);
+    
+    
 }

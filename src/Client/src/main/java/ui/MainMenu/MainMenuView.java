@@ -56,6 +56,4 @@ public interface MainMenuView {
 
     public void load();
 
-    public void foreStart();
-
 }

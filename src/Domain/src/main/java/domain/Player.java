@@ -87,7 +87,7 @@ public class Player implements Serializable {
      * @param tile Ficha de dominó a agregar a la mano del jugador.
      */
     public void addTile(final DominoTile tile) {
-        this.tilesInHand.add((PlayerTile) tile);
+        this.tilesInHand.add(new PlayerTile(tile.getLeftValue(), tile.getRightValue()));
     }
 
     /**
@@ -115,6 +115,14 @@ public class Player implements Serializable {
         this.isReady = true;
     }
 
+
+    /**
+     * Establece que el jugador NO está listo para comenzar el juego.
+     */
+    public void setNotReady() {
+        this.isReady = false;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -136,5 +144,4 @@ public class Player implements Serializable {
         final Player other = (Player) obj;
         return Objects.equals(this.avatar.getName(), other.avatar.getName());
     }
-
 }
