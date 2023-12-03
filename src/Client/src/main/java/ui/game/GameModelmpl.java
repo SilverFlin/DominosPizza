@@ -1,18 +1,15 @@
 package ui.game;
 
 import dtos.DominoDTO;
-import dtos.GameDTO;
-import domain.Avatar;
 import domain.Board;
 import domain.BoardTile;
 import domain.DominoGame;
 import domain.Player;
-import domain.PlayerTile;
 import domain.Pool;
+import dtos.AvatarDTO;
 import dtos.OpponentDTO;
 import java.util.ArrayList;
 import java.util.List;
-import dtos.AvatarDTO;
 import dtos.PlayerDTO;
 import utils.Utils;
 
@@ -28,16 +25,9 @@ public class GameModelmpl implements GameModel, GameViewModel {
     public GameModelmpl() {
     }
 
+    @Override
     public void setMyPlayer(final Player myPlayer) {
         this.myPlayer = myPlayer;
-    }
-
-    // GameModel
-    @Override
-    public DominoDTO getTileFromPool() {
-        // TODO quitar metodo, se remplazo por takeFromPool()
-        throw new UnsupportedOperationException("Not supported yet.");
-
     }
 
     @Override
@@ -54,32 +44,6 @@ public class GameModelmpl implements GameModel, GameViewModel {
     @Override
     public void updateGame(final DominoGame dominoGame) {
         this.dominoGame = dominoGame;
-
-        /*
-        if (game.getBoard() != null) {
-            List<BoardTile> boardTiles = new ArrayList<>();
-            for (DominoDTO tile : game.getBoard()) {
-                boardTiles.add(new BoardTile(tile.getLeftValue(), tile.getRightValue()));
-            }
-            this.dominoGame.getBoard().setTiles(boardTiles);
-        }
-
-        // TODO
-        var playersDTO = game.getPlayers();
-        List<Player> players = new ArrayList<>();
-        for (PlayerDTO playerDTO : playersDTO) {
-            Player player = new Player();
-            Avatar avatar = new Avatar(playerDTO.getAvatar().getNombre(), playerDTO.getAvatar().getImage());
-            player.setAvatar(avatar);
-
-//            player.set
-        }
-
-//        var players = game.getPlayers();
-//        var poolTiles = game.getPoolTiles();
-//
-//        this.dominoGame.setBoard();
-         */
     }
 
     // GameViewModel
@@ -106,9 +70,35 @@ public class GameModelmpl implements GameModel, GameViewModel {
 
     @Override
     public List<OpponentDTO> getRoom() {
-        this.dominoGame.getPlayers();
-        // todo quitar mi jugador
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Player> players = this.dominoGame.getPlayers();
+        List<OpponentDTO> opponentDTOs = new ArrayList<>();
+
+        for (Player player : players) {
+            if (player.equals(this.myPlayer)) {
+                continue;
+            }
+            OpponentDTO opponent = new OpponentDTO();
+            opponent.setTilesLeft(player.getTilesInHand().size());
+            opponent.setAvatar(new AvatarDTO(player.getAvatar().getName(), player.getAvatar().getImage()));
+            opponentDTOs.add(opponent);
+
+        }
+
+        return opponentDTOs;
+    }
+
+    @Override
+    public String toString() {
+        List<DominoDTO> boardTiles = this.getBoard();
+        PlayerDTO player = this.getMyPlayer();
+        int remainingTilesPool = this.getRemainingTilesInPool();
+        List<OpponentDTO> opponents = this.getRoom();
+
+        return "Game View Model\n"
+                + "List<DominoDTO> boardTiles = " + boardTiles + "\n"
+                + "PlayerDTO myPlayer = " + player + "\n"
+                + "remainingPool = " + remainingTilesPool + "\n"
+                + "List<OpponentDTO> = " + opponents + "\n";
     }
 
 }

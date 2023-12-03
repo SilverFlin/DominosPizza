@@ -51,17 +51,11 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
             System.out.println("Este jugador esta ready:" + p.isIsReady());
         }
 
-        System.out.println("Validacion 1 de iniciar partida:");
-        System.out.println("Soy Admin:" + viewModel.isAdmin() + " y todos estan listos " + viewModel.startGame());
-
-        System.out.println("Validacion 2 de iniciar partida:");
-        System.out.println("Soy Admin:" + viewModel.isAdmin() + " y esta llena la lsista " + (waitingRoom.getPlayers().size() == 4));
-
         if (viewModel.isAdmin() && viewModel.startGame() || viewModel.isAdmin() && waitingRoom.getPlayers().size() == 4) {
             int cantTiles = this.tilesNum.getSelectedIndex() + 2;
             this.waitingRoom.setInitialTiles(cantTiles);
-            System.out.println("PROCEDE A INICIAR LA PARTIDA");
             this.presenter.start(waitingRoom);
+            return;
         }
         setPlayers();
     }

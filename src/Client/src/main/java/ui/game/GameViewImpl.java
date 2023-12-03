@@ -1,5 +1,8 @@
-package graphics;
+package ui.game;
 
+import graphics.DominoGameGraphic;
+import graphics.GamePanel;
+import graphics.Utils;
 import ui.game.GameView;
 import ui.game.GameViewModel;
 
@@ -56,9 +59,14 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView {
     }
 
     @Override
-    public void updateGame(GameViewModel gameViewModel) {
+    public void updateGame(final GameViewModel gameViewModel) {
         DominoGameGraphic dominoGameGraphic = Utils.createDominoGameGraphic(gameViewModel);
-        this.gamePanel.update(dominoGameGraphic);
+
+        this.remove(this.gamePanel);
+        this.gamePanel = new GamePanel(dominoGameGraphic);
+        this.add(this.gamePanel);
+        this.revalidate();
+        this.repaint();
     }
 
     @Override

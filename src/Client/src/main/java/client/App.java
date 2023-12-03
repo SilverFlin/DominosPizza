@@ -2,7 +2,7 @@ package client;
 
 import domain.DominoGame;
 import dtos.AvatarDTO;
-import graphics.GameViewImpl;
+import ui.game.GameViewImpl;
 import interfaces.GameSystemFacade;
 import java.util.ArrayList;
 import java.util.List;

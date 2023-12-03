@@ -8,6 +8,8 @@ import dtos.GameDTO;
 import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import network.EventProducer;
 
 /**
@@ -18,6 +20,8 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
     private final GameView view;
     private final GameModel model;
     private final EventProducer producer;
+
+    private static final Logger LOG = Logger.getLogger(GamePresenterImpl.class.getName());
 
     public GamePresenterImpl(final GameView view, final GameModel model, final EventProducer producer) {
         this.view = view;
@@ -40,17 +44,18 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
 
     @Override
     public void loadBoard(DominoGame dominoGame, Player myPlayer) {
-
         this.model.setMyPlayer(myPlayer);
         this.model.updateGame(dominoGame);
         this.view.updateGame((GameViewModel) this.model);
+
+        System.out.println(this.model);
+
         this.view.open();
-        
     }
 
     @Override
     public void takeFromPool() {
-        this.model.getTileFromPool();
+        this.model.takeFromPool();
         this.view.updateGame((GameViewModel) this.model);
     }
 

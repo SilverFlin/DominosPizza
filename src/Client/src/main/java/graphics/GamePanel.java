@@ -20,6 +20,12 @@ public class GamePanel extends JPanel {
         addMouseListener(new Puntero(this));
     }
 
+    public GamePanel(final DominoGameGraphic dominoGameGraphic) {
+        this.dominoGameGraphic = dominoGameGraphic;
+        rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        addMouseListener(new Puntero(this));
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         var g2 = (Graphics2D) g;
@@ -28,8 +34,4 @@ public class GamePanel extends JPanel {
         dominoGameGraphic.draw(g2);
     }
 
-    public void update(final DominoGameGraphic dominoGameGraphic) {
-        this.dominoGameGraphic = dominoGameGraphic;
-        this.repaint();
-    }
 }
