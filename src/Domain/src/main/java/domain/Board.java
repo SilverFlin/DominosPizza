@@ -47,7 +47,7 @@ public class Board implements Serializable {
      * @param tile Ficha de dominó a colocar en el tablero.
      */
     public void putTile(DominoTile tile) {
-        this.tiles.add((BoardTile) tile);
+        this.tiles.add(new BoardTile(tile.getLeftValue(), tile.getRightValue()));
     }
 
     /**

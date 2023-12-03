@@ -60,4 +60,9 @@ public class DominoTile implements Serializable {
         this.rightValue = rightValue;
     }
 
+    @Override
+    public String toString() {
+        return "DominoTile{" + "leftValue=" + leftValue + ", rightValue=" + rightValue + '}';
+    }
+
 }

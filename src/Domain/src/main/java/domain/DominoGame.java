@@ -126,13 +126,58 @@ public class DominoGame implements Serializable {
     /**
      * Baraja aleatoriamente la lista de jugadores en el juego.
      */
-    public void shufflePlayers() {
+    public void initTurns() {
+        // Checa quien puede poner mula
+        // Lo pone primero, shuffle a los demás
+
+        PlayerTile highestDoublet = null;
+        Player firstPlayer = null;
+
+        for (Player player : this.players) {
+            List<PlayerTile> playerTiles = player.getTilesInHand();
+            System.out.println(playerTiles);
+            for (PlayerTile playerTile : playerTiles) {
+                boolean isDoublet = playerTile.getLeftValue() == playerTile.getRightValue();
+                
+                if(highestDoublet == null && isDoublet){
+                    highestDoublet = playerTile;
+                    firstPlayer = player;
+                    continue;
+                }
+                
+                if(highestDoublet == null){
+                    continue;
+                }
+                
+                boolean isHigher = highestDoublet.getLeftValue() < playerTile.getLeftValue();
+                if (isDoublet && isHigher) {
+                    highestDoublet = playerTile;
+                    firstPlayer = player;
+                }
+            }
+
+        }
+
+        if (firstPlayer == null || highestDoublet == null) {
+//            takeAllFromPool
+            System.out.println("takeAllFromPool not implemented");
+//            this.initTurns();
+            return;
+        }
+        firstPlayer.removeTile(highestDoublet);
+
+        this.board.putTile((DominoTile) highestDoublet);
+        this.players.remove(firstPlayer);
+
         List<Player> mutablePlayers = new ArrayList<>(players);
         Collections.shuffle(mutablePlayers);
         players = mutablePlayers;
+
+        this.players.add(0, firstPlayer);
+
     }
-    
-    public void shuffleTiles(){
+
+    public void shuffleTiles() {
         List<PoolTile> poolTiles = this.pool.getDominoes();
         Collections.shuffle(poolTiles);
         this.pool.setDominoes(poolTiles);
