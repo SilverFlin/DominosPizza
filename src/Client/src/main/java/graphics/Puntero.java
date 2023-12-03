@@ -61,7 +61,7 @@ public class Puntero implements MouseInputListener{
     }
 
     private void selecionar(MouseEvent e) {
-        var p=(PlayerHandGraphic) gp.dgg.components.get(1);
+        var p=(PlayerHandGraphic) gp.dominoGameGraphic.components.get(1);
         for (var f : p.components) 
             if(f.rec.contains(e.getPoint())){
                 p.setSelecionada((PlayerTileGraphic) f);
@@ -70,8 +70,8 @@ public class Puntero implements MouseInputListener{
     }
 
     private void colocar(MouseEvent e) {
-        var p=(PlayerHandGraphic) gp.dgg.components.get(1);
-        var b=(BoardGraphic) gp.dgg.components.get(0);
+        var p=(PlayerHandGraphic) gp.dominoGameGraphic.components.get(1);
+        var b=(BoardGraphic) gp.dominoGameGraphic.components.get(0);
         if(p.getSelecionada()!=null)
             if(b.tablero.contains(e.getPoint())) 
                 if(b.centro > e.getX()){
