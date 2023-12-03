@@ -1,8 +1,8 @@
 package edu.itson.events;
 
 import edu.itson.eventschema.Event;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class EventBus {
 
-    private final List<EventConsumer> consumers = new ArrayList<>();
+    private final List<EventConsumer> consumers = new CopyOnWriteArrayList<>();
 
     private static EventBus eventBus;
 
