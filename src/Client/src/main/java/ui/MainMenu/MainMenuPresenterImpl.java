@@ -187,7 +187,6 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
                 break;
             }
         }
-        System.out.println("SURGIO UN ERROR EN EL STARTGAME DE PRESENTER");
 
     }
 }

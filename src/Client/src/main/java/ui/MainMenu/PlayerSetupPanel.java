@@ -3,11 +3,9 @@ package ui.MainMenu;
 import dtos.PlayerDTO;
 import dtos.AvatarDTO;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @param <V>
  */
 public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
 
@@ -202,7 +200,7 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
         player.setAvatar(new AvatarDTO(this.txtName.getText(), avatarImage));
         this.presenter.goToWaitingRoom(player);
         btnSelect.setEnabled(false);
-        
+
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btnAvatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar1ActionPerformed
@@ -253,7 +251,7 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
 
     @Override
     public void setPresenter(MainMenuPresenter presenter) {
-        this.presenter=presenter;
+        this.presenter = presenter;
     }
 
 }

@@ -2,6 +2,7 @@ package client;
 
 import domain.DominoGame;
 import dtos.AvatarDTO;
+import graphics.GameViewImpl;
 import interfaces.GameSystemFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class App {
 
         // Crear Presentadores
         // GamePresenter
-        GameView gameView = new GameViewStub();
+        GameView gameView = new GameViewImpl();
         GameModel gameModel = new GameModelmpl();
         GamePresenter gamePresenter = new GamePresenterImpl(gameView, gameModel, eventManager);
 

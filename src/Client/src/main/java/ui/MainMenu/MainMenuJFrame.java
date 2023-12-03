@@ -152,7 +152,7 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView, 
 
     @Override
     public void close() {
-        this.dispose();
+        this.setVisible(false);
     }
 
     @Override

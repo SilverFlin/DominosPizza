@@ -6,12 +6,12 @@ import ui.game.GameViewModel;
 /**
  *
  */
-public class FramePrueba extends javax.swing.JFrame implements GameView {
+public class GameViewImpl extends javax.swing.JFrame implements GameView {
 
     /**
      * Creates new form FramePrueba
      */
-    public FramePrueba() {
+    public GameViewImpl() {
         initComponents();
     }
 
@@ -98,7 +98,7 @@ public class FramePrueba extends javax.swing.JFrame implements GameView {
     @Override
     public void open() {
         java.awt.EventQueue.invokeLater(() -> {
-            new FramePrueba().setVisible(true);
+            new GameViewImpl().setVisible(true);
         });
     }
 

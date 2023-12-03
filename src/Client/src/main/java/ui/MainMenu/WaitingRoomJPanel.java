@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  * Panel que representa la sala de espera donde los jugadores pueden esperar a
@@ -255,7 +256,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
 
     private void btnLeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeaveActionPerformed
         this.presenter.playerLeaves();
-        this.view.close();
+        SwingUtilities.getWindowAncestor(this).dispose();
 
 
     }//GEN-LAST:event_btnLeaveActionPerformed

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import dtos.AvatarDTO;
 import dtos.PlayerDTO;
+import utils.Utils;
 
 /**
  *
@@ -53,7 +54,7 @@ public class GameModelmpl implements GameModel, GameViewModel {
     @Override
     public void updateGame(final DominoGame dominoGame) {
         this.dominoGame = dominoGame;
-        
+
         /*
         if (game.getBoard() != null) {
             List<BoardTile> boardTiles = new ArrayList<>();
@@ -78,7 +79,7 @@ public class GameModelmpl implements GameModel, GameViewModel {
 //        var poolTiles = game.getPoolTiles();
 //
 //        this.dominoGame.setBoard();
-*/
+         */
     }
 
     // GameViewModel
@@ -94,13 +95,7 @@ public class GameModelmpl implements GameModel, GameViewModel {
 
     @Override
     public PlayerDTO getMyPlayer() {
-        var myTiles = this.myPlayer.getTilesInHand();
-        List<DominoDTO> playerHand = new ArrayList<>();
-        for (PlayerTile myTile : myTiles) {
-            playerHand.add(new DominoDTO(myTile.getLeftValue(), myTile.getRightValue()));
-        }
-        // TODO
-        return null;
+        return Utils.parsePlayer(this.myPlayer);
     }
 
     @Override

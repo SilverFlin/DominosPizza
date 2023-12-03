@@ -4,7 +4,6 @@ import domain.DominoGame;
 import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
 import interfaces.GameSystemFacade;
-import dtos.GameDTO;
 import dtos.PlayerDTO;
 import ui.MainMenu.MainMenuPresenter;
 import dtos.WaitingRoomDTO;
@@ -77,9 +76,10 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
 
         this.mainMenuPresenter.updateWaitingRoom(waitingRoomDTO);
     }
-    
+
     /**
      * {@inheritDoc}
+     *
      * @throws MissingMainMenuPresenterException si el MainMenuPresenter no está
      * establecido.
      */
@@ -88,7 +88,7 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         if (this.mainMenuPresenter == null) {
             throw new MissingMainMenuPresenterException();
         }
-        this.mainMenuPresenter.setPlayerReady(player);        
+        this.mainMenuPresenter.setPlayerReady(player);
     }
 
     /**
@@ -144,9 +144,7 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
 
     @Override
     public void startGame(DominoGame dominoGame) {
-
         this.mainMenuPresenter.startGame(dominoGame);
-        
     }
 
 }
