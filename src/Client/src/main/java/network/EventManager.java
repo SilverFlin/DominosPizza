@@ -2,6 +2,8 @@ package network;
 
 import domain.DominoGame;
 import domain.Player;
+import domain.Pool;
+import domain.PoolTile;
 import edu.itson.eventschema.DuplicatedNameErrorEvent;
 import edu.itson.eventschema.Event;
 import edu.itson.eventschema.GameOverEvent;
@@ -12,7 +14,11 @@ import edu.itson.eventschema.UpdateWaitingRoomEvent;
 import interfaces.GameSystemFacade;
 import dtos.GameDTO;
 import dtos.PlayerDTO;
+import dtos.WaitingRoomDTO;
 import edu.itson.eventschema.PlayerReadyEvent;
+import edu.itson.eventschema.StartGameEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utils;
@@ -54,6 +60,29 @@ public class EventManager implements EventProducer, EventConsumer {
         this.connection.sendMessage(updateWaitingRoomEvent);
     }
 
+    @Override
+    public void startGame(WaitingRoomDTO waitingRoom) {
+
+        DominoGame dominoGame = new DominoGame();
+        dominoGame.setPlayers(Utils.parsePlayerList(waitingRoom.getPlayers()));
+        dominoGame.setTileAmountConfig(waitingRoom.getInitialTiles());
+
+        Pool pool = new Pool();
+        pool.setDominoes(createAllTiles());
+        dominoGame.setPool(pool);
+        dominoGame.shuffleTiles();
+
+        for (Player player : dominoGame.getPlayers()) {
+            for (int i = 0; i < dominoGame.getConfig().getTilesPerPlayer(); i++) {
+                dominoGame.takeFromPool(player);
+            }
+        }
+        System.out.println("SE REPARTIERON LAS FICHAS A LOS JUGADORES");
+        Event startGameEvent = new StartGameEvent(dominoGame);
+        this.connection.sendMessage(startGameEvent);
+
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -91,7 +120,7 @@ public class EventManager implements EventProducer, EventConsumer {
         Player myPlayer = Utils.parsePlayerDTO(player);
         Event playerIsReady = new PlayerReadyEvent(myPlayer);
         this.connection.sendMessage(playerIsReady);
-        
+
     }
 
     /**
@@ -120,13 +149,32 @@ public class EventManager implements EventProducer, EventConsumer {
             DominoGame dominoGame = updateWaitingRoomEvent.getPayload();
             this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
         } else if (event instanceof PlayerReadyEvent) {
-            LOG.log(Level.WARNING, "PlayerReadyEvent no implementado");
+            LOG.log(Level.WARNING, "PlayerReadyEventimplementado");
             Player player = ((PlayerReadyEvent) event).getPayload();
             PlayerDTO playerDTO = Utils.parsePlayer(player);
             this.gameSystem.setPlayerReady(playerDTO);
-
+        } else if (event instanceof StartGameEvent) {
+            DominoGame dominoGame = ((StartGameEvent) event).getPayload();
+            System.out.println("StartGameEvent recivido");
+            this.gameSystem.startGame(dominoGame);
         }
 
+    }
+
+    public static List<PoolTile> createAllTiles() {
+        List<PoolTile> tiles = new ArrayList<>();
+
+        for (int i = 0; i <= 6; i++) {
+            for (int j = i; j <= 6; j++) {
+                PoolTile tile = new PoolTile(i, j);
+                tiles.add(tile);
+                if (i != j) {
+                    PoolTile reverseTile = new PoolTile(j, i);
+                    tiles.add(reverseTile);
+                }
+            }
+        }
+        return tiles;
     }
 
 }

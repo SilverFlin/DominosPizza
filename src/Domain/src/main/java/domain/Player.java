@@ -87,7 +87,7 @@ public class Player implements Serializable {
      * @param tile Ficha de dominó a agregar a la mano del jugador.
      */
     public void addTile(final DominoTile tile) {
-        this.tilesInHand.add((PlayerTile) tile);
+        this.tilesInHand.add(new PlayerTile(tile.getLeftValue(), tile.getRightValue()));
     }
 
     /**

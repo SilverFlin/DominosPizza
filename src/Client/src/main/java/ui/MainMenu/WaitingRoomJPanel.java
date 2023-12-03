@@ -1,6 +1,7 @@
 package ui.MainMenu;
 
 import domain.DominoGame;
+import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     private MainMenuView view;
     private WaitingRoomDTO waitingRoom;
     private MainMenuPresenter presenter;
-    private DominoGame dg;
+    private boolean isAdmin = false;
 
     /**
      * Crea un nuevo panel de sala de espera.
@@ -45,9 +46,21 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         this.waitingRoom = viewModel.getWaitingRoom();
         this.isAdmin(viewModel.isAdmin());
 
+        for (PlayerDTO p : this.waitingRoom.getPlayers()) {
+            System.out.println("Este jugador esta ready:" + p.isIsReady());
+        }
+
+        System.out.println("Validacion 1 de iniciar partida:");
+        System.out.println("Soy Admin:" + viewModel.isAdmin() + " y todos estan listos " + viewModel.startGame());
+
+        System.out.println("Validacion 2 de iniciar partida:");
+        System.out.println("Soy Admin:" + viewModel.isAdmin() + " y esta llena la lsista " + (waitingRoom.getPlayers().size() == 4));
+
         if (viewModel.isAdmin() && viewModel.startGame() || viewModel.isAdmin() && waitingRoom.getPlayers().size() == 4) {
-            this.tilesNum.getSelectedIndex();
-            //this.presenter.start();
+            int cantTiles = this.tilesNum.getSelectedIndex() + 2;
+            this.waitingRoom.setInitialTiles(cantTiles);
+            System.out.println("PROCEDE A INICIAR LA PARTIDA");
+            this.presenter.start(waitingRoom);
         }
         setPlayers();
     }
@@ -59,6 +72,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
      * contrario.
      */
     private void isAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
         this.tilesNum.setVisible(isAdmin);
         this.tilesNumText.setVisible(isAdmin);
     }
@@ -224,9 +238,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
-        //presenter.setMyPlayerReady();
-        this.tilesNum.getSelectedIndex();
-
+        presenter.setMyPlayerReady();
 
     }//GEN-LAST:event_btnReadyActionPerformed
 
@@ -234,7 +246,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         // minimo de 2 fichas a elegir maximo de 7
         // settear a la waitingroomDTO
 
-        waitingRoom.setInitialTiles(tilesNum.getSelectedIndex() + 1);
+        //waitingRoom.setInitialTiles(tilesNum.getSelectedIndex() + 1);
     }//GEN-LAST:event_tilesNumActionPerformed
 
     private void btnAvatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar2ActionPerformed

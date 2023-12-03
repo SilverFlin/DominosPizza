@@ -3,10 +3,13 @@ package ui.MainMenu;
 import dtos.WaitingRoomDTO;
 import dtos.PlayerDTO;
 import base.BasePresenter;
+import domain.DominoGame;
+import domain.Player;
 import java.util.ArrayList;
 import java.util.List;
 import network.EventProducer;
 import ui.game.GamePresenter;
+import utils.Utils;
 
 /**
  * Implementación concreta de la interfaz {@link MainMenuPresenter} que actúa
@@ -78,6 +81,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     @Override
     public void goToWaitingRoom(PlayerDTO player) {
         this.myPlayer = player;
+        this.model.setMyPlayer(player);
         this.producer.joinToWaitingRoom(player);
         this.view.displayWaitingRoomPanel();
     }
@@ -96,6 +100,14 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     @Override
     public void updateWaitingRoom(WaitingRoomDTO waitingRoom) {
         this.waitingRoom = waitingRoom;
+        for(PlayerDTO p : waitingRoom.getPlayers()){
+            if (p.getAvatar().getNombre().equalsIgnoreCase(myPlayer.getAvatar().getNombre())) {
+                System.out.println("SE ENCONTRO EL ADMIN");
+                myPlayer = p;
+                break;
+            }
+        }
+        System.out.println("My jugador es admin:" + this.myPlayer.isIsAdmin());
         this.model.configurateWaitingRoom(myPlayer, waitingRoom);
         this.view.showLobbyPanel((MainMenuViewModel) model);
     }
@@ -103,6 +115,7 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     /**
      * {@inheritDoc}
      */
+    /*
     @Override
     public void newPlayerHasJoined(WaitingRoomDTO waitingRoom) {
         this.waitingRoom = waitingRoom;
@@ -114,20 +127,13 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
             view.updateWaitingRoom((MainMenuViewModel) this.model);
         }
     }
-
+     */
     /**
      * {@inheritDoc}
      */
     @Override
-    public void start(int cantTiles) {
-        /*
-        if (this.waitingRoom == null) {
-            this.waitingRoom = new WaitingRoomDTO();
-            this.waitingRoom.setPlayers(new ArrayList<>(List.of(this.myPlayer)));
-        }
-        gamePresenter.loadBoard(this.waitingRoom, myPlayer);
-        view.close();
-        */
+    public void start(WaitingRoomDTO waitingRoomDTO) {
+        this.producer.startGame(waitingRoomDTO);
     }
 
     /**
@@ -165,7 +171,23 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
 
         model.setPlayerReady(player);
         this.view.updateWaitingRoom((MainMenuViewModel) this.model);
+
+    }
+
+    @Override
+    public void startGame(DominoGame dominoGame) {
+
+        Player player = Utils.parsePlayerDTO(myPlayer);
         
+        //Busco a mi jugador para pasar referencia de el al Juego
+        for (Player p : dominoGame.getPlayers()) {
+            if (p.equals(player)) {
+                this.gamePresenter.loadBoard(dominoGame, p);
+                view.close();
+                break;
+            }
+        }
+        System.out.println("SURGIO UN ERROR EN EL STARTGAME DE PRESENTER");
 
     }
 }

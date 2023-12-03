@@ -20,7 +20,7 @@ public interface MainMenuModel {
      * Asigna al jugador como administrador, si lo es, y actualiza la lista de
      * jugadores.
      */
-    public void setPlayerAdmin();
+    //public void setPlayerAdmin();
 
     /**
      * Actualiza la sala de espera, generalmente cuando hay cambios nuevos desde

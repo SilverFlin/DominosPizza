@@ -43,7 +43,7 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
         this.dominoGame.setConfig(config);
 
         setMyPlayer(myPlayer);
-        setPlayerAdmin();
+        //setPlayerAdmin();
     }
 
     /**
@@ -57,6 +57,7 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
         for (PlayerDTO player : players) {
             Player p = new Player();
             p.setAvatar(new Avatar(player.getAvatar().getNombre(), player.getAvatar().getImage()));
+            p.setIsAdmin(player.isIsAdmin());
             parsedPlayers.add(p);
         }
         return parsedPlayers;
@@ -73,6 +74,8 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
         for (Player player : players) {
             PlayerDTO p = new PlayerDTO();
             p.setAvatar(new AvatarDTO(player.getAvatar().getName(), player.getAvatar().getImage()));
+            p.setIsAdmin(player.isAdmin());
+            p.setIsReady(player.isReady());
             parsedPlayers.add(p);
         }
         return parsedPlayers;
@@ -81,6 +84,8 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
     /**
      * {@inheritDoc}
      */
+    /*
+
     @Override
     public void setPlayerAdmin() {
         if (this.dominoGame.getPlayers().size() == 1) {
@@ -88,7 +93,7 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
         } else {
             this.myPlayer.setIsAdmin(false);
         }
-    }
+    }*/
 
     /**
      * {@inheritDoc}
@@ -97,6 +102,7 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
     public void setMyPlayer(final PlayerDTO player) {
         this.myPlayer = new Player();
         this.myPlayer.setAvatar(new Avatar(player.getAvatar().getNombre(), player.getAvatar().getImage()));
+        this.myPlayer.setIsAdmin(player.isIsAdmin());
     }
 
     /**
@@ -159,13 +165,12 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
 
     @Override
     public void setMyPlayerReady() {
-        /*List<Player> players = this.dominoGame.getPlayers();
-        for (Player p : players) {
-            if (p.isReady() != player.isIsReady()) {
-                player.setIsReady(true);
+        for (Player p : this.dominoGame.getPlayers()) {
+            if (p.equals(this.myPlayer)) {
+                p.setReady();
+                break;
             }
         }
-        return player;*/
         this.myPlayer.setReady();
     }
 
@@ -179,11 +184,13 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
 
     @Override
     public void setPlayerReady(PlayerDTO player) {
+        Player playerParsed = Utils.parsePlayerDTO(player);
 
         for (Player p : this.dominoGame.getPlayers()) {
 
-            if (p.equals(player)) {
+            if (p.equals(playerParsed)) {
                 p.setReady();
+                System.out.println("---------SE ENCONTRO AL JUGADOR QUE SE PUSO LISTO" + p.isReady());
                 break;
             }
 
@@ -195,6 +202,6 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
     public boolean startGame() {
 
         return this.dominoGame.startGame();
-        
+
     }
 }

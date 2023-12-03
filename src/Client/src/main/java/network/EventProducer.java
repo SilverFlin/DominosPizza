@@ -2,6 +2,7 @@ package network;
 
 import dtos.GameDTO;
 import dtos.PlayerDTO;
+import dtos.WaitingRoomDTO;
 
 /**
  * Interfaz que define un productor de eventos relacionados con el juego.
@@ -23,7 +24,9 @@ public interface EventProducer {
     void updateGame(GameDTO game);
 
     void playerLeaves(PlayerDTO player);
-    
+
     void playerIsReady(PlayerDTO player);
+
+    void startGame(WaitingRoomDTO waitingRoom);
 
 }

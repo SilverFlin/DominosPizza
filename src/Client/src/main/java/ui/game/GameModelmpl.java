@@ -51,7 +51,10 @@ public class GameModelmpl implements GameModel, GameViewModel {
     }
 
     @Override
-    public void updateGame(final GameDTO game) {
+    public void updateGame(final DominoGame dominoGame) {
+        this.dominoGame = dominoGame;
+        
+        /*
         if (game.getBoard() != null) {
             List<BoardTile> boardTiles = new ArrayList<>();
             for (DominoDTO tile : game.getBoard()) {
@@ -75,6 +78,7 @@ public class GameModelmpl implements GameModel, GameViewModel {
 //        var poolTiles = game.getPoolTiles();
 //
 //        this.dominoGame.setBoard();
+*/
     }
 
     // GameViewModel

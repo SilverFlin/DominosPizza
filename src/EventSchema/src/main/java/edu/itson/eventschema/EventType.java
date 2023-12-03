@@ -34,6 +34,10 @@ public enum EventType {
     /**
      * Tipo de evento para cuando un jugador esté en estado listo
      */
-    PLAYER_READY
+    PLAYER_READY,
+    /**
+     * Tipo de evento para proceder a iniciar la partida
+     */
+    START_GAME
 
 }

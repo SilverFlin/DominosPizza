@@ -1,5 +1,6 @@
 package client;
 
+import domain.DominoGame;
 import exceptions.MissingGamePresenterException;
 import exceptions.MissingMainMenuPresenterException;
 import interfaces.GameSystemFacade;
@@ -87,9 +88,7 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         if (this.mainMenuPresenter == null) {
             throw new MissingMainMenuPresenterException();
         }
-        this.mainMenuPresenter.setPlayerReady(player);
-        //this.mainMenuPresenter.setPlayerReady(player);
-        
+        this.mainMenuPresenter.setPlayerReady(player);        
     }
 
     /**
@@ -99,12 +98,12 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
      * establecido.
      */
     @Override
-    public void updateGame(final GameDTO game) throws MissingGamePresenterException {
+    public void updateGame(DominoGame dominoGame) throws MissingGamePresenterException {
         if (this.gamePresenter == null) {
             throw new MissingGamePresenterException();
         }
 
-        this.gamePresenter.updateGame(game);
+        this.gamePresenter.updateGame(dominoGame);
     }
 
     /**
@@ -141,6 +140,13 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
 
         this.mainMenuPresenter.removePlayer(player);
 
+    }
+
+    @Override
+    public void startGame(DominoGame dominoGame) {
+
+        this.mainMenuPresenter.startGame(dominoGame);
+        
     }
 
 }
