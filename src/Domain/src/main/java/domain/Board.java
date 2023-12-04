@@ -37,8 +37,8 @@ public class Board implements Serializable {
      *
      * @return Lista de fichas en el tablero.
      */
-    public List<BoardTile> getTiles() {
-        return (List<BoardTile>) tiles;
+    public Deque<BoardTile> getTiles() {
+        return tiles;
     }
 
     /**
@@ -46,8 +46,8 @@ public class Board implements Serializable {
      *
      * @param tiles Nueva lista de fichas en el tablero.
      */
-    public void setTiles(final List<BoardTile> tiles) {
-        this.tiles = (Deque<BoardTile>) tiles;
+    public void setTiles(final Deque<BoardTile> tiles) {
+        this.tiles = tiles;
     }
 
     /**

@@ -284,4 +284,18 @@ public class DominoGame implements Serializable {
             this.isReady = false;
         }
     }
+
+    public Player currentTurnPlayer() {
+        return this.players.get(0);
+    }
+
+    public void updatePlayer(final Player myPlayer) {
+        for (Player player : players) {
+            if (player.equals(myPlayer)) {
+                player.setTilesInHand(myPlayer.getTilesInHand());
+                break;
+            }
+        }
+    }
+
 }
