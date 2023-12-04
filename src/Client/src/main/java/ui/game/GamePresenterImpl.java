@@ -7,6 +7,7 @@ import dtos.DominoDTO;
 import dtos.GameDTO;
 import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
+import exceptions.IllegalBoardStateException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +32,14 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
 
     @Override
     public void putTileInBoard(final DominoDTO tile) {
-        this.model.putTileInBoard(tile);
-        this.view.updateGame((GameViewModel) this.model);
+        try {
+            this.model.putTileInBoard(tile);
+            this.view.updateGame((GameViewModel) this.model);
+//            TODO producer.updateGame(game);
+        } catch (IllegalBoardStateException ex) {
+            this.view.showInvalidMoveError();
+        }
+
     }
 
     @Override

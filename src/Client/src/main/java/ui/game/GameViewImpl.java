@@ -1,14 +1,17 @@
 package ui.game;
 
+import dtos.DominoDTO;
 import graphics.DominoGameGraphic;
 import graphics.GamePanel;
+import graphics.Puntero;
+import graphics.PunteroListener;
 import graphics.Utils;
-import ui.game.GameView;
+import javax.swing.JOptionPane;
 
 /**
  *
  */
-public class GameViewImpl extends javax.swing.JFrame implements GameView {
+public class GameViewImpl extends javax.swing.JFrame implements GameView, PunteroListener {
 
     private GamePresenter presenter;
 
@@ -17,6 +20,7 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView {
      */
     public GameViewImpl() {
         initComponents();
+        Puntero.setGamePanel(gamePanel);
     }
 
     /**
@@ -56,15 +60,15 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView {
 
     @Override
     public void showInvalidMoveError() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        JOptionPane.showMessageDialog(this, "Invalid move.", "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
     public void updateGame(final GameViewModel gameViewModel) {
         DominoGameGraphic dominoGameGraphic = Utils.createDominoGameGraphic(gameViewModel);
-
         this.remove(this.gamePanel);
         this.gamePanel = new GamePanel(dominoGameGraphic);
+        this.gamePanel.addMouseListener(new Puntero(this.gamePanel, this));
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(this.gamePanel);
         gamePanel.setLayout(gamePanelLayout);
         this.add(this.gamePanel, java.awt.BorderLayout.CENTER);
@@ -85,5 +89,10 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView {
     @Override
     public void setPresenter(final GamePresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void putTileInBoard(final DominoDTO tile) {
+        this.presenter.putTileInBoard(tile);
     }
 }

@@ -5,12 +5,17 @@ import domain.Board;
 import domain.BoardTile;
 import domain.DominoGame;
 import domain.Player;
+import domain.PlayerTile;
 import domain.Pool;
 import dtos.AvatarDTO;
 import dtos.OpponentDTO;
 import java.util.ArrayList;
 import java.util.List;
 import dtos.PlayerDTO;
+import exceptions.IllegalBoardStateException;
+import exceptions.InvalidMoveException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.Utils;
 
 /**
@@ -31,9 +36,14 @@ public class GameModelmpl implements GameModel, GameViewModel {
     }
 
     @Override
-    public void putTileInBoard(final DominoDTO tile) {
+    public void putTileInBoard(final DominoDTO tile) throws IllegalBoardStateException {
         BoardTile boardTile = new BoardTile(tile.getLeftValue(), tile.getRightValue());
-        this.dominoGame.putTileBoard(boardTile);
+        try {
+            this.dominoGame.putTileBoard(boardTile);
+            this.myPlayer.removeTile(new PlayerTile(tile.getLeftValue(), tile.getRightValue()));
+        } catch (InvalidMoveException ex) {
+            throw new IllegalBoardStateException();
+        }
     }
 
     @Override

@@ -17,13 +17,13 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         dominoGameGraphic = new DominoGameGraphic();
         rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        addMouseListener(new Puntero(this));
+//        addMouseListener(new Puntero(this));
     }
 
     public GamePanel(final DominoGameGraphic dominoGameGraphic) {
         this.dominoGameGraphic = dominoGameGraphic;
         rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        addMouseListener(new Puntero(this));
+//        addMouseListener(new Puntero(this));
     }
 
     @Override

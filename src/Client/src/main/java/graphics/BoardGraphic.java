@@ -13,9 +13,9 @@ public class BoardGraphic extends GraphicComposite {
 
     Rectangle2D.Double boardRectangle;
 
-    double center = 0;
-    double startXCoord;
-    double endXCoord;
+    double center = 620.0;
+    double startXCoord = 620.0;
+    double endXCoord = 580.0;
 
     public BoardGraphic() {
         this.boardRectangle = new Rectangle2D.Double();
@@ -33,6 +33,19 @@ public class BoardGraphic extends GraphicComposite {
         for (GraphicComponent component : components) {
             component.draw(g2);
         }
+    }
+
+    @Override
+    public void add(final GraphicComponent graphicComponent) {
+        BoardTileGraphic boardTileGraphic = (BoardTileGraphic) graphicComponent;
+
+        this.endXCoord += boardTileGraphic.rec.getWidth();
+        if (boardTileGraphic.leftNum == boardTileGraphic.rightNum) {
+            boardTileGraphic.setP(new Point((int) (this.endXCoord + boardTileGraphic.rec.getWidth()), (int) Puntero.gamePanel.getHeight() / 2 - 40));
+        } else {
+            boardTileGraphic.setP(new Point((int) this.endXCoord, (int) Puntero.gamePanel.getHeight() / 2 - 20));
+        }
+        super.add(boardTileGraphic);
     }
 
     private void dibujaTren() {

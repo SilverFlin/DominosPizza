@@ -3,6 +3,7 @@ package ui.game;
 import domain.DominoGame;
 import domain.Player;
 import dtos.DominoDTO;
+import exceptions.IllegalBoardStateException;
 
 /**
  * Interfaz que define el modelo del juego.
@@ -15,8 +16,9 @@ public interface GameModel {
      * Coloca una ficha en el tablero.
      *
      * @param tile La ficha a colocar.
+     * @throws exceptions.IllegalBoardStateException
      */
-    void putTileInBoard(DominoDTO tile);
+    void putTileInBoard(DominoDTO tile) throws IllegalBoardStateException;
 
     /**
      * Toma una ficha de la reserva para el jugador.

@@ -1,8 +1,10 @@
 package graphics;
 
+import dtos.DominoDTO;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import javax.swing.event.MouseInputListener;
+import ui.game.GameView;
 
 /**
  *
@@ -10,13 +12,19 @@ import javax.swing.event.MouseInputListener;
  */
 public class Puntero implements MouseInputListener {
 
-    GamePanel gamePanel;
+    static GamePanel gamePanel;
+    PunteroListener listener;
 
     public Puntero() {
     }
 
-    public Puntero(final GamePanel gp) {
-        this.gamePanel = gp;
+    public Puntero(final GamePanel gamePanel, final PunteroListener listener) {
+        Puntero.setGamePanel(gamePanel);
+        this.listener = listener;
+    }
+
+    public static void setGamePanel(final GamePanel gamePanel) {
+        Puntero.gamePanel = gamePanel;
     }
 
     @Override
@@ -74,7 +82,7 @@ public class Puntero implements MouseInputListener {
         }
 
         var selectedTile = playerHandGraphic.getSelecionada();
-
+        // TODO quitar
         // Se seleccionó lado derecho 
         if (boardGraphic.center > evt.getX()) {
             boardGraphic.startXCoord -= selectedTile.rec.getWidth() - 10;
@@ -98,11 +106,9 @@ public class Puntero implements MouseInputListener {
             }
 
         }
-        boardGraphic.add(selectedTile);
-        playerHandGraphic.setSelecionada(null);
-        playerHandGraphic.components.remove(selectedTile);
 
-        gamePanel.repaint();
+        this.listener.putTileInBoard(new DominoDTO(selectedTile.leftNum, selectedTile.rightNum));
+        playerHandGraphic.setSelecionada(null);
     }
 
 }
