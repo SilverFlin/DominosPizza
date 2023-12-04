@@ -19,10 +19,6 @@ public class Utils {
         List<DominoDTO> boardTiles = gameViewModel.getBoard();
         BoardGraphic boardGraphic = new BoardGraphic();
         for (DominoDTO boardTile : boardTiles) {
-            // Quitar punto?
-//            int x = (int) (boardGraphic.rec.getBounds().getCenterX() - 20);
-//            int y = (int) (boardGraphic.rec.getBounds().getCenterY() - 40);
-
             boardGraphic.add(new BoardTileGraphic(boardTile.getLeftValue(), boardTile.getRightValue(), new Point()));
         }
 
@@ -30,7 +26,6 @@ public class Utils {
         PlayerHandGraphic playerHandGraphic = new PlayerHandGraphic();
 
         for (DominoDTO playerTile : playerTiles) {
-            // Quitar punto?
             playerHandGraphic.add(new PlayerTileGraphic(playerTile.getLeftValue(), playerTile.getRightValue(), new Point()));
         }
 

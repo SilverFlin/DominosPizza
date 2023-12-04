@@ -4,7 +4,6 @@ import graphics.DominoGameGraphic;
 import graphics.GamePanel;
 import graphics.Utils;
 import ui.game.GameView;
-import ui.game.GameViewModel;
 
 /**
  *
@@ -64,7 +63,9 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView {
 
         this.remove(this.gamePanel);
         this.gamePanel = new GamePanel(dominoGameGraphic);
-        this.add(this.gamePanel);
+        javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(this.gamePanel);
+        gamePanel.setLayout(gamePanelLayout);
+        this.add(this.gamePanel, java.awt.BorderLayout.CENTER);
         this.revalidate();
         this.repaint();
     }

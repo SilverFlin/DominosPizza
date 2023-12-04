@@ -36,30 +36,17 @@ public class BoardGraphic extends GraphicComposite {
     }
 
     private void dibujaTren() {
-        if (this.components.size() == 1) {
-            Point point = new Point((int) (rec.getBounds().getCenterX() - 20), (int) rec.getBounds().getCenterY() - 40);
-            ((BoardTileGraphic) this.components.get(0)).setP(point);
+        if (this.components.isEmpty() || this.components.size() > 1) {
+            return;
         }
 
-//        var r = 0;
-////        var r = ((BoardTileGraphic) this.components.get(0)).getLeftNum();
-//        var t = new BoardTileGraphic(r, r, new Point((int) (rec.getBounds().getCenterX() - 20), (int) rec.getBounds().getCenterY() - 40));
-//        centro = t.getP().getX();
-//        i = centro;
-//        d = centro - t.rec.getWidth();
-//        components.add(t);
+        Point point = new Point((int) (rec.getBounds().getCenterX() - 20), (int) rec.getBounds().getCenterY() - 40);
+        BoardTileGraphic boardTileGraphic = ((BoardTileGraphic) this.components.get(0));
+        boardTileGraphic.setP(point);
+        this.centro = boardTileGraphic.getP().getX();
+        this.i = this.centro;
+        this.d = this.centro - boardTileGraphic.rec.getWidth();
+
     }
-//        BoardTileGraphic boardTileGraphic = (BoardTileGraphic) this.components.get(0);
-//        if (boardTileGraphic.getLeftNum() != boardTileGraphic.getRightNum()) {
-//            throw new IllegalStateException("Ficha no es mula");
-//        }
-//
-//        boardTileGraphic.setP(new Point((int) (rec.getBounds().getCenterX() - 20), (int) rec.getBounds().getCenterY() - 40));
-//
-//        centro = boardTileGraphic.getP().getX();
-//        i = centro;
-//        d = centro - boardTileGraphic.rec.getWidth();
-//        components.add(boardTileGraphic);
-//    }
 
 }
