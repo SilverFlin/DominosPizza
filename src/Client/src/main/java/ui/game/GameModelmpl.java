@@ -37,10 +37,17 @@ public class GameModelmpl implements GameModel, GameViewModel {
 
     @Override
     public void putTileInBoard(final DominoDTO tile) throws IllegalBoardStateException {
+        if (!this.dominoGame.getCurrentPlayer().equals(this.myPlayer)) {
+            // If it isn't your turn do nothing.
+            return;
+        }
+
         BoardTile boardTile = new BoardTile(tile.getLeftValue(), tile.getRightValue());
         try {
+
             this.dominoGame.putTileBoard(boardTile);
             this.myPlayer.removeTile(new PlayerTile(tile.getLeftValue(), tile.getRightValue()));
+            this.dominoGame.updatePlayer(this.myPlayer);
         } catch (InvalidMoveException ex) {
             throw new IllegalBoardStateException();
         }
@@ -54,6 +61,11 @@ public class GameModelmpl implements GameModel, GameViewModel {
     @Override
     public void updateGame(final DominoGame dominoGame) {
         this.dominoGame = dominoGame;
+    }
+
+    @Override
+    public DominoGame getDominoGame() {
+        return this.dominoGame;
     }
 
     // GameViewModel
@@ -95,6 +107,11 @@ public class GameModelmpl implements GameModel, GameViewModel {
         }
 
         return opponentDTOs;
+    }
+
+    @Override
+    public PlayerDTO getActivePlayer() {
+        return Utils.parsePlayer(this.dominoGame.getCurrentPlayer());
     }
 
     @Override

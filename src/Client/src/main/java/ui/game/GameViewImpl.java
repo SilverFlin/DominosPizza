@@ -6,6 +6,7 @@ import graphics.GamePanel;
 import graphics.Puntero;
 import graphics.PunteroListener;
 import graphics.Utils;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,8 @@ import javax.swing.JOptionPane;
 public class GameViewImpl extends javax.swing.JFrame implements GameView, PunteroListener {
 
     private GamePresenter presenter;
+    
+    private static final Logger LOG = Logger.getLogger(GameViewImpl.class.getName());
 
     /**
      * Creates new form FramePrueba
@@ -66,6 +69,9 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
     @Override
     public void updateGame(final GameViewModel gameViewModel) {
         DominoGameGraphic dominoGameGraphic = Utils.createDominoGameGraphic(gameViewModel);
+
+        LOG.info("Current Player: " + gameViewModel.getActivePlayer());
+        
         this.remove(this.gamePanel);
         this.gamePanel = new GamePanel(dominoGameGraphic);
         this.gamePanel.addMouseListener(new Puntero(this.gamePanel, this));

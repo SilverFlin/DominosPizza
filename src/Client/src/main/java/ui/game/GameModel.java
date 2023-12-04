@@ -33,4 +33,6 @@ public interface GameModel {
      */
     void updateGame(DominoGame domninoGame);
 
+    DominoGame getDominoGame();
+
 }

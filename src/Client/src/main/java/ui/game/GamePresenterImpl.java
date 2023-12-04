@@ -4,14 +4,10 @@ import base.BasePresenter;
 import domain.DominoGame;
 import domain.Player;
 import dtos.DominoDTO;
-import dtos.GameDTO;
-import dtos.PlayerDTO;
-import dtos.WaitingRoomDTO;
 import exceptions.IllegalBoardStateException;
-import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import network.EventProducer;
+import utils.Utils;
 
 /**
  *
@@ -35,7 +31,7 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
         try {
             this.model.putTileInBoard(tile);
             this.view.updateGame((GameViewModel) this.model);
-//            TODO producer.updateGame(game);
+            this.producer.updateGame(Utils.parseDominoGame(this.model.getDominoGame()));
         } catch (IllegalBoardStateException ex) {
             this.view.showInvalidMoveError();
         }
@@ -54,9 +50,6 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
         this.model.setMyPlayer(myPlayer);
         this.model.updateGame(dominoGame);
         this.view.updateGame((GameViewModel) this.model);
-
-        System.out.println(this.model);
-
         this.view.open();
     }
 

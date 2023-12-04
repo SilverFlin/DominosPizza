@@ -38,4 +38,6 @@ public interface GameViewModel {
      */
     List<OpponentDTO> getRoom();
 
+    PlayerDTO getActivePlayer();
+
 }

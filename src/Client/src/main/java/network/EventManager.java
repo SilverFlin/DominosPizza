@@ -77,7 +77,6 @@ public class EventManager implements EventProducer, EventConsumer {
                 dominoGame.takeFromPool(player);
             }
         }
-        
 
         dominoGame.initTurns();
 
@@ -93,7 +92,9 @@ public class EventManager implements EventProducer, EventConsumer {
      */
     @Override
     public void updateGame(final GameDTO game) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        DominoGame dominoGame = Utils.parseDominoGameDTO(game);
+        Event updateGameEvent = new UpdateGameEvent(dominoGame);
+        this.connection.sendMessage(updateGameEvent);
     }
 
     /**
@@ -144,8 +145,7 @@ public class EventManager implements EventProducer, EventConsumer {
             PlayerDTO playerDTO = Utils.parsePlayer(playerLeaveEvent.getPayload());
             this.gameSystem.removePlayer(playerDTO);
         } else if (event instanceof UpdateGameEvent) {
-            LOG.log(Level.WARNING, "UpdateGameEvent no implementado");
-//            this.gameSystem.updateGame(((UpdateGameEvent) event).getPayload());
+            this.gameSystem.updateGame(((UpdateGameEvent) event).getPayload());
         } else if (event instanceof UpdateWaitingRoomEvent updateWaitingRoomEvent) {
             DominoGame dominoGame = updateWaitingRoomEvent.getPayload();
             this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
