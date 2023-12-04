@@ -10,6 +10,8 @@ import ui.game.GameView;
  */
 public class GameViewImpl extends javax.swing.JFrame implements GameView {
 
+    private GamePresenter presenter;
+
     /**
      * Creates new form FramePrueba
      */
@@ -78,5 +80,10 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView {
     @Override
     public void close() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setPresenter(final GamePresenter presenter) {
+        this.presenter = presenter;
     }
 }

@@ -17,6 +17,8 @@ public interface GameView {
      */
     void updateGame(GameViewModel gameViewModel);
 
+    void setPresenter(GamePresenter presenter);
+
     void open();
 
     void close();
