@@ -183,7 +183,7 @@ public class DominoGameTest {
         List<Player> originalOrder = List.copyOf(instance.getPlayers());
 
         // Llamar al método changeTurn
-        instance.changeTurn();
+        instance.changeTurn(player1);
 
         // Verificar que la lista de jugadores después de llamar a este método sea diferente a la original
         assertNotEquals(originalOrder, instance.getPlayers());
@@ -217,7 +217,7 @@ public class DominoGameTest {
         Player originalActivePlayer = instance.getCurrentPlayer();
 
         // Llamar al método changeTurn para cambiar el jugador activo
-        instance.changeTurn();
+        instance.changeTurn(player1);
 
         // Verificar que el jugador activo después de llamar a este método sea diferente al original
         assertNotEquals(originalActivePlayer, instance.getCurrentPlayer());

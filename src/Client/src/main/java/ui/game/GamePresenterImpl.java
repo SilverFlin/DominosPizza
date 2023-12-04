@@ -17,6 +17,7 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
     private final GameView view;
     private final GameModel model;
     private final EventProducer producer;
+    private Player myPlayer;
 
     private static final Logger LOG = Logger.getLogger(GamePresenterImpl.class.getName());
 
@@ -47,6 +48,7 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
 
     @Override
     public void loadBoard(DominoGame dominoGame, Player myPlayer) {
+//        this.myPlayer = myPlayer;
         this.model.setMyPlayer(myPlayer);
         this.model.updateGame(dominoGame);
         this.view.updateGame((GameViewModel) this.model);
@@ -57,6 +59,13 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
     public void takeFromPool() {
         this.model.takeFromPool();
         this.view.updateGame((GameViewModel) this.model);
+    }
+
+    @Override
+    public void skipTurn() {
+        this.model.skipTurn(this.myPlayer);
+        this.view.updateGame((GameViewModel) this.model);
+        this.producer.updateGame(Utils.parseDominoGame(this.model.getDominoGame()));
     }
 
 }

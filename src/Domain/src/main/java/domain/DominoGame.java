@@ -192,8 +192,13 @@ public class DominoGame implements Serializable {
 
     /**
      * Cambia el turno actual de los jugadores en el juego.
+     *
+     * @param player
      */
-    public void changeTurn() {
+    public void changeTurn(final Player player) {
+        if (!this.getCurrentPlayer().equals(player)) {
+            return;
+        }
         List<Player> sortedPlayers = this.turnController.changeTurn(players);
         this.players = sortedPlayers;
     }
@@ -266,6 +271,10 @@ public class DominoGame implements Serializable {
      * @param player Jugador que tomará la ficha.
      */
     public void takeFromPool(final Player player) {
+        if (!this.getCurrentPlayer().equals(player)) {
+            return;
+        }
+
         player.addTile((DominoTile) this.pool.takeTile());
     }
 
@@ -283,10 +292,6 @@ public class DominoGame implements Serializable {
         } else {
             this.isReady = false;
         }
-    }
-
-    public Player currentTurnPlayer() {
-        return this.players.get(0);
     }
 
     public void updatePlayer(final Player myPlayer) {

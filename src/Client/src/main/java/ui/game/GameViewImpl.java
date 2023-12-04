@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class GameViewImpl extends javax.swing.JFrame implements GameView, PunteroListener {
 
     private GamePresenter presenter;
-    
+
     private static final Logger LOG = Logger.getLogger(GameViewImpl.class.getName());
 
     /**
@@ -36,18 +36,44 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
     private void initComponents() {
 
         gamePanel = new graphics.GamePanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("Pasar Turno");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Pozo (X)");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(gamePanelLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1007, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(68, 68, 68))
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(gamePanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(530, Short.MAX_VALUE))
         );
 
         getContentPane().add(gamePanel, java.awt.BorderLayout.CENTER);
@@ -56,9 +82,19 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.presenter.skipTurn();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.presenter.takeFromPool();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private graphics.GamePanel gamePanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -70,8 +106,8 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
     public void updateGame(final GameViewModel gameViewModel) {
         DominoGameGraphic dominoGameGraphic = Utils.createDominoGameGraphic(gameViewModel);
 
-        LOG.info("Current Player: " + gameViewModel.getActivePlayer());
-        
+        LOG.info(gameViewModel.toString());
+
         this.remove(this.gamePanel);
         this.gamePanel = new GamePanel(dominoGameGraphic);
         this.gamePanel.addMouseListener(new Puntero(this.gamePanel, this));

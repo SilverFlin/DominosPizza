@@ -1,5 +1,6 @@
 package network;
 
+import domain.Player;
 import dtos.GameDTO;
 import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;

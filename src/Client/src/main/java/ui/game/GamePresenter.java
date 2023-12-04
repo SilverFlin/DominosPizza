@@ -43,4 +43,6 @@ public interface GamePresenter {
      * @param player El jugador que toma la ficha.
      */
     void takeFromPool();
+
+    void skipTurn();
 }

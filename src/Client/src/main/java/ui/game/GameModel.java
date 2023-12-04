@@ -35,4 +35,6 @@ public interface GameModel {
 
     DominoGame getDominoGame();
 
+    void skipTurn(Player player);
+
 }

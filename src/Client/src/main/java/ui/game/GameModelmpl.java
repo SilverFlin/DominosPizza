@@ -67,6 +67,11 @@ public class GameModelmpl implements GameModel, GameViewModel {
     public DominoGame getDominoGame() {
         return this.dominoGame;
     }
+    
+    @Override
+    public void skipTurn(final Player player) {
+        this.dominoGame.changeTurn(player);
+    }
 
     // GameViewModel
     @Override
@@ -114,6 +119,7 @@ public class GameModelmpl implements GameModel, GameViewModel {
         return Utils.parsePlayer(this.dominoGame.getCurrentPlayer());
     }
 
+    
     @Override
     public String toString() {
         List<DominoDTO> boardTiles = this.getBoard();
@@ -125,7 +131,12 @@ public class GameModelmpl implements GameModel, GameViewModel {
                 + "List<DominoDTO> boardTiles = " + boardTiles + "\n"
                 + "PlayerDTO myPlayer = " + player + "\n"
                 + "remainingPool = " + remainingTilesPool + "\n"
-                + "List<OpponentDTO> = " + opponents + "\n";
+                + "List<OpponentDTO> = " + opponents + "\n"
+                + "currentPlayer" + this.getActivePlayer() + "\n";
     }
+
+   
+
+    
 
 }

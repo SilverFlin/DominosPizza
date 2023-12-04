@@ -76,7 +76,9 @@ public class EventManager implements EventProducer, EventConsumer {
             for (int i = 0; i < dominoGame.getConfig().getTilesPerPlayer(); i++) {
                 dominoGame.takeFromPool(player);
             }
+            dominoGame.changeTurn(player);
         }
+        dominoGame.changeTurn(dominoGame.getCurrentPlayer());
 
         dominoGame.initTurns();
 
