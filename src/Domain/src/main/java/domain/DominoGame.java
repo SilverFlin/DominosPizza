@@ -1,9 +1,12 @@
 package domain;
 
+import exceptions.InvalidMoveException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase que representa un juego de dominó.
@@ -138,17 +141,17 @@ public class DominoGame implements Serializable {
             System.out.println(playerTiles);
             for (PlayerTile playerTile : playerTiles) {
                 boolean isDoublet = playerTile.getLeftValue() == playerTile.getRightValue();
-                
-                if(highestDoublet == null && isDoublet){
+
+                if (highestDoublet == null && isDoublet) {
                     highestDoublet = playerTile;
                     firstPlayer = player;
                     continue;
                 }
-                
-                if(highestDoublet == null){
+
+                if (highestDoublet == null) {
                     continue;
                 }
-                
+
                 boolean isHigher = highestDoublet.getLeftValue() < playerTile.getLeftValue();
                 if (isDoublet && isHigher) {
                     highestDoublet = playerTile;
@@ -166,7 +169,11 @@ public class DominoGame implements Serializable {
         }
         firstPlayer.removeTile(highestDoublet);
 
-        this.board.putTile((DominoTile) highestDoublet);
+        try {
+            this.board.putTile((DominoTile) highestDoublet);
+        } catch (InvalidMoveException ex) {
+            Logger.getLogger(DominoGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.players.remove(firstPlayer);
 
         List<Player> mutablePlayers = new ArrayList<>(players);
@@ -244,10 +251,13 @@ public class DominoGame implements Serializable {
      * Coloca una ficha en el tablero del juego.
      *
      * @param tile Ficha de dominó que se colocará en el tablero.
+     * @throws exceptions.InvalidMoveException
      */
-    public void putTileBoard(final DominoTile tile) {
+    public void putTileBoard(final DominoTile tile) throws InvalidMoveException {
         BoardTile boardTile = new BoardTile(tile.getLeftValue(), tile.getRightValue());
         this.board.putTile(boardTile);
+        List<Player> newTurnList = this.turnController.changeTurn(this.players);
+        this.players = newTurnList;
     }
 
     /**

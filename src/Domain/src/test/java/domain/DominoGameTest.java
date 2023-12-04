@@ -1,5 +1,6 @@
 package domain;
 
+import exceptions.InvalidMoveException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -17,22 +18,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Toled
  */
 public class DominoGameTest {
-
+    
     public DominoGameTest() {
     }
-
+    
     @BeforeAll
     public static void setUpClass() {
     }
-
+    
     @AfterAll
     public static void tearDownClass() {
     }
-
+    
     @BeforeEach
     public void setUp() {
     }
-
+    
     @AfterEach
     public void tearDown() {
     }
@@ -156,8 +157,7 @@ public class DominoGameTest {
         instance.setPlayers(List.of());
 
     }
-    */
-
+     */
     /**
      * Test of changeTurn method, of class DominoGame.
      */
@@ -265,7 +265,7 @@ public class DominoGameTest {
         );
         playersAllReady.forEach(Player::setReady);  // Establecer todos los jugadores como listos
         instanceAllReady.setPlayers(playersAllReady);
-
+        
         boolean resultAllReady = instanceAllReady.startGame();
         assertTrue(resultAllReady, "Todos los jugadores están listos, el juego debería comenzar.");
 
@@ -277,19 +277,21 @@ public class DominoGameTest {
                 new Player()
         );
         instanceNotReady.setPlayers(playersNotReady);
-
+        
         boolean resultNotReady = instanceNotReady.startGame();
         assertFalse(resultNotReady, "Al menos un jugador no está listo, el juego no debería comenzar.");
     }
 
     /**
      * Test of putTileBoard method, of class DominoGame.
+     * @throws exceptions.InvalidMoveException
      */
     @Test
-    public void testPutTileBoard() {
+    public void testPutTileBoard() throws InvalidMoveException {
         System.out.println("putTileBoard");
         DominoTile tile = new DominoTile(1, 2);
         DominoGame instance = new DominoGame();
+        instance.addPlayer(new Player());
         instance.setBoard(new Board());
         instance.putTileBoard(tile);
         BoardTile boardTile = instance.getBoard().getTiles().get(0);
@@ -309,5 +311,5 @@ public class DominoGameTest {
         instance.takeFromPool(player);
         assertEquals(1, player.getTilesInHand().size());
     }
-*/
+     */
 }
