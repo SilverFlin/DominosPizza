@@ -115,7 +115,6 @@ public class Player implements Serializable {
         this.isReady = true;
     }
 
-
     /**
      * Establece que el jugador NO está listo para comenzar el juego.
      */
@@ -144,4 +143,10 @@ public class Player implements Serializable {
         final Player other = (Player) obj;
         return Objects.equals(this.avatar.getName(), other.avatar.getName());
     }
+
+    @Override
+    public String toString() {
+        return "Player{" + "tilesInHand=" + tilesInHand + ", avatar=" + (avatar.getName() == null ? "null" : avatar.getName()) + '}';
+    }
+
 }

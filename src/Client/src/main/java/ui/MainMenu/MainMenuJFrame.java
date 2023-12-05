@@ -120,7 +120,6 @@ public class MainMenuJFrame extends javax.swing.JFrame implements MainMenuView, 
     @Override
     public void displayMenuPanel() {
         this.hidePanels();
-        System.out.println("Display Menu");
         this.menuPanel.setVisible(true);
     }
 

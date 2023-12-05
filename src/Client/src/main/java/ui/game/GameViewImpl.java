@@ -73,9 +73,6 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
     @Override
     public void updateGame(final GameViewModel gameViewModel) {
         DominoGameGraphic dominoGameGraphic = Utils.createDominoGameGraphic(gameViewModel);
-
-        LOG.info(gameViewModel.toString());
-
         this.remove(this.gamePanel);
         this.gamePanel = new GamePanel(dominoGameGraphic);
         this.gamePanel.addMouseListener(new Puntero(this.gamePanel, this));
@@ -108,10 +105,6 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
         this.presenter.putTileInBoard(tile);
     }
 
-    private void handleButtonClick(int i) {
-        System.out.println("button" + i);
-    }
-
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -121,18 +114,19 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
         int keyCode = e.getKeyCode();
 
         if (KeyEvent.getKeyText(keyCode).equals("Q")) {
-            // Pool
             this.presenter.takeFromPool();
-            LOG.info("Take From Pool");
         } else if (KeyEvent.getKeyText(keyCode).equals("W")) {
-            // skip turn
             this.presenter.skipTurn();
-            LOG.info("Skip turn");
         }
 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void showGameOver(final GameViewModel gameViewModel) {
+        LOG.info("GameOver");
     }
 }

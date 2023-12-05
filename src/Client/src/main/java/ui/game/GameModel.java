@@ -3,6 +3,7 @@ package ui.game;
 import domain.DominoGame;
 import domain.Player;
 import dtos.DominoDTO;
+import dtos.PlayerDTO;
 import exceptions.IllegalBoardStateException;
 
 /**
@@ -36,5 +37,9 @@ public interface GameModel {
     DominoGame getDominoGame();
 
     boolean skipTurn(Player player);
+    
+    boolean isGameOver();
+
+    public void removePlayer(PlayerDTO player);
 
 }

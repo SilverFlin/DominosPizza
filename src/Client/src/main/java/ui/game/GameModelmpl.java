@@ -14,6 +14,7 @@ import java.util.List;
 import dtos.PlayerDTO;
 import exceptions.IllegalBoardStateException;
 import exceptions.InvalidMoveException;
+import java.util.SortedMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utils;
@@ -67,10 +68,15 @@ public class GameModelmpl implements GameModel, GameViewModel {
     public DominoGame getDominoGame() {
         return this.dominoGame;
     }
-    
+
     @Override
     public boolean skipTurn(final Player player) {
         return this.dominoGame.changeTurn(player);
+    }
+
+    @Override
+    public boolean isGameOver() {
+        return this.dominoGame.isGameOver();
     }
 
     // GameViewModel
@@ -119,7 +125,26 @@ public class GameModelmpl implements GameModel, GameViewModel {
         return Utils.parsePlayer(this.dominoGame.getCurrentPlayer());
     }
 
-    
+    @Override
+    public SortedMap<PlayerDTO, Integer> getGameResume() {
+        SortedMap<Player, Integer> resume = this.dominoGame.getGameResume();
+        return null;
+
+    }
+
+    @Override
+    public void removePlayer(PlayerDTO playerDTO) {
+        if (this.dominoGame == null) {
+            return;
+        }
+        for (Player player : this.dominoGame.getPlayers()) {
+            Player playerParsed = Utils.parsePlayerDTO(playerDTO);
+            if (player.equals(playerParsed)) {
+                this.dominoGame.removePlayer(player);
+            }
+        }
+    }
+
     @Override
     public String toString() {
         List<DominoDTO> boardTiles = this.getBoard();
@@ -134,9 +159,5 @@ public class GameModelmpl implements GameModel, GameViewModel {
                 + "List<OpponentDTO> = " + opponents + "\n"
                 + "currentPlayer" + this.getActivePlayer() + "\n";
     }
-
-   
-
-    
 
 }

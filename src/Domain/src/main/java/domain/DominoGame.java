@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.SortedMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -138,7 +139,6 @@ public class DominoGame implements Serializable {
 
         for (Player player : this.players) {
             List<PlayerTile> playerTiles = player.getTilesInHand();
-            System.out.println(playerTiles);
             for (PlayerTile playerTile : playerTiles) {
                 boolean isDoublet = playerTile.getLeftValue() == playerTile.getRightValue();
 
@@ -300,6 +300,36 @@ public class DominoGame implements Serializable {
                 break;
             }
         }
+    }
+
+    public boolean isGameOver() {
+        if (this.players.size() == 1) {
+            return true;
+        }
+
+        for (Player player : this.players) {
+            if (player.getTilesInHand().isEmpty()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public SortedMap<Player, Integer> getGameResume() {
+        // TODO calculate points
+        // TODO create Map
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void removePlayer(final Player player) {
+        if (this.players.remove(player)) {
+            List<PlayerTile> playerTiles = player.getTilesInHand();
+            for (PlayerTile playerTile : playerTiles) {
+                this.pool.getDominoes().add(new PoolTile(playerTile.getLeftValue(), playerTile.getRightValue()));
+            }
+        }
+
     }
 
 }

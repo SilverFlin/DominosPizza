@@ -97,6 +97,13 @@ public class EventManager implements EventProducer, EventConsumer {
         this.connection.sendMessage(updateGameEvent);
     }
 
+    @Override
+    public void gameOver(final GameDTO game) {
+        DominoGame dominoGame = Utils.parseDominoGameDTO(game);
+        Event gameOverEvent = new GameOverEvent(dominoGame);
+        this.connection.sendMessage(gameOverEvent);
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -110,6 +117,7 @@ public class EventManager implements EventProducer, EventConsumer {
 
         Player player = Utils.parsePlayerDTO(playerDTO);
         Event playerLeaves = new PlayerLeaveEvent(player);
+
         this.connection.sendMessage(playerLeaves);
     }
 
@@ -137,8 +145,8 @@ public class EventManager implements EventProducer, EventConsumer {
 
         if (event instanceof DuplicatedNameErrorEvent) {
             this.gameSystem.showInvalidNameError();
-        } else if (event instanceof GameOverEvent) {
-            LOG.log(Level.WARNING, "GameOverEvent no implementado");
+        } else if (event instanceof GameOverEvent gameOverEvent) {
+            this.gameSystem.gameOver(gameOverEvent.getPayload());
         } else if (event instanceof PlayerJoinsEvent) {
             LOG.log(Level.WARNING, "PlayerJoinsEvent no implementado");
         } else if (event instanceof PlayerLeaveEvent playerLeaveEvent) {

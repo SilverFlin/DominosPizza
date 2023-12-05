@@ -98,7 +98,7 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
      * establecido.
      */
     @Override
-    public void updateGame(DominoGame dominoGame) throws MissingGamePresenterException {
+    public void updateGame(final DominoGame dominoGame) throws MissingGamePresenterException {
         if (this.gamePresenter == null) {
             throw new MissingGamePresenterException();
         }
@@ -138,12 +138,18 @@ public class GameSystemFacadeImpl implements GameSystemFacade {
         }
 
         this.mainMenuPresenter.removePlayer(player);
+        this.gamePresenter.removePlayer(player);
 
     }
 
     @Override
-    public void startGame(DominoGame dominoGame) {
+    public void startGame(final DominoGame dominoGame) {
         this.mainMenuPresenter.startGame(dominoGame);
+    }
+
+    @Override
+    public void gameOver(final DominoGame dominoGame) {
+        this.gamePresenter.gameOver(dominoGame);
     }
 
 }

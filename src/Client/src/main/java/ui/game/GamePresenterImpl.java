@@ -4,6 +4,7 @@ import base.BasePresenter;
 import domain.DominoGame;
 import domain.Player;
 import dtos.DominoDTO;
+import dtos.PlayerDTO;
 import exceptions.IllegalBoardStateException;
 import java.util.logging.Logger;
 import network.EventProducer;
@@ -32,6 +33,7 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
         try {
             this.model.putTileInBoard(tile);
             this.view.updateGame((GameViewModel) this.model);
+
             this.producer.updateGame(Utils.parseDominoGame(this.model.getDominoGame()));
         } catch (IllegalBoardStateException ex) {
             this.view.showInvalidMoveError();
@@ -40,10 +42,21 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
     }
 
     @Override
-    public void updateGame(DominoGame dominoGame) {
+    public void updateGame(final DominoGame dominoGame) {
         this.model.updateGame(dominoGame);
-        this.view.updateGame((GameViewModel) this.model);
 
+        if (this.model.isGameOver()) {
+            this.view.showGameOver((GameViewModel) this.model);
+            this.producer.gameOver(Utils.parseDominoGame(this.model.getDominoGame()));
+        } else {
+            this.view.updateGame((GameViewModel) this.model);
+        }
+    }
+
+    @Override
+    public void gameOver(final DominoGame dominoGame) {
+        this.model.updateGame(dominoGame);
+        this.view.showGameOver((GameViewModel) this.model);
     }
 
     @Override
@@ -70,7 +83,12 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
             this.view.updateGame((GameViewModel) this.model);
             this.producer.updateGame(Utils.parseDominoGame(this.model.getDominoGame()));
         }
+    }
 
+    @Override
+    public void removePlayer(final PlayerDTO player) {
+        this.model.removePlayer(player);
+        this.updateGame(this.model.getDominoGame());
     }
 
 }

@@ -45,4 +45,8 @@ public interface GamePresenter {
     void takeFromPool();
 
     void skipTurn();
+
+    public void removePlayer(PlayerDTO player);
+
+    public void gameOver(DominoGame dominoGame);
 }

@@ -48,7 +48,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         this.isAdmin(viewModel.isAdmin());
 
         for (PlayerDTO p : this.waitingRoom.getPlayers()) {
-            System.out.println("Este jugador esta ready:" + p.isIsReady());
+            // TODO show player ready
         }
 
         if (viewModel.isAdmin() && viewModel.startGame() || viewModel.isAdmin() && waitingRoom.getPlayers().size() == 4) {

@@ -23,4 +23,6 @@ public interface GameView {
 
     void close();
 
+    public void showGameOver(GameViewModel gameViewModel);
+
 }

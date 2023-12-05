@@ -7,7 +7,6 @@ public class OpponentDTO {
 
     private boolean isAdmin;
     private int tilesLeft;
-    private String name;
     private AvatarDTO avatar;
 
     public OpponentDTO() {
@@ -18,7 +17,7 @@ public class OpponentDTO {
         return isAdmin;
     }
 
-    public void setIsAdmin(boolean isAdmin) {
+    public void setIsAdmin(final boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 
@@ -26,31 +25,21 @@ public class OpponentDTO {
         return tilesLeft;
     }
 
-    public void setTilesLeft(int tilesLeft) {
+    public void setTilesLeft(final int tilesLeft) {
         this.tilesLeft = tilesLeft;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public AvatarDTO getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(AvatarDTO avatar) {
+    public void setAvatar(final AvatarDTO avatar) {
         this.avatar = avatar;
     }
 
     @Override
     public String toString() {
-        return "OpponentDTO{" + "tilesLeft=" + tilesLeft + ", name=" + name + '}';
+        return "OpponentDTO{" + "tilesLeft=" + tilesLeft + ", name=" + this.avatar.getNombre() + '}';
     }
-
-    
 
 }

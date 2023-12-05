@@ -80,4 +80,6 @@ public interface GameSystemFacade {
     void setPlayerReady(final PlayerDTO player);
     
     void startGame(final DominoGame dominoGame);
+
+    public void gameOver(final DominoGame dominoGame);
 }

@@ -1,5 +1,6 @@
 package network;
 
+import domain.DominoGame;
 import domain.Player;
 import dtos.GameDTO;
 import dtos.PlayerDTO;
@@ -29,5 +30,7 @@ public interface EventProducer {
     void playerIsReady(PlayerDTO player);
 
     void startGame(WaitingRoomDTO waitingRoom);
+
+    void gameOver(GameDTO dominoGame);
 
 }
