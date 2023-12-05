@@ -48,7 +48,7 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
 
     @Override
     public void loadBoard(DominoGame dominoGame, Player myPlayer) {
-//        this.myPlayer = myPlayer;
+        this.myPlayer = myPlayer;
         this.model.setMyPlayer(myPlayer);
         this.model.updateGame(dominoGame);
         this.view.updateGame((GameViewModel) this.model);
@@ -57,7 +57,7 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
 
     @Override
     public void takeFromPool() {
-        if(!this.model.getDominoGame().getCurrentPlayer().equals(this.myPlayer)){
+        if (!this.model.getDominoGame().getCurrentPlayer().equals(this.myPlayer)) {
             return;
         }
         this.model.takeFromPool();
