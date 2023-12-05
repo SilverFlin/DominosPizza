@@ -13,6 +13,6 @@
   - Cliente
     - [Graphic Manager](/docs/diagrams/Graphic_Manager.md)
     - [Event Processor](/docs/diagrams/Event_Processor.md)
-    - [DTOs](/docs/diagrams/DTOs.md)
+    - [DTOs](/docs/diagrams/dtos.md)
   - Server
     - [Server_Network_Manager](/docs/diagrams/Server_Network_Manager.md)
