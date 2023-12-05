@@ -62,7 +62,7 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1007, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 899, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(68, 68, 68))
         );

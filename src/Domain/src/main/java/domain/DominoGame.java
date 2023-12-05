@@ -181,6 +181,7 @@ public class DominoGame implements Serializable {
         players = mutablePlayers;
 
         this.players.add(0, firstPlayer);
+        this.changeTurn(firstPlayer);
 
     }
 
@@ -194,13 +195,15 @@ public class DominoGame implements Serializable {
      * Cambia el turno actual de los jugadores en el juego.
      *
      * @param player
+     * @return
      */
-    public void changeTurn(final Player player) {
+    public boolean changeTurn(final Player player) {
         if (!this.getCurrentPlayer().equals(player)) {
-            return;
+            return false;
         }
         List<Player> sortedPlayers = this.turnController.changeTurn(players);
         this.players = sortedPlayers;
+        return true;
     }
 
     /**
@@ -271,10 +274,6 @@ public class DominoGame implements Serializable {
      * @param player Jugador que tomará la ficha.
      */
     public void takeFromPool(final Player player) {
-        if (!this.getCurrentPlayer().equals(player)) {
-            return;
-        }
-
         player.addTile((DominoTile) this.pool.takeTile());
     }
 

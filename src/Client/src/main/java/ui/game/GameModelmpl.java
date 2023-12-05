@@ -69,8 +69,8 @@ public class GameModelmpl implements GameModel, GameViewModel {
     }
     
     @Override
-    public void skipTurn(final Player player) {
-        this.dominoGame.changeTurn(player);
+    public boolean skipTurn(final Player player) {
+        return this.dominoGame.changeTurn(player);
     }
 
     // GameViewModel

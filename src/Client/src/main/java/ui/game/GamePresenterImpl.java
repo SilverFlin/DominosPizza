@@ -57,15 +57,20 @@ public class GamePresenterImpl extends BasePresenter implements GamePresenter {
 
     @Override
     public void takeFromPool() {
+        if(!this.model.getDominoGame().getCurrentPlayer().equals(this.myPlayer)){
+            return;
+        }
         this.model.takeFromPool();
         this.view.updateGame((GameViewModel) this.model);
     }
 
     @Override
     public void skipTurn() {
-        this.model.skipTurn(this.myPlayer);
-        this.view.updateGame((GameViewModel) this.model);
-        this.producer.updateGame(Utils.parseDominoGame(this.model.getDominoGame()));
+        if (this.model.skipTurn(this.myPlayer)) {
+            this.view.updateGame((GameViewModel) this.model);
+            this.producer.updateGame(Utils.parseDominoGame(this.model.getDominoGame()));
+        }
+
     }
 
 }
