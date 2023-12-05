@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  * Panel que representa la sala de espera donde los jugadores pueden esperar a
@@ -47,20 +48,14 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         this.isAdmin(viewModel.isAdmin());
 
         for (PlayerDTO p : this.waitingRoom.getPlayers()) {
-            System.out.println("Este jugador esta ready:" + p.isIsReady());
+            // TODO show player ready
         }
-
-        System.out.println("Validacion 1 de iniciar partida:");
-        System.out.println("Soy Admin:" + viewModel.isAdmin() + " y todos estan listos " + viewModel.startGame());
-
-        System.out.println("Validacion 2 de iniciar partida:");
-        System.out.println("Soy Admin:" + viewModel.isAdmin() + " y esta llena la lsista " + (waitingRoom.getPlayers().size() == 4));
 
         if (viewModel.isAdmin() && viewModel.startGame() || viewModel.isAdmin() && waitingRoom.getPlayers().size() == 4) {
             int cantTiles = this.tilesNum.getSelectedIndex() + 2;
             this.waitingRoom.setInitialTiles(cantTiles);
-            System.out.println("PROCEDE A INICIAR LA PARTIDA");
             this.presenter.start(waitingRoom);
+            return;
         }
         setPlayers();
     }
@@ -255,7 +250,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
 
     private void btnLeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeaveActionPerformed
         this.presenter.playerLeaves();
-        this.view.close();
+        SwingUtilities.getWindowAncestor(this).dispose();
 
 
     }//GEN-LAST:event_btnLeaveActionPerformed

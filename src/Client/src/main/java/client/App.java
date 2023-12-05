@@ -2,6 +2,7 @@ package client;
 
 import domain.DominoGame;
 import dtos.AvatarDTO;
+import ui.game.GameViewImpl;
 import interfaces.GameSystemFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,6 @@ import ui.game.GameModelmpl;
 import ui.game.GamePresenter;
 import ui.game.GamePresenterImpl;
 import ui.game.GameView;
-import ui.game.GameViewStub;
 
 /**
  * Clase principal de la aplicación.
@@ -39,9 +39,10 @@ public class App {
 
         // Crear Presentadores
         // GamePresenter
-        GameView gameView = new GameViewStub();
+        GameView gameView = new GameViewImpl();
         GameModel gameModel = new GameModelmpl();
         GamePresenter gamePresenter = new GamePresenterImpl(gameView, gameModel, eventManager);
+        gameView.setPresenter(gamePresenter);
 
         // MainMenuPresenter
         MainMenuView mainMenuView = new MainMenuJFrame();

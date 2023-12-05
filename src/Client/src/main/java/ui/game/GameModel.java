@@ -3,28 +3,23 @@ package ui.game;
 import domain.DominoGame;
 import domain.Player;
 import dtos.DominoDTO;
-import dtos.GameDTO;
+import dtos.PlayerDTO;
+import exceptions.IllegalBoardStateException;
 
 /**
  * Interfaz que define el modelo del juego.
  */
 public interface GameModel {
 
-    
     public void setMyPlayer(final Player myPlayer);
-    /**
-     * Obtiene una ficha de la reserva.
-     *
-     * @return La ficha obtenida de la reserva.
-     */
-    DominoDTO getTileFromPool();
 
     /**
      * Coloca una ficha en el tablero.
      *
      * @param tile La ficha a colocar.
+     * @throws exceptions.IllegalBoardStateException
      */
-    void putTileInBoard(DominoDTO tile);
+    void putTileInBoard(DominoDTO tile) throws IllegalBoardStateException;
 
     /**
      * Toma una ficha de la reserva para el jugador.
@@ -36,8 +31,15 @@ public interface GameModel {
      * Actualiza la información del juego.
      *
      * @param domninoGame
-     * @param game El DTO del juego actualizado.
      */
     void updateGame(DominoGame domninoGame);
+
+    DominoGame getDominoGame();
+
+    boolean skipTurn(Player player);
+    
+    boolean isGameOver();
+
+    public void removePlayer(PlayerDTO player);
 
 }

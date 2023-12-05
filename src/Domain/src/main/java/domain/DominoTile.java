@@ -60,4 +60,43 @@ public class DominoTile implements Serializable {
         this.rightValue = rightValue;
     }
 
+    public void swapValues() {
+        int tempLeftValue = this.leftValue;
+        this.leftValue = this.rightValue;
+        this.rightValue = tempLeftValue;
+    }
+
+    @Override
+    public String toString() {
+        return "DominoTile{" + "leftValue=" + leftValue + ", rightValue=" + rightValue + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + this.leftValue;
+        hash = 89 * hash + this.rightValue;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DominoTile other = (DominoTile) obj;
+
+        if (other.getLeftValue() == this.getLeftValue() && other.getRightValue() == this.getRightValue()) {
+            return true;
+        }
+
+        return other.getLeftValue() == this.getRightValue() && other.getRightValue() == this.getLeftValue();
+    }
+
 }

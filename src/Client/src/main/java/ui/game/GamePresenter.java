@@ -43,4 +43,10 @@ public interface GamePresenter {
      * @param player El jugador que toma la ficha.
      */
     void takeFromPool();
+
+    void skipTurn();
+
+    public void removePlayer(PlayerDTO player);
+
+    public void gameOver(DominoGame dominoGame);
 }

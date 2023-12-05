@@ -62,7 +62,7 @@ public class EventManager implements EventProducer, EventConsumer {
 
     @Override
     public void startGame(WaitingRoomDTO waitingRoom) {
-
+        // Mover a Dominio?
         DominoGame dominoGame = new DominoGame();
         dominoGame.setPlayers(Utils.parsePlayerList(waitingRoom.getPlayers()));
         dominoGame.setTileAmountConfig(waitingRoom.getInitialTiles());
@@ -77,7 +77,9 @@ public class EventManager implements EventProducer, EventConsumer {
                 dominoGame.takeFromPool(player);
             }
         }
-        System.out.println("SE REPARTIERON LAS FICHAS A LOS JUGADORES");
+
+        dominoGame.initTurns();
+
         Event startGameEvent = new StartGameEvent(dominoGame);
         this.connection.sendMessage(startGameEvent);
 
@@ -90,7 +92,16 @@ public class EventManager implements EventProducer, EventConsumer {
      */
     @Override
     public void updateGame(final GameDTO game) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        DominoGame dominoGame = Utils.parseDominoGameDTO(game);
+        Event updateGameEvent = new UpdateGameEvent(dominoGame);
+        this.connection.sendMessage(updateGameEvent);
+    }
+
+    @Override
+    public void gameOver(final GameDTO game) {
+        DominoGame dominoGame = Utils.parseDominoGameDTO(game);
+        Event gameOverEvent = new GameOverEvent(dominoGame);
+        this.connection.sendMessage(gameOverEvent);
     }
 
     /**
@@ -106,6 +117,7 @@ public class EventManager implements EventProducer, EventConsumer {
 
         Player player = Utils.parsePlayerDTO(playerDTO);
         Event playerLeaves = new PlayerLeaveEvent(player);
+
         this.connection.sendMessage(playerLeaves);
     }
 
@@ -133,47 +145,39 @@ public class EventManager implements EventProducer, EventConsumer {
 
         if (event instanceof DuplicatedNameErrorEvent) {
             this.gameSystem.showInvalidNameError();
-        } else if (event instanceof GameOverEvent) {
-            LOG.log(Level.WARNING, "GameOverEvent no implementado");
+        } else if (event instanceof GameOverEvent gameOverEvent) {
+            this.gameSystem.gameOver(gameOverEvent.getPayload());
         } else if (event instanceof PlayerJoinsEvent) {
             LOG.log(Level.WARNING, "PlayerJoinsEvent no implementado");
         } else if (event instanceof PlayerLeaveEvent playerLeaveEvent) {
-            LOG.log(Level.INFO, "------>>PlayerLeaveEvent implementado<<------");
             PlayerDTO playerDTO = Utils.parsePlayer(playerLeaveEvent.getPayload());
             this.gameSystem.removePlayer(playerDTO);
         } else if (event instanceof UpdateGameEvent) {
-            LOG.log(Level.WARNING, "UpdateGameEvent no implementado");
-//            this.gameSystem.updateGame(((UpdateGameEvent) event).getPayload());
+            this.gameSystem.updateGame(((UpdateGameEvent) event).getPayload());
         } else if (event instanceof UpdateWaitingRoomEvent updateWaitingRoomEvent) {
-            LOG.log(Level.INFO, "------>>UpdateWaitingRoomEvent implementado<<------");
             DominoGame dominoGame = updateWaitingRoomEvent.getPayload();
             this.gameSystem.updateWaitingRoom(Utils.parseDominoGameToWaitingRoomDTO(dominoGame));
         } else if (event instanceof PlayerReadyEvent) {
-            LOG.log(Level.WARNING, "PlayerReadyEventimplementado");
             Player player = ((PlayerReadyEvent) event).getPayload();
             PlayerDTO playerDTO = Utils.parsePlayer(player);
             this.gameSystem.setPlayerReady(playerDTO);
         } else if (event instanceof StartGameEvent) {
             DominoGame dominoGame = ((StartGameEvent) event).getPayload();
-            System.out.println("StartGameEvent recivido");
             this.gameSystem.startGame(dominoGame);
         }
 
     }
 
-    public static List<PoolTile> createAllTiles() {
+    private static List<PoolTile> createAllTiles() {
+        // TODO mover  a dominio
         List<PoolTile> tiles = new ArrayList<>();
 
         for (int i = 0; i <= 6; i++) {
             for (int j = i; j <= 6; j++) {
-                PoolTile tile = new PoolTile(i, j);
-                tiles.add(tile);
-                if (i != j) {
-                    PoolTile reverseTile = new PoolTile(j, i);
-                    tiles.add(reverseTile);
-                }
+                tiles.add(new PoolTile(i, j));
             }
         }
+
         return tiles;
     }
 

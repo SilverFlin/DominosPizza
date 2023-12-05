@@ -1,9 +1,13 @@
 package domain;
 
+import exceptions.InvalidMoveException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase que representa un juego de dominó.
@@ -126,13 +130,62 @@ public class DominoGame implements Serializable {
     /**
      * Baraja aleatoriamente la lista de jugadores en el juego.
      */
-    public void shufflePlayers() {
+    public void initTurns() {
+        // Checa quien puede poner mula
+        // Lo pone primero, shuffle a los demás
+
+        PlayerTile highestDoublet = null;
+        Player firstPlayer = null;
+
+        for (Player player : this.players) {
+            List<PlayerTile> playerTiles = player.getTilesInHand();
+            for (PlayerTile playerTile : playerTiles) {
+                boolean isDoublet = playerTile.getLeftValue() == playerTile.getRightValue();
+
+                if (highestDoublet == null && isDoublet) {
+                    highestDoublet = playerTile;
+                    firstPlayer = player;
+                    continue;
+                }
+
+                if (highestDoublet == null) {
+                    continue;
+                }
+
+                boolean isHigher = highestDoublet.getLeftValue() < playerTile.getLeftValue();
+                if (isDoublet && isHigher) {
+                    highestDoublet = playerTile;
+                    firstPlayer = player;
+                }
+            }
+
+        }
+
+        if (firstPlayer == null || highestDoublet == null) {
+//            takeAllFromPool
+            System.out.println("takeAllFromPool not implemented");
+//            this.initTurns();
+            return;
+        }
+        firstPlayer.removeTile(highestDoublet);
+
+        try {
+            this.board.putTile((DominoTile) highestDoublet);
+        } catch (InvalidMoveException ex) {
+            Logger.getLogger(DominoGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.players.remove(firstPlayer);
+
         List<Player> mutablePlayers = new ArrayList<>(players);
         Collections.shuffle(mutablePlayers);
         players = mutablePlayers;
+
+        this.players.add(0, firstPlayer);
+        this.changeTurn(firstPlayer);
+
     }
-    
-    public void shuffleTiles(){
+
+    public void shuffleTiles() {
         List<PoolTile> poolTiles = this.pool.getDominoes();
         Collections.shuffle(poolTiles);
         this.pool.setDominoes(poolTiles);
@@ -140,10 +193,17 @@ public class DominoGame implements Serializable {
 
     /**
      * Cambia el turno actual de los jugadores en el juego.
+     *
+     * @param player
+     * @return
      */
-    public void changeTurn() {
+    public boolean changeTurn(final Player player) {
+        if (!this.getCurrentPlayer().equals(player)) {
+            return false;
+        }
         List<Player> sortedPlayers = this.turnController.changeTurn(players);
         this.players = sortedPlayers;
+        return true;
     }
 
     /**
@@ -199,10 +259,13 @@ public class DominoGame implements Serializable {
      * Coloca una ficha en el tablero del juego.
      *
      * @param tile Ficha de dominó que se colocará en el tablero.
+     * @throws exceptions.InvalidMoveException
      */
-    public void putTileBoard(final DominoTile tile) {
+    public void putTileBoard(final DominoTile tile) throws InvalidMoveException {
         BoardTile boardTile = new BoardTile(tile.getLeftValue(), tile.getRightValue());
         this.board.putTile(boardTile);
+        List<Player> newTurnList = this.turnController.changeTurn(this.players);
+        this.players = newTurnList;
     }
 
     /**
@@ -229,4 +292,44 @@ public class DominoGame implements Serializable {
             this.isReady = false;
         }
     }
+
+    public void updatePlayer(final Player myPlayer) {
+        for (Player player : players) {
+            if (player.equals(myPlayer)) {
+                player.setTilesInHand(myPlayer.getTilesInHand());
+                break;
+            }
+        }
+    }
+
+    public boolean isGameOver() {
+        if (this.players.size() == 1) {
+            return true;
+        }
+
+        for (Player player : this.players) {
+            if (player.getTilesInHand().isEmpty()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public SortedMap<Player, Integer> getGameResume() {
+        // TODO calculate points
+        // TODO create Map
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void removePlayer(final Player player) {
+        if (this.players.remove(player)) {
+            List<PlayerTile> playerTiles = player.getTilesInHand();
+            for (PlayerTile playerTile : playerTiles) {
+                this.pool.getDominoes().add(new PoolTile(playerTile.getLeftValue(), playerTile.getRightValue()));
+            }
+        }
+
+    }
+
 }

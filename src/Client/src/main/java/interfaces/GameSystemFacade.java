@@ -35,7 +35,7 @@ public interface GameSystemFacade {
     /**
      * Actualiza el juego con los datos proporcionados.
      *
-     * @param game Los datos para actualizar el juego.
+     * @param dominoGame
      * @throws MissingGamePresenterException si no se ha establecido el
      * GamePresenter.
      */
@@ -80,4 +80,6 @@ public interface GameSystemFacade {
     void setPlayerReady(final PlayerDTO player);
     
     void startGame(final DominoGame dominoGame);
+
+    public void gameOver(final DominoGame dominoGame);
 }

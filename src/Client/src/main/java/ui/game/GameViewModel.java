@@ -4,6 +4,7 @@ import dtos.DominoDTO;
 import dtos.OpponentDTO;
 import java.util.List;
 import dtos.PlayerDTO;
+import java.util.SortedMap;
 
 /**
  * Interfaz que define el modelo de vista del juego.
@@ -37,5 +38,9 @@ public interface GameViewModel {
      * @return La lista de DTO de jugadores en la sala.
      */
     List<OpponentDTO> getRoom();
+
+    PlayerDTO getActivePlayer();
+
+    SortedMap<PlayerDTO, Integer> getGameResume();
 
 }

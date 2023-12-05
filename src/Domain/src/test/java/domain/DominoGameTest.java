@@ -1,5 +1,6 @@
 package domain;
 
+import exceptions.InvalidMoveException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -156,8 +157,7 @@ public class DominoGameTest {
         instance.setPlayers(List.of());
 
     }
-    */
-
+     */
     /**
      * Test of changeTurn method, of class DominoGame.
      */
@@ -183,7 +183,7 @@ public class DominoGameTest {
         List<Player> originalOrder = List.copyOf(instance.getPlayers());
 
         // Llamar al método changeTurn
-        instance.changeTurn();
+        instance.changeTurn(player1);
 
         // Verificar que la lista de jugadores después de llamar a este método sea diferente a la original
         assertNotEquals(originalOrder, instance.getPlayers());
@@ -217,7 +217,7 @@ public class DominoGameTest {
         Player originalActivePlayer = instance.getCurrentPlayer();
 
         // Llamar al método changeTurn para cambiar el jugador activo
-        instance.changeTurn();
+        instance.changeTurn(player1);
 
         // Verificar que el jugador activo después de llamar a este método sea diferente al original
         assertNotEquals(originalActivePlayer, instance.getCurrentPlayer());
@@ -284,15 +284,18 @@ public class DominoGameTest {
 
     /**
      * Test of putTileBoard method, of class DominoGame.
+     *
+     * @throws exceptions.InvalidMoveException
      */
     @Test
-    public void testPutTileBoard() {
+    public void testPutTileBoard() throws InvalidMoveException {
         System.out.println("putTileBoard");
         DominoTile tile = new DominoTile(1, 2);
         DominoGame instance = new DominoGame();
+        instance.addPlayer(new Player());
         instance.setBoard(new Board());
         instance.putTileBoard(tile);
-        BoardTile boardTile = instance.getBoard().getTiles().get(0);
+        BoardTile boardTile = instance.getBoard().getTiles().getFirst();
         assertEquals(tile.getLeftValue(), boardTile.getLeftValue());
         assertEquals(tile.getRightValue(), boardTile.getRightValue());
     }
@@ -309,5 +312,5 @@ public class DominoGameTest {
         instance.takeFromPool(player);
         assertEquals(1, player.getTilesInHand().size());
     }
-*/
+     */
 }

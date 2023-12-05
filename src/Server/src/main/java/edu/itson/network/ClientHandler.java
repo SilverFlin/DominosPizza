@@ -66,12 +66,11 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
             } else if (event instanceof PlayerLeaveEvent evt) {
                 this.handlePlayerLeaveEvent(evt);
                 return;
-            } else if (event instanceof StartGameEvent evt) {
-                this.handleStartGameEvent(evt);
-                return;
-            } else if (event instanceof PlayerReadyEvent evt) {
-                this.handlePlayerReadyEvent(evt);
-                return;
+            }
+
+            if (event instanceof StartGameEvent || event instanceof PlayerReadyEvent) {
+                output.writeObject(event);
+                output.flush();
             }
 
             if (this.isSameProducer(event)) {
@@ -109,14 +108,7 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
                     this.publishEvent(message);
                 }
             } catch (IOException | ClassNotFoundException ex) {
-                LOG.log(Level.SEVERE, "Error processing client request: " + ex.getMessage());
-                try {
-                    this.clientSocket.close();
-                    this.eventBus.unsubscribe(this);
-                    LOG.log(Level.INFO, "Client socket closed");
-                } catch (IOException ex1) {
-                    LOG.log(Level.SEVERE, "Error closing the client socket: " + ex.getMessage());
-                }
+                this.closeConnection();
             }
 
         }
@@ -130,9 +122,8 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
      * contrario.
      */
     private boolean isSameProducer(final Event event) {
-        return event != null
-                && event.getSenderAddress()
-                        .equals(this.clientSocket.getRemoteSocketAddress().toString());
+        String remoteSocketAddress = this.clientSocket.getRemoteSocketAddress().toString();
+        return event != null && remoteSocketAddress.equals(event.getSenderAddress());
     }
 
     /**
@@ -158,18 +149,6 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
         output.flush();
     }
 
-    private void handleStartGameEvent(final StartGameEvent evt) throws IOException {
-        output.writeObject(evt);
-        output.flush();
-    }
-
-    private void handlePlayerReadyEvent(final PlayerReadyEvent evt) throws IOException {
-
-        output.writeObject(evt);
-        output.flush();
-
-    }
-
     /**
      * Maneja el evento de salir de un jugador.
      *
@@ -193,6 +172,20 @@ public class ClientHandler implements EventConsumer, EventProducer, Runnable {
         this.clientSocket.close();
         LOG.log(Level.INFO, "Client socket closed");
 
+    }
+
+    private void closeConnection() {
+        try {
+            Player myPlayer = Server.getPlayers().get(this.idClient);
+            Event playerLeaveEvent = new PlayerLeaveEvent(myPlayer);
+            this.eventBus.sendEvent(playerLeaveEvent);
+            this.clientSocket.close();
+            Server.removeClient(this);
+            this.eventBus.unsubscribe(this);
+            LOG.log(Level.INFO, "Client socket closed");
+        } catch (IOException ex) {
+            LOG.log(Level.SEVERE, "Error closing the client socket: " + ex.getMessage());
+        }
     }
 
 }

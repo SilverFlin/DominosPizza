@@ -56,4 +56,10 @@ public class PlayerDTO {
     public void setIsReady(boolean isReady) {
         this.isReady = isReady;
     }
+
+    @Override
+    public String toString() {
+        return "PlayerDTO{" + "tiles=" + tiles + ", name=" + this.avatar.getNombre() + '}';
+    }
+
 }

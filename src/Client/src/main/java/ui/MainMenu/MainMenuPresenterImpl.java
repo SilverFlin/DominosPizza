@@ -100,34 +100,16 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     @Override
     public void updateWaitingRoom(WaitingRoomDTO waitingRoom) {
         this.waitingRoom = waitingRoom;
-        for(PlayerDTO p : waitingRoom.getPlayers()){
+        for (PlayerDTO p : waitingRoom.getPlayers()) {
             if (p.getAvatar().getNombre().equalsIgnoreCase(myPlayer.getAvatar().getNombre())) {
-                System.out.println("SE ENCONTRO EL ADMIN");
                 myPlayer = p;
                 break;
             }
         }
-        System.out.println("My jugador es admin:" + this.myPlayer.isIsAdmin());
         this.model.configurateWaitingRoom(myPlayer, waitingRoom);
         this.view.showLobbyPanel((MainMenuViewModel) model);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    /*
-    @Override
-    public void newPlayerHasJoined(WaitingRoomDTO waitingRoom) {
-        this.waitingRoom = waitingRoom;
-        model.setWaitingRoom(waitingRoom);
-        if (model.isReady()) {
-            gamePresenter.loadBoard(waitingRoom, myPlayer);
-            view.close();
-        } else {
-            view.updateWaitingRoom((MainMenuViewModel) this.model);
-        }
-    }
-     */
     /**
      * {@inheritDoc}
      */
@@ -156,7 +138,6 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
     /**
      * Pone al jugador en estado de Ready
      *
-     * @param player Jugador a poner en Ready
      */
     @Override
     public void setMyPlayerReady() {
@@ -168,17 +149,15 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
 
     @Override
     public void setPlayerReady(PlayerDTO player) {
-
         model.setPlayerReady(player);
         this.view.updateWaitingRoom((MainMenuViewModel) this.model);
-
     }
 
     @Override
     public void startGame(DominoGame dominoGame) {
 
         Player player = Utils.parsePlayerDTO(myPlayer);
-        
+
         //Busco a mi jugador para pasar referencia de el al Juego
         for (Player p : dominoGame.getPlayers()) {
             if (p.equals(player)) {
@@ -187,7 +166,6 @@ public class MainMenuPresenterImpl extends BasePresenter implements MainMenuPres
                 break;
             }
         }
-        System.out.println("SURGIO UN ERROR EN EL STARTGAME DE PRESENTER");
 
     }
 }

@@ -55,7 +55,6 @@ public interface MainMenuPresenter {
     /**
      * Notifica al presentador que se ha iniciado el juego.
      * @param waitingRoomDTO
-     * @param cantTiles
      */
     public void start(WaitingRoomDTO waitingRoomDTO);
 

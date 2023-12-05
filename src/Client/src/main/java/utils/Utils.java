@@ -4,15 +4,21 @@
 package utils;
 
 import domain.Avatar;
+import domain.Board;
+import domain.BoardTile;
 import domain.DominoGame;
 import domain.DominoTile;
 import domain.Player;
 import domain.PlayerTile;
+import domain.Pool;
+import domain.PoolTile;
 import dtos.AvatarDTO;
 import dtos.DominoDTO;
+import dtos.GameDTO;
 import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,27 +54,32 @@ public class Utils {
     public static List<PlayerDTO> parsePlayerDTOList(final List<Player> players) {
         List<PlayerDTO> parsedPlayers = new LinkedList<>();
         for (Player player : players) {
-            PlayerDTO p = new PlayerDTO();
-            p.setAvatar(new AvatarDTO(player.getAvatar().getName(), player.getAvatar().getImage()));
-            p.setIsAdmin(player.isAdmin());
-            p.setIsReady(player.isReady());
-            parsedPlayers.add(p);
+            PlayerDTO playerDTO = new PlayerDTO();
+            playerDTO.setAvatar(new AvatarDTO(player.getAvatar().getName(), player.getAvatar().getImage()));
+            playerDTO.setIsAdmin(player.isAdmin());
+            playerDTO.setIsReady(player.isReady());
+            if (player.getTilesInHand() != null) {
+                playerDTO.setTiles(createDominoDTOlist(player.getTilesInHand()));
+            }
+            parsedPlayers.add(playerDTO);
         }
         return parsedPlayers;
     }
-    
-    public static List<Player> parsePlayerList(final List<PlayerDTO> players){
+
+    public static List<Player> parsePlayerList(final List<PlayerDTO> players) {
         List<Player> parsedPlayers = new LinkedList<>();
-        
-        for(PlayerDTO p : players){
-        
+
+        for (PlayerDTO playerDTO : players) {
             Player player = new Player();
-            player.setAvatar(new Avatar(p.getAvatar().getNombre(), p.getAvatar().getImage()));
-            player.setIsAdmin(p.isIsAdmin());
+            player.setAvatar(new Avatar(playerDTO.getAvatar().getNombre(), playerDTO.getAvatar().getImage()));
+            player.setIsAdmin(playerDTO.isIsAdmin());
+            if (playerDTO.getTiles() != null) {
+                player.setTilesInHand((List<PlayerTile>) createPlayerTilesList(playerDTO.getTiles()));
+            }
             parsedPlayers.add(player);
         }
         return parsedPlayers;
-        
+
     }
 
     /**
@@ -130,4 +141,86 @@ public class Utils {
 
         return playerDTO;
     }
+
+    public static DominoGame parseDominoGameDTO(final GameDTO game) {
+        DominoGame dominoGame = new DominoGame();
+
+        List<DominoDTO> poolTilesDTO = game.getPool();
+        List<PoolTile> poolTiles = createPoolTilesList(poolTilesDTO);
+        Pool pool = new Pool();
+        pool.setDominoes(poolTiles);
+        dominoGame.setPool(pool);
+
+        List<DominoDTO> boardTilesDTO = game.getBoard();
+        Deque<BoardTile> boardTiles = createBoardTilesList(boardTilesDTO);
+        Board board = new Board();
+        board.setTiles(boardTiles);
+        dominoGame.setBoard(board);
+
+        List<Player> players = Utils.parsePlayerList(game.getPlayers());
+        dominoGame.setPlayers(players);
+
+        int initialTiles = game.getInitialTiles();
+        dominoGame.setTileAmountConfig(initialTiles);
+
+        return dominoGame;
+
+    }
+
+    public static GameDTO parseDominoGame(final DominoGame dominoGame) {
+
+        List<PoolTile> poolTiles = dominoGame.getPool().getDominoes();
+        List<DominoDTO> poolTilesDTO = createDominoDTOlist(poolTiles);
+
+        Deque<BoardTile> boardTiles = dominoGame.getBoard().getTiles();
+        List<DominoDTO> boardTilesDTO = createBoardDTOlist(boardTiles);
+
+        List<Player> players = dominoGame.getPlayers();
+        List<PlayerDTO> playersDTO = Utils.parsePlayerDTOList(players);
+
+        int initialTiles = dominoGame.getConfig().getTilesPerPlayer();
+
+        return new GameDTO(poolTilesDTO, playersDTO, boardTilesDTO, initialTiles);
+    }
+
+    private static List<DominoDTO> createBoardDTOlist(final Deque<BoardTile> tiles) {
+        List<DominoDTO> tilesDTO = new LinkedList<>();
+        for (DominoTile tile : tiles) {
+            tilesDTO.add(new DominoDTO(tile.getLeftValue(), tile.getRightValue()));
+        }
+        return tilesDTO;
+    }
+
+    private static List<DominoDTO> createDominoDTOlist(final List<? extends DominoTile> tiles) {
+        List<DominoDTO> tilesDTO = new ArrayList<>();
+        for (DominoTile tile : tiles) {
+            tilesDTO.add(new DominoDTO(tile.getLeftValue(), tile.getRightValue()));
+        }
+        return tilesDTO;
+    }
+
+    private static Deque<BoardTile> createBoardTilesList(final List<DominoDTO> tiles) {
+        Deque<BoardTile> dominoTiles = new LinkedList<>();
+        for (DominoDTO tile : tiles) {
+            dominoTiles.add(new BoardTile(tile.getLeftValue(), tile.getRightValue()));
+        }
+        return dominoTiles;
+    }
+
+    private static List<PoolTile> createPoolTilesList(final List<DominoDTO> tiles) {
+        List<PoolTile> dominoTiles = new ArrayList<>();
+        for (DominoDTO tile : tiles) {
+            dominoTiles.add(new PoolTile(tile.getLeftValue(), tile.getRightValue()));
+        }
+        return dominoTiles;
+    }
+
+    private static List<PlayerTile> createPlayerTilesList(final List<DominoDTO> tiles) {
+        List<PlayerTile> dominoTiles = new ArrayList<>();
+        for (DominoDTO tile : tiles) {
+            dominoTiles.add(new PlayerTile(tile.getLeftValue(), tile.getRightValue()));
+        }
+        return dominoTiles;
+    }
+
 }

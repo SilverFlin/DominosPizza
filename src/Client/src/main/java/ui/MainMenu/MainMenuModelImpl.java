@@ -84,20 +84,6 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
     /**
      * {@inheritDoc}
      */
-    /*
-
-    @Override
-    public void setPlayerAdmin() {
-        if (this.dominoGame.getPlayers().size() == 1) {
-            this.myPlayer.setIsAdmin(true);
-        } else {
-            this.myPlayer.setIsAdmin(false);
-        }
-    }*/
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void setMyPlayer(final PlayerDTO player) {
         this.myPlayer = new Player();
@@ -190,7 +176,6 @@ public class MainMenuModelImpl implements MainMenuModel, MainMenuViewModel {
 
             if (p.equals(playerParsed)) {
                 p.setReady();
-                System.out.println("---------SE ENCONTRO AL JUGADOR QUE SE PUSO LISTO" + p.isReady());
                 break;
             }
 
