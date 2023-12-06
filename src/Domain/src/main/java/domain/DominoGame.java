@@ -4,8 +4,12 @@ import exceptions.InvalidMoveException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -162,9 +166,10 @@ public class DominoGame implements Serializable {
         }
 
         if (firstPlayer == null || highestDoublet == null) {
-//            takeAllFromPool
-            System.out.println("takeAllFromPool not implemented");
-//            this.initTurns();
+            for (Player player : this.players) {
+                this.takeFromPool(player);
+            }
+            this.initTurns();
             return;
         }
         firstPlayer.removeTile(highestDoublet);
@@ -329,12 +334,6 @@ public class DominoGame implements Serializable {
         return true;
     }
 
-    public SortedMap<Player, Integer> getGameResume() {
-        // TODO calculate points
-        // TODO create Map
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     public void removePlayer(final Player player) {
         if (this.players.remove(player)) {
             List<PlayerTile> playerTiles = player.getTilesInHand();
@@ -343,6 +342,37 @@ public class DominoGame implements Serializable {
             }
         }
 
+    }
+
+    public SortedMap<Player, Integer> getGameResume() {
+        Map<Player, Integer> playerPoints = calculatePlayerPoints();
+        SortedMap<Player, Integer> sortedGameResume = new TreeMap<>(Comparator.comparingInt(playerPoints::get));
+
+        sortedGameResume.putAll(playerPoints);
+
+        return sortedGameResume;
+
+    }
+
+    private Map<Player, Integer> calculatePlayerPoints() {
+        Map<Player, Integer> playerPoints = new HashMap<>();
+
+        for (Player player : players) {
+            int totalPoints = calculateTotalPoints(player);
+            playerPoints.put(player, totalPoints);
+        }
+
+        return playerPoints;
+    }
+
+    private int calculateTotalPoints(final Player player) {
+        int totalPoints = 0;
+        for (PlayerTile playerTile : player.getTilesInHand()) {
+            totalPoints += playerTile.getLeftValue();
+            totalPoints += playerTile.getRightValue();
+        }
+
+        return totalPoints;
     }
 
 }

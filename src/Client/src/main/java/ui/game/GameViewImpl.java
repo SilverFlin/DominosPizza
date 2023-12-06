@@ -127,6 +127,6 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
 
     @Override
     public void showGameOver(final GameViewModel gameViewModel) {
-        LOG.info("GameOver");
+        LOG.info(gameViewModel.getGameResume().toString());
     }
 }
