@@ -3,7 +3,7 @@ package ui.MainMenu;
 import dtos.PlayerDTO;
 import dtos.AvatarDTO;
 import java.util.List;
-
+import javax.swing.ImageIcon;
 /**
  *
  */
@@ -20,6 +20,12 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
      */
     public PlayerSetupPanel() {
         initComponents();
+            btnAvatar1.setIcon(new ImageIcon("src\\avatares\\Luis.jpg"));
+       btnAvatar2.setIcon(new ImageIcon("src\\avatares\\jose.jpeg"));
+        btnAvatar3.setIcon(new ImageIcon("src\\avatares\\emir.jpeg"));
+        btnAvatar4.setIcon(new ImageIcon("src\\avatares\\toledo.jpeg"));
+        btnAvatar5.setIcon(new ImageIcon("src\\avatares\\victor.jpeg"));
+       
     }
 
     public void setView(MainMenuView view) {
@@ -84,7 +90,6 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
 
         btnAvatar1.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar1.setForeground(new java.awt.Color(0, 153, 153));
-        btnAvatar1.setText("AvatarsAASD");
         btnAvatar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar1.setBorderPainted(false);
         btnAvatar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -97,7 +102,6 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
 
         btnAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar2.setForeground(new java.awt.Color(0, 153, 153));
-        btnAvatar2.setText("AvatarsAASD");
         btnAvatar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar2.setBorderPainted(false);
         btnAvatar2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -110,7 +114,6 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
 
         btnAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar3.setForeground(new java.awt.Color(0, 153, 153));
-        btnAvatar3.setText("AvatarsAASD");
         btnAvatar3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar3.setBorderPainted(false);
         btnAvatar3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -123,7 +126,6 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
 
         btnAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar4.setForeground(new java.awt.Color(0, 153, 153));
-        btnAvatar4.setText("AvatarsAASD");
         btnAvatar4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar4.setBorderPainted(false);
         btnAvatar4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
