@@ -12,6 +12,7 @@ public final class DominoGameGraphic extends GraphicComposite {
     public DominoGameGraphic() {
         components.add(new BoardGraphic());
         components.add(new PlayerHandGraphic());
+        components.add(new ScoreBoard());
     }
 
     public DominoGameGraphic(final PlayerHandGraphic ph, final BoardGraphic bg) {

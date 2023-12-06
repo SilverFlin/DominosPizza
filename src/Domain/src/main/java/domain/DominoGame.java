@@ -306,14 +306,27 @@ public class DominoGame implements Serializable {
         if (this.players.size() == 1) {
             return true;
         }
-
         for (Player player : this.players) {
             if (player.getTilesInHand().isEmpty()) {
                 return true;
             }
         }
+        BoardTile btF = this.board.getTiles().getFirst();
+        BoardTile btL = this.board.getTiles().getLast();
+        for (Player player : this.players) {
+            for (PlayerTile playerTile : player.getTilesInHand()) {
+                int left = playerTile.getLeftValue();
+                int right = playerTile.getRightValue();
+                if (left == btF.getLeftValue() || left == btF.getRightValue()
+                        || left == btL.getLeftValue() || left == btL.getRightValue()
+                        || right == btF.getLeftValue() || right == btF.getRightValue()
+                        || right == btL.getLeftValue() || right == btL.getRightValue()) {
+                    return false;
+                }
 
-        return false;
+            }
+        }
+        return true;
     }
 
     public SortedMap<Player, Integer> getGameResume() {
