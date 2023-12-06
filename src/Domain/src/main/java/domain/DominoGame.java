@@ -321,7 +321,6 @@ public class DominoGame implements Serializable {
         return false;
     }
 
-
     public void removePlayer(final Player player) {
         if (this.players.remove(player)) {
             List<PlayerTile> playerTiles = player.getTilesInHand();
@@ -331,8 +330,7 @@ public class DominoGame implements Serializable {
         }
 
     }
-    
-    
+
     public SortedMap<Player, Integer> getGameResume() {
         Map<Player, Integer> playerPoints = calculatePlayerPoints();
         SortedMap<Player, Integer> sortedGameResume = new TreeMap<>(Comparator.comparingInt(playerPoints::get));

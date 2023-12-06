@@ -12,6 +12,7 @@ import java.awt.geom.Rectangle2D;
 public class BoardGraphic extends GraphicComposite {
 
     Rectangle2D.Double boardRectangle;
+    int currentLength = 0;
 
     double center = 620.0;
     double startXCoord = 620.0;
@@ -29,7 +30,8 @@ public class BoardGraphic extends GraphicComposite {
         g2.setPaint(Color.white);
         g2.fill(boardRectangle);
 
-        dibujaTren();
+//        dibujaTren();
+        this.updatePositions();
         for (GraphicComponent component : components) {
             component.draw(g2);
         }
@@ -37,15 +39,7 @@ public class BoardGraphic extends GraphicComposite {
 
     @Override
     public void add(final GraphicComponent graphicComponent) {
-        BoardTileGraphic boardTileGraphic = (BoardTileGraphic) graphicComponent;
-
-        this.endXCoord += boardTileGraphic.rec.getWidth();
-        if (boardTileGraphic.leftNum == boardTileGraphic.rightNum) {
-            boardTileGraphic.setP(new Point((int) (this.endXCoord + boardTileGraphic.rec.getWidth()), (int) Puntero.gamePanel.getHeight() / 2 - 40));
-        } else {
-            boardTileGraphic.setP(new Point((int) this.endXCoord, (int) Puntero.gamePanel.getHeight() / 2 - 20));
-        }
-        super.add(boardTileGraphic);
+        super.add(graphicComponent);
     }
 
     private void dibujaTren() {
@@ -59,6 +53,53 @@ public class BoardGraphic extends GraphicComposite {
         this.center = boardTileGraphic.getP().getX();
         this.startXCoord = this.center;
         this.endXCoord = this.center - boardTileGraphic.rec.getWidth();
+    }
+
+    private void updatePositions() {
+        if (this.components.size() < 1) {
+            return;
+        }
+
+        this.calculateLength();
+
+        int reposition = (int) ((Puntero.gamePanel.getBounds().getWidth() - this.currentLength) / 2);
+//        int reposition = 0;
+        this.currentLength = reposition; // add last component widht?
+
+        for (GraphicComponent component : components) {
+            BoardTileGraphic boardTileGraphic = (BoardTileGraphic) component;
+            boolean isDoublet = boardTileGraphic.leftNum == boardTileGraphic.rightNum;
+
+            int x;
+            int y;
+            if (isDoublet) {
+                x = (int) (this.currentLength + (boardTileGraphic.rec.getBounds().getWidth() * 2));
+                y = (int) Puntero.gamePanel.getBounds().getHeight() / 2 - 40;
+            } else {
+                x = (int) (this.currentLength + boardTileGraphic.rec.getWidth());
+                y = (int) (Puntero.gamePanel.getBounds().getHeight() / 2 - 20);
+            }
+            this.currentLength += boardTileGraphic.rec.getWidth();
+            boardTileGraphic.setP(new Point(x, y));
+
+        }
+
+    }
+
+    private void calculateLength() {
+        this.currentLength = 0;
+        for (GraphicComponent component : components) {
+            BoardTileGraphic boardTileGraphic = (BoardTileGraphic) component;
+            boolean isDoublet = boardTileGraphic.leftNum == boardTileGraphic.rightNum;
+            if (isDoublet) {
+                this.currentLength += boardTileGraphic.rec.getBounds().getWidth() * 2;
+            } else {
+                this.currentLength += boardTileGraphic.rec.getBounds().getWidth();
+            }
+
+        }
+
+        this.currentLength -= 40;
     }
 
 }
