@@ -1,5 +1,6 @@
 package ui.game;
 
+import dtos.AvatarDTO;
 import dtos.DominoDTO;
 import dtos.OpponentDTO;
 import java.util.List;
@@ -41,6 +42,6 @@ public interface GameViewModel {
 
     PlayerDTO getActivePlayer();
 
-    SortedMap<PlayerDTO, Integer> getGameResume();
+    SortedMap<AvatarDTO, Integer> getGameResume();
 
 }

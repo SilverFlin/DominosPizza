@@ -126,10 +126,9 @@ public class GameModelmpl implements GameModel, GameViewModel {
     }
 
     @Override
-    public SortedMap<PlayerDTO, Integer> getGameResume() {
+    public SortedMap<AvatarDTO, Integer> getGameResume() {
         SortedMap<Player, Integer> resume = this.dominoGame.getGameResume();
-        return null;
-
+        return Utils.parseGameResume(resume);
     }
 
     @Override

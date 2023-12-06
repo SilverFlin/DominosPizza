@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * Clase abstracta que proporciona utilidades para convertir entre objetos del
@@ -221,6 +224,20 @@ public class Utils {
             dominoTiles.add(new PlayerTile(tile.getLeftValue(), tile.getRightValue()));
         }
         return dominoTiles;
+    }
+
+    public static SortedMap<AvatarDTO, Integer> parseGameResume(final SortedMap<Player, Integer> resume) {
+          SortedMap<AvatarDTO, Integer> parsedGameResume = new TreeMap<>();
+
+        for (Map.Entry<Player, Integer> entry : resume.entrySet()) {
+            Player player = entry.getKey();
+            AvatarDTO playerName = new AvatarDTO(player.getAvatar().getName(), player.getAvatar().getImage());
+            int score = entry.getValue();
+
+            parsedGameResume.put(playerName, score);
+        }
+
+        return parsedGameResume;
     }
 
 }

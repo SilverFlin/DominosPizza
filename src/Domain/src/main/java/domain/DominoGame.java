@@ -4,8 +4,12 @@ import exceptions.InvalidMoveException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +20,7 @@ import java.util.logging.Logger;
  * de objetos DominoGame.
  */
 public class DominoGame implements Serializable {
-    
+
     private boolean isReady;
     private Pool pool;
     private Board board;
@@ -136,31 +140,31 @@ public class DominoGame implements Serializable {
 
         PlayerTile highestDoublet = null;
         Player firstPlayer = null;
-        
+
         for (Player player : this.players) {
             List<PlayerTile> playerTiles = player.getTilesInHand();
             for (PlayerTile playerTile : playerTiles) {
                 boolean isDoublet = playerTile.getLeftValue() == playerTile.getRightValue();
-                
+
                 if (highestDoublet == null && isDoublet) {
                     highestDoublet = playerTile;
                     firstPlayer = player;
                     continue;
                 }
-                
+
                 if (highestDoublet == null) {
                     continue;
                 }
-                
+
                 boolean isHigher = highestDoublet.getLeftValue() < playerTile.getLeftValue();
                 if (isDoublet && isHigher) {
                     highestDoublet = playerTile;
                     firstPlayer = player;
                 }
             }
-            
+
         }
-        
+
         if (firstPlayer == null || highestDoublet == null) {
             for (Player player : this.players) {
                 this.takeFromPool(player);
@@ -169,23 +173,23 @@ public class DominoGame implements Serializable {
             return;
         }
         firstPlayer.removeTile(highestDoublet);
-        
+
         try {
             this.board.putTile((DominoTile) highestDoublet);
         } catch (InvalidMoveException ex) {
             Logger.getLogger(DominoGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.players.remove(firstPlayer);
-        
+
         List<Player> mutablePlayers = new ArrayList<>(players);
         Collections.shuffle(mutablePlayers);
         players = mutablePlayers;
-        
+
         this.players.add(0, firstPlayer);
         this.changeTurn(firstPlayer);
-        
+
     }
-    
+
     public void shuffleTiles() {
         List<PoolTile> poolTiles = this.pool.getDominoes();
         Collections.shuffle(poolTiles);
@@ -293,7 +297,7 @@ public class DominoGame implements Serializable {
             this.isReady = false;
         }
     }
-    
+
     public void updatePlayer(final Player myPlayer) {
         for (Player player : players) {
             if (player.equals(myPlayer)) {
@@ -302,27 +306,22 @@ public class DominoGame implements Serializable {
             }
         }
     }
-    
+
     public boolean isGameOver() {
         if (this.players.size() == 1) {
             return true;
         }
-        
+
         for (Player player : this.players) {
             if (player.getTilesInHand().isEmpty()) {
                 return true;
             }
         }
-        
+
         return false;
     }
-    
-    public SortedMap<Player, Integer> getGameResume() {
-        // TODO calculate points
-        // TODO create Map
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
+
+
     public void removePlayer(final Player player) {
         if (this.players.remove(player)) {
             List<PlayerTile> playerTiles = player.getTilesInHand();
@@ -330,7 +329,39 @@ public class DominoGame implements Serializable {
                 this.pool.getDominoes().add(new PoolTile(playerTile.getLeftValue(), playerTile.getRightValue()));
             }
         }
-        
+
     }
     
+    
+    public SortedMap<Player, Integer> getGameResume() {
+        Map<Player, Integer> playerPoints = calculatePlayerPoints();
+        SortedMap<Player, Integer> sortedGameResume = new TreeMap<>(Comparator.comparingInt(playerPoints::get));
+
+        sortedGameResume.putAll(playerPoints);
+
+        return sortedGameResume;
+
+    }
+
+    private Map<Player, Integer> calculatePlayerPoints() {
+        Map<Player, Integer> playerPoints = new HashMap<>();
+
+        for (Player player : players) {
+            int totalPoints = calculateTotalPoints(player);
+            playerPoints.put(player, totalPoints);
+        }
+
+        return playerPoints;
+    }
+
+    private int calculateTotalPoints(final Player player) {
+        int totalPoints = 0;
+        for (PlayerTile playerTile : player.getTilesInHand()) {
+            totalPoints += playerTile.getLeftValue();
+            totalPoints += playerTile.getRightValue();
+        }
+
+        return totalPoints;
+    }
+
 }
