@@ -4,6 +4,7 @@ import dtos.PlayerDTO;
 import dtos.AvatarDTO;
 import java.util.List;
 import javax.swing.ImageIcon;
+
 /**
  *
  */
@@ -20,12 +21,11 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
      */
     public PlayerSetupPanel() {
         initComponents();
-            btnAvatar1.setIcon(new ImageIcon("src\\avatares\\Luis.jpg"));
-       btnAvatar2.setIcon(new ImageIcon("src\\avatares\\jose.jpeg"));
-        btnAvatar3.setIcon(new ImageIcon("src\\avatares\\emir.jpeg"));
-        btnAvatar4.setIcon(new ImageIcon("src\\avatares\\toledo.jpeg"));
-        btnAvatar5.setIcon(new ImageIcon("src\\avatares\\victor.jpeg"));
-       
+        btnAvatar1.setIcon(new ImageIcon("src\\main\\avatares\\Luis.jpg"));
+        btnAvatar2.setIcon(new ImageIcon("src\\main\\avatares\\jose.jpeg"));
+        btnAvatar3.setIcon(new ImageIcon("src\\main\\avatares\\emir.jpeg"));
+        btnAvatar4.setIcon(new ImageIcon("src\\main\\avatares\\toledo.jpeg"));
+        btnAvatar5.setIcon(new ImageIcon("src\\main\\avatares\\victor.jpeg"));
     }
 
     public void setView(MainMenuView view) {
