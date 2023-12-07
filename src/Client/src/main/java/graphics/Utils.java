@@ -1,11 +1,20 @@
 package graphics;
 
+import dtos.AvatarDTO;
 import dtos.DominoDTO;
 import dtos.OpponentDTO;
 import dtos.PlayerDTO;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import dtos.PlayerDTO;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import ui.game.GameModel;
 import ui.game.GameViewModel;
 
 /**
@@ -18,6 +27,7 @@ public class Utils {
     }
 
     public static DominoGameGraphic createDominoGameGraphic(final GameViewModel gameViewModel) {
+        ScoreBoard scoreBoard = new ScoreBoard();
 
         PlayerDTO myPlayer = gameViewModel.getMyPlayer();
         MyPlayerGraphic myPlyerGraphic = new MyPlayerGraphic();
@@ -44,7 +54,26 @@ public class Utils {
             playerHandGraphic.add(new PlayerTileGraphic(playerTile.getLeftValue(), playerTile.getRightValue(), new Point()));
         }
 
-        return new DominoGameGraphic(playerHandGraphic, boardGraphic);
+        DominoGameGraphic dgg = new DominoGameGraphic(playerHandGraphic, boardGraphic);
+
+        if (((GameModel) gameViewModel).isGameOver()) {
+            scoreBoard.components.clear();
+            
+            List<Map.Entry<AvatarDTO, Integer>> entryList = new ArrayList<>(gameViewModel.getGameResume().entrySet());
+
+            // Ordenamos la lista por puntuación de menor a mayor
+            entryList.sort(Comparator.comparing(Map.Entry::getValue));
+
+            // Iteramos sobre la lista ordenada
+            for (Map.Entry<AvatarDTO, Integer> entry : entryList) {
+                Integer score = entry.getValue();
+                PlayerScoreTextComponent psc = new PlayerScoreTextComponent(entry.getKey().getNombre(), score);
+                scoreBoard.add(psc);
+                System.out.println("Jugador: " + entry.getKey().getNombre() + ", Puntuación: " + score);
+            }
+            dgg.add(scoreBoard);
+        }
+        return dgg;
     }
 
 }

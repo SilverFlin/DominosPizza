@@ -1,5 +1,7 @@
 package ui.MainMenu;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author edemb
@@ -15,6 +17,7 @@ public class MenuJPanel extends javax.swing.JPanel implements ViewParent {
      */
     public MenuJPanel() {
         initComponents();
+           jLabel1.setIcon(new ImageIcon("src\\main\\avatares\\MenuJPanelF.jpg"));
     }
 
     public void setView(MainMenuView view) {
@@ -33,10 +36,11 @@ public class MenuJPanel extends javax.swing.JPanel implements ViewParent {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton1.setText("HOW TO PLAY");
@@ -45,7 +49,8 @@ public class MenuJPanel extends javax.swing.JPanel implements ViewParent {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, 230, 80));
+        jPanel1.add(jButton1);
+        jButton1.setBounds(270, 540, 230, 80);
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton2.setText("START");
@@ -54,7 +59,10 @@ public class MenuJPanel extends javax.swing.JPanel implements ViewParent {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 540, 230, 80));
+        jPanel1.add(jButton2);
+        jButton2.setBounds(850, 540, 230, 80);
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, -70, 1280, 870);
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 800));
     }// </editor-fold>//GEN-END:initComponents
@@ -72,6 +80,7 @@ public class MenuJPanel extends javax.swing.JPanel implements ViewParent {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 

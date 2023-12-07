@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
  *
  */
 public class GameViewImpl extends javax.swing.JFrame implements GameView, PunteroListener, KeyListener {
-
+    
     private GamePresenter presenter;
-
+    
     private static final Logger LOG = Logger.getLogger(GameViewImpl.class.getName());
 
     /**
@@ -69,64 +69,66 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
     public void showInvalidMoveError() {
         JOptionPane.showMessageDialog(this, "Invalid move.", "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    
     @Override
     public void updateGame(final GameViewModel gameViewModel) {
         DominoGameGraphic dominoGameGraphic = Utils.createDominoGameGraphic(gameViewModel);
         this.remove(this.gamePanel);
         this.gamePanel = new GamePanel(dominoGameGraphic);
         this.gamePanel.addMouseListener(new Puntero(this.gamePanel, this));
-
+        
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(this.gamePanel);
         gamePanel.setLayout(gamePanelLayout);
         this.add(this.gamePanel, java.awt.BorderLayout.CENTER);
-
+        
         this.revalidate();
         this.repaint();
     }
-
+    
     @Override
     public void open() {
         this.setVisible(true);
     }
-
+    
     @Override
     public void close() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public void setPresenter(final GamePresenter presenter) {
         this.presenter = presenter;
     }
-
+    
     @Override
     public void putTileInBoard(final DominoDTO tile) {
         this.presenter.putTileInBoard(tile);
     }
-
+    
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-
+        
         if (KeyEvent.getKeyText(keyCode).equals("Q")) {
             this.presenter.takeFromPool();
         } else if (KeyEvent.getKeyText(keyCode).equals("W")) {
             this.presenter.skipTurn();
         }
-
+        
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
     }
-
+    
     @Override
     public void showGameOver(final GameViewModel gameViewModel) {
-        LOG.info("GameOver");
+        LOG.info(gameViewModel.getGameResume().toString());
+        this.updateGame(gameViewModel);
+        
     }
 }

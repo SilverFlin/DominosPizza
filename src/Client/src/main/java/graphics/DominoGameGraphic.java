@@ -19,6 +19,12 @@ public final class DominoGameGraphic extends GraphicComposite {
         components.add(ph);
     }
 
+    public DominoGameGraphic(final PlayerHandGraphic ph, final BoardGraphic bg,final ScoreBoard sc) {
+        components.add(bg);
+        components.add(ph);
+        components.add(sc);
+    }
+
     @Override
     public void draw(Graphics2D g2) {
         for (var g : components) {

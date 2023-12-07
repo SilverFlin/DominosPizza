@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dtos;
+
+import java.util.Objects;
 
 /**
  *
- * @author edemb
  */
-public class AvatarDTO {
+public class AvatarDTO implements Comparable<AvatarDTO> {
+
     private String nombre;
     private String image;
 
@@ -35,6 +33,41 @@ public class AvatarDTO {
     public void setImage(final String image) {
         this.image = image;
     }
-    
-    
+
+    @Override
+    public int compareTo(final AvatarDTO o) {
+        return this.getNombre().compareTo(o.getNombre());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.nombre);
+        hash = 29 * hash + Objects.hashCode(this.image);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AvatarDTO other = (AvatarDTO) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return Objects.equals(this.image, other.image);
+    }
+
+    @Override
+    public String toString() {
+        return "AvatarDTO{" + "nombre=" + nombre + '}';
+    }
+
 }
