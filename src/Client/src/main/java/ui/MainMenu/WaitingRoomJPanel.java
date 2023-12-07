@@ -1,6 +1,7 @@
 package ui.MainMenu;
 
 import domain.DominoGame;
+import dtos.AvatarDTO;
 import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     public WaitingRoomJPanel() {
         initComponents();
         jLabel1.setIcon(new ImageIcon("src\\main\\avatares\\WaitingRoomJPanel.jpg"));
-         this.btnAvatar1.setIcon(new ImageIcon("src\\main\\avatares\\toledoReal.jpeg"));
+        this.btnAvatar1.setIcon(new ImageIcon("src\\main\\avatares\\toledoReal.jpeg"));
         this.btnAvatar2.setIcon(new ImageIcon("src\\main\\avatares\\toledoReal.jpeg"));
         this.btnAvatar3.setIcon(new ImageIcon("src\\main\\avatares\\toledoReal.jpeg"));
         this.btnAvatar4.setIcon(new ImageIcon("src\\main\\avatares\\toledoReal.jpeg"));
@@ -52,15 +53,29 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     public void updateWaitingRoom(MainMenuViewModel viewModel) {
         this.waitingRoom = viewModel.getWaitingRoom();
         this.isAdmin(viewModel.isAdmin());
-        
+
         List<JButton> buttons = new ArrayList<>();
         buttons.add(this.btnAvatar1);
         buttons.add(this.btnAvatar2);
         buttons.add(this.btnAvatar3);
         buttons.add(this.btnAvatar4);
 
-         for (int i = 0; i <=waitingRoom.getPlayers().size() ; i++) {
-           buttons.get(i).setIcon(new ImageIcon(waitingRoom.getPlayers().get(i).getAvatar().getImage()));
+        List<JLabel> labels = new ArrayList<>();
+        labels.add(this.lblAvatar1);
+        labels.add(this.lblAvatar2);
+        labels.add(this.lblAvatar3);
+        labels.add(this.lblAvatar4);
+
+        for (int i = 0; i < waitingRoom.getPlayers().size(); i++) {
+
+            PlayerDTO player = this.waitingRoom.getPlayers().get(i);
+            if (player == null || player.getAvatar() == null) {
+                continue;
+            }
+
+            AvatarDTO avatar = player.getAvatar();
+            buttons.get(i).setIcon(new ImageIcon(avatar.getImage()));
+            labels.get(i).setText(avatar.getNombre());
         }
 
         if (viewModel.isAdmin() && viewModel.startGame() || viewModel.isAdmin() && waitingRoom.getPlayers().size() == 4) {
@@ -205,15 +220,16 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         btnAvatar1.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar1.setForeground(new java.awt.Color(0, 153, 153));
         btnAvatar1.setText("AvatarsAASD");
-        btnAvatar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAvatar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnAvatar1.setBorderPainted(false);
         btnAvatar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(btnAvatar1);
         btnAvatar1.setBounds(230, 180, 130, 130);
 
         lblAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
-        lblAvatar4.setForeground(new java.awt.Color(0, 153, 153));
+        lblAvatar4.setForeground(new java.awt.Color(255, 255, 255));
         lblAvatar4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAvatar4.setText("?");
         add(lblAvatar4);
         lblAvatar4.setBounds(970, 320, 130, 20);
 
@@ -224,20 +240,22 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         lblTitle.setBounds(390, 50, 530, 70);
 
         lblAvatar1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
-        lblAvatar1.setForeground(new java.awt.Color(0, 153, 153));
+        lblAvatar1.setForeground(new java.awt.Color(255, 255, 255));
         lblAvatar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(lblAvatar1);
         lblAvatar1.setBounds(230, 320, 130, 20);
 
         lblAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
-        lblAvatar2.setForeground(new java.awt.Color(0, 153, 153));
+        lblAvatar2.setForeground(new java.awt.Color(255, 255, 255));
         lblAvatar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAvatar2.setText("?");
         add(lblAvatar2);
         lblAvatar2.setBounds(480, 320, 130, 20);
 
         lblAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
-        lblAvatar3.setForeground(new java.awt.Color(0, 153, 153));
+        lblAvatar3.setForeground(new java.awt.Color(255, 255, 255));
         lblAvatar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAvatar3.setText("?");
         add(lblAvatar3);
         lblAvatar3.setBounds(720, 320, 130, 20);
 
@@ -253,11 +271,12 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
 
         tilesNumText.setBackground(new java.awt.Color(255, 204, 204));
         tilesNumText.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+        tilesNumText.setForeground(new java.awt.Color(255, 255, 255));
         tilesNumText.setText("Numero de fichas inciales:");
         add(tilesNumText);
         tilesNumText.setBounds(450, 360, 160, 20);
         add(jLabel1);
-        jLabel1.setBounds(0, -80, 1280, 880);
+        jLabel1.setBounds(10, -80, 1280, 880);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
