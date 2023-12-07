@@ -24,7 +24,7 @@ public class BoardGraphic extends GraphicComposite {
 
     @Override
     public void draw(Graphics2D g2) {
-        boardRectangle.setFrameFromDiagonal(100, 100, rec.getWidth() - 100, rec.getHeight() - 100);
+        boardRectangle.setFrameFromDiagonal(100, (rec.getHeight()/2)-100, rec.getWidth() - 100, (rec.getHeight()/2) + 100);
         g2.setPaint(new Color(102, 102, 102));
         g2.fillRect(0, 0, (int) rec.getWidth(), (int) rec.getHeight());
         g2.setPaint(Color.white);

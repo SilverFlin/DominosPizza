@@ -5,7 +5,9 @@
 package graphics;
 
 import java.awt.Color;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 /**
@@ -23,11 +25,11 @@ public class Tile {
         recTile.setRect(x, y, 0, 0);
         if(l==r){
             crearFichaVertical(l, r);
-            recTile.setRect(x, y, 40, 80);
+            recTile.setRect(x, y, getImagen().getWidth(), getImagen().getHeight());
         }
         else{
-        crearFichaHorizontal(l, r);
-        recTile.setRect(x, y, 80, 40);
+            crearFichaHorizontal(l, r);
+            recTile.setRect(x, y, getImagen().getWidth(), getImagen().getHeight());
         }
     }
 
@@ -61,9 +63,11 @@ public class Tile {
         
         b.setPaint(Color.gray);
         b.drawRoundRect(0,0, 79, 39, 15, 15);
+        
+        setImagen(escalar(1.0, 1.0));
     }
     
-        public void crearFichaVertical(int ar,int ab){
+    public void crearFichaVertical(int ar,int ab){
         
         imagen=new BufferedImage(40, 80, BufferedImage.TRANSLUCENT);
         var b = imagen.createGraphics();
@@ -79,6 +83,7 @@ public class Tile {
         b.setPaint(Color.gray);
         b.drawRoundRect(0,0, 39, 79, 15, 15);
         
+        setImagen(escalar(1.0, 1.0));
     }
     
     public BufferedImage cara(int n){
@@ -112,6 +117,15 @@ public class Tile {
             default ->{throw new AssertionError();}
         }
         return img;
+    }
+    
+    public BufferedImage escalar(double escalaX, double escalaY){
+        
+        var at = new AffineTransform();
+        at.scale(escalaX, escalaY);
+        var op = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        var fichita = op.filter(getImagen(), null);
+        return fichita;
     }
     
 }

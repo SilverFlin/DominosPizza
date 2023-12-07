@@ -2,14 +2,21 @@ package graphics;
 
 import dtos.AvatarDTO;
 import dtos.DominoDTO;
+import dtos.OpponentDTO;
 import dtos.PlayerDTO;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import dtos.PlayerDTO;
+import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import javax.imageio.ImageIO;
 import ui.game.GameModel;
 import ui.game.GameViewModel;
 
@@ -22,24 +29,25 @@ public class Utils {
         throw new IllegalStateException("Utility class");
     }
 
-    public static DominoGameGraphic createDominoGameGraphic(final GameViewModel gameViewModel) {
+    public static DominoGameGraphic createDominoGameGraphic(final GameViewModel gameViewModel) throws IOException {
         ScoreBoard scoreBoard = new ScoreBoard();
 
-        /*
-        SortedMap<AvatarDTO, Integer> getGameResume = new TreeMap<>();
+        PlayerDTO myPlayer = gameViewModel.getMyPlayer();
+        MyPlayerGraphic myPlyerGraphic = new MyPlayerGraphic();
 
-        // Llenamos el mapa con datos de ejemplo
-        AvatarDTO av = new AvatarDTO();
-        av.setNombre("Emir");
-        AvatarDTO av1 = new AvatarDTO();
-        av1.setNombre("Luis");
-        AvatarDTO av2 = new AvatarDTO();
-        av2.setNombre("Ramon");
-        getGameResume.put(av, 10);
-        getGameResume.put(av1, 20);
-        getGameResume.put(av2, 25);*/
+        AvatarGraphic myAvatarGraphic = new AvatarGraphic(myPlayer.getAvatar().getNombre() +"\n Fichas Restantes: "+myPlayer.getTiles().size(), ImageIO.read(new File(myPlayer.getAvatar().getImage())));
+        myPlyerGraphic.add(myAvatarGraphic);
 
-        // Convertimos las entradas del mapa a una lista
+        PlayersGraphic oppnents = new PlayersGraphic();
+
+        for (OpponentDTO o : gameViewModel.getRoom()) {
+            oppnents.add(new AvatarGraphic(o.getAvatar().getNombre()+"\n Fichas Restantes: "+myPlayer.getTiles().size(), ImageIO.read(new File(o.getAvatar().getImage()))));
+        }
+        
+        
+        
+        
+
         List<DominoDTO> boardTiles = gameViewModel.getBoard();
         BoardGraphic boardGraphic = new BoardGraphic();
         for (DominoDTO boardTile : boardTiles) {
@@ -54,6 +62,8 @@ public class Utils {
         }
 
         DominoGameGraphic dgg = new DominoGameGraphic(playerHandGraphic, boardGraphic);
+        dgg.add(myPlyerGraphic);
+        dgg.add(oppnents);
 
         if (((GameModel) gameViewModel).isGameOver()) {
             scoreBoard.components.clear();
