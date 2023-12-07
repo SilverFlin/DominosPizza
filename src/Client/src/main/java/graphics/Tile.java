@@ -64,7 +64,7 @@ public class Tile {
         b.setPaint(Color.gray);
         b.drawRoundRect(0,0, 79, 39, 15, 15);
         
-        setImagen(escalar(0.5, 0.5));
+        setImagen(escalar(1.0, 1.0));
     }
     
     public void crearFichaVertical(int ar,int ab){
@@ -83,7 +83,7 @@ public class Tile {
         b.setPaint(Color.gray);
         b.drawRoundRect(0,0, 39, 79, 15, 15);
         
-        setImagen(escalar(0.5, 0.5));
+        setImagen(escalar(1.0, 1.0));
     }
     
     public BufferedImage cara(int n){
