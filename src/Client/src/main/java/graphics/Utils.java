@@ -24,22 +24,22 @@ public class Utils {
 
     public static DominoGameGraphic createDominoGameGraphic(final GameViewModel gameViewModel) {
         ScoreBoard scoreBoard = new ScoreBoard();
+
         /*
-        SortedMap<PlayerDTO, Integer> gameResume = new TreeMap<>();
+        SortedMap<AvatarDTO, Integer> getGameResume = new TreeMap<>();
 
         // Llenamos el mapa con datos de ejemplo
-        PlayerDTO pdto = new PlayerDTO();
-        pdto.setName("Emir");
-        PlayerDTO pdto2 = new PlayerDTO();
-        pdto2.setName("Luis");
-        PlayerDTO pdto3 = new PlayerDTO();
-        pdto3.setName("Ramon");
-        gameResume.put(pdto, 10);
-        gameResume.put(pdto2, 20);
-        gameResume.put(pdto3, 25);
-         */
-        // Convertimos las entradas del mapa a una lista
+        AvatarDTO av = new AvatarDTO();
+        av.setNombre("Emir");
+        AvatarDTO av1 = new AvatarDTO();
+        av1.setNombre("Luis");
+        AvatarDTO av2 = new AvatarDTO();
+        av2.setNombre("Ramon");
+        getGameResume.put(av, 10);
+        getGameResume.put(av1, 20);
+        getGameResume.put(av2, 25);*/
 
+        // Convertimos las entradas del mapa a una lista
         List<DominoDTO> boardTiles = gameViewModel.getBoard();
         BoardGraphic boardGraphic = new BoardGraphic();
         for (DominoDTO boardTile : boardTiles) {
@@ -56,21 +56,19 @@ public class Utils {
         DominoGameGraphic dgg = new DominoGameGraphic(playerHandGraphic, boardGraphic);
 
         if (((GameModel) gameViewModel).isGameOver()) {
+            scoreBoard.components.clear();
+            
             List<Map.Entry<AvatarDTO, Integer>> entryList = new ArrayList<>(gameViewModel.getGameResume().entrySet());
-
-            var resume = gameViewModel.getGameResume();
 
             // Ordenamos la lista por puntuación de menor a mayor
             entryList.sort(Comparator.comparing(Map.Entry::getValue));
 
             // Iteramos sobre la lista ordenada
             for (Map.Entry<AvatarDTO, Integer> entry : entryList) {
-
                 Integer score = entry.getValue();
-                scoreBoard.add(new PlayerScoreTextComponent(entry.getKey().getNombre(), score));
-                // Realiza las operaciones necesarias con cada jugador y puntuación
+                PlayerScoreTextComponent psc = new PlayerScoreTextComponent(entry.getKey().getNombre(), score);
+                scoreBoard.add(psc);
                 System.out.println("Jugador: " + entry.getKey().getNombre() + ", Puntuación: " + score);
-
             }
             dgg.add(scoreBoard);
         }

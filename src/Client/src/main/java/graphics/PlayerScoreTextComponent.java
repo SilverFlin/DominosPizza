@@ -24,14 +24,13 @@ public class PlayerScoreTextComponent extends GraphicComponent {
     public PlayerScoreTextComponent(String nombre, int score) {
         this.nombre = nombre;
         this.score = score;
-        this.point = point;
     }
 
     @Override
     public void draw(Graphics2D g2) {
 
         g2.setFont(new Font("Arial", Font.BOLD, 24));
-        g2.drawString(nombre + ": " + 10, (int) this.point.getX(), (int) this.point.getY());
+        g2.drawString(nombre + ": " + score, (int) this.point.getX(), (int) this.point.getY());
 
     }
 

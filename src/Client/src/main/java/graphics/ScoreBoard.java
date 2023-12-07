@@ -23,7 +23,6 @@ public class ScoreBoard extends GraphicComposite {
 
     @Override
     public void draw(Graphics2D g2) {
-        this.components.clear();
         int anchoRectangulo = 500;
         int altoRectangulo = 500;
 
@@ -56,11 +55,11 @@ public class ScoreBoard extends GraphicComposite {
          */
         for (var component : components) {
             PlayerScoreTextComponent p = (PlayerScoreTextComponent) component;
+            System.out.println(p.getScore());
             p.setPoint(new Point2D.Double(x, y));
-            //p.draw(g2);
+            p.draw(g2);
             y += 50;
         }
-        super.draw(g2);
     }
 
 }
