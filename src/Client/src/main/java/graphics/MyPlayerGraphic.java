@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
  * @author JIVB
  */
 public class MyPlayerGraphic extends GraphicComposite {
-    
+
     
 
     public MyPlayerGraphic() {
