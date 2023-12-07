@@ -1,10 +1,12 @@
 package ui.MainMenu;
 
 import domain.DominoGame;
+import dtos.AvatarDTO;
 import dtos.PlayerDTO;
 import dtos.WaitingRoomDTO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -25,6 +27,11 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
      */
     public WaitingRoomJPanel() {
         initComponents();
+        jLabel1.setIcon(new ImageIcon("src\\main\\avatares\\WaitingRoomJPanel.jpg"));
+        this.btnAvatar1.setIcon(new ImageIcon("src\\main\\avatares\\toledoReal.jpeg"));
+        this.btnAvatar2.setIcon(new ImageIcon("src\\main\\avatares\\toledoReal.jpeg"));
+        this.btnAvatar3.setIcon(new ImageIcon("src\\main\\avatares\\toledoReal.jpeg"));
+        this.btnAvatar4.setIcon(new ImageIcon("src\\main\\avatares\\toledoReal.jpeg"));
     }
 
     /**
@@ -47,8 +54,28 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         this.waitingRoom = viewModel.getWaitingRoom();
         this.isAdmin(viewModel.isAdmin());
 
-        for (PlayerDTO p : this.waitingRoom.getPlayers()) {
-            // TODO show player ready
+        List<JButton> buttons = new ArrayList<>();
+        buttons.add(this.btnAvatar1);
+        buttons.add(this.btnAvatar2);
+        buttons.add(this.btnAvatar3);
+        buttons.add(this.btnAvatar4);
+
+        List<JLabel> labels = new ArrayList<>();
+        labels.add(this.lblAvatar1);
+        labels.add(this.lblAvatar2);
+        labels.add(this.lblAvatar3);
+        labels.add(this.lblAvatar4);
+
+        for (int i = 0; i < waitingRoom.getPlayers().size(); i++) {
+
+            PlayerDTO player = this.waitingRoom.getPlayers().get(i);
+            if (player == null || player.getAvatar() == null) {
+                continue;
+            }
+
+            AvatarDTO avatar = player.getAvatar();
+            buttons.get(i).setIcon(new ImageIcon(avatar.getImage()));
+            labels.get(i).setText(avatar.getNombre());
         }
 
         if (viewModel.isAdmin() && viewModel.startGame() || viewModel.isAdmin() && waitingRoom.getPlayers().size() == 4) {
@@ -124,10 +151,11 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         lblAvatar3 = new javax.swing.JLabel();
         tilesNum = new javax.swing.JComboBox<>();
         tilesNumText = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 255, 204));
         setPreferredSize(new java.awt.Dimension(1280, 800));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(null);
 
         btnLeave.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 36)); // NOI18N
         btnLeave.setForeground(new java.awt.Color(0, 153, 153));
@@ -140,7 +168,8 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
                 btnLeaveActionPerformed(evt);
             }
         });
-        add(btnLeave, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 610, 260, 80));
+        add(btnLeave);
+        btnLeave.setBounds(180, 610, 260, 80);
 
         btnAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar2.setForeground(new java.awt.Color(0, 153, 153));
@@ -153,7 +182,8 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
                 btnAvatar2ActionPerformed(evt);
             }
         });
-        add(btnAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 130, 130));
+        add(btnAvatar2);
+        btnAvatar2.setBounds(480, 180, 130, 130);
 
         btnReady.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 36)); // NOI18N
         btnReady.setForeground(new java.awt.Color(0, 153, 153));
@@ -166,7 +196,8 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
                 btnReadyActionPerformed(evt);
             }
         });
-        add(btnReady, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 600, 240, 80));
+        add(btnReady);
+        btnReady.setBounds(910, 600, 240, 80);
 
         btnAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar3.setForeground(new java.awt.Color(0, 153, 153));
@@ -174,7 +205,8 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         btnAvatar3.setBorder(null);
         btnAvatar3.setBorderPainted(false);
         btnAvatar3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        add(btnAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 130, 130));
+        add(btnAvatar3);
+        btnAvatar3.setBounds(720, 180, 130, 130);
 
         btnAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar4.setForeground(new java.awt.Color(0, 153, 153));
@@ -182,40 +214,50 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
         btnAvatar4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAvatar4.setBorderPainted(false);
         btnAvatar4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        add(btnAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 180, 130, 130));
+        add(btnAvatar4);
+        btnAvatar4.setBounds(970, 180, 130, 130);
 
         btnAvatar1.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar1.setForeground(new java.awt.Color(0, 153, 153));
         btnAvatar1.setText("AvatarsAASD");
-        btnAvatar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAvatar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnAvatar1.setBorderPainted(false);
         btnAvatar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        add(btnAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 130, 130));
+        add(btnAvatar1);
+        btnAvatar1.setBounds(230, 180, 130, 130);
 
         lblAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
-        lblAvatar4.setForeground(new java.awt.Color(0, 153, 153));
+        lblAvatar4.setForeground(new java.awt.Color(255, 255, 255));
         lblAvatar4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 320, 130, 20));
+        lblAvatar4.setText("?");
+        add(lblAvatar4);
+        lblAvatar4.setBounds(970, 320, 130, 20);
 
         lblTitle.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 48)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(0, 153, 153));
         lblTitle.setText("WAITING FOR PLAYERS...");
-        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 530, 70));
+        add(lblTitle);
+        lblTitle.setBounds(390, 50, 530, 70);
 
         lblAvatar1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
-        lblAvatar1.setForeground(new java.awt.Color(0, 153, 153));
+        lblAvatar1.setForeground(new java.awt.Color(255, 255, 255));
         lblAvatar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 130, 20));
+        add(lblAvatar1);
+        lblAvatar1.setBounds(230, 320, 130, 20);
 
         lblAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
-        lblAvatar2.setForeground(new java.awt.Color(0, 153, 153));
+        lblAvatar2.setForeground(new java.awt.Color(255, 255, 255));
         lblAvatar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 130, 20));
+        lblAvatar2.setText("?");
+        add(lblAvatar2);
+        lblAvatar2.setBounds(480, 320, 130, 20);
 
         lblAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
-        lblAvatar3.setForeground(new java.awt.Color(0, 153, 153));
+        lblAvatar3.setForeground(new java.awt.Color(255, 255, 255));
         lblAvatar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, 130, 20));
+        lblAvatar3.setText("?");
+        add(lblAvatar3);
+        lblAvatar3.setBounds(720, 320, 130, 20);
 
         tilesNum.setBackground(new java.awt.Color(153, 204, 255));
         tilesNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 Fichas", "3 Fichas", "4 Fichas", "5 Fichas", "6 Fichas", "7 Fichas" }));
@@ -224,12 +266,17 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
                 tilesNumActionPerformed(evt);
             }
         });
-        add(tilesNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, -1, -1));
+        add(tilesNum);
+        tilesNum.setBounds(610, 360, 76, 22);
 
         tilesNumText.setBackground(new java.awt.Color(255, 204, 204));
         tilesNumText.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+        tilesNumText.setForeground(new java.awt.Color(255, 255, 255));
         tilesNumText.setText("Numero de fichas inciales:");
-        add(tilesNumText, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 160, 20));
+        add(tilesNumText);
+        tilesNumText.setBounds(450, 360, 160, 20);
+        add(jLabel1);
+        jLabel1.setBounds(10, -80, 1280, 880);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
@@ -263,6 +310,7 @@ public class WaitingRoomJPanel extends javax.swing.JPanel implements ViewParent 
     private javax.swing.JButton btnAvatar4;
     private javax.swing.JButton btnLeave;
     private javax.swing.JButton btnReady;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAvatar1;
     private javax.swing.JLabel lblAvatar2;
     private javax.swing.JLabel lblAvatar3;

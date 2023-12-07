@@ -21,6 +21,7 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
      */
     public PlayerSetupPanel() {
         initComponents();
+        jLabel1.setIcon(new ImageIcon("src\\main\\avatares\\PlayerSetupPanelF.jpg"));
         btnAvatar1.setIcon(new ImageIcon("src\\main\\avatares\\Luis.jpg"));
         btnAvatar2.setIcon(new ImageIcon("src\\main\\avatares\\jose.jpeg"));
         btnAvatar3.setIcon(new ImageIcon("src\\main\\avatares\\emir.jpeg"));
@@ -82,11 +83,12 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
         lblAvatar5 = new javax.swing.JLabel();
         btnSelect = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setForeground(new java.awt.Color(204, 255, 51));
         setPreferredSize(new java.awt.Dimension(1280, 800));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(null);
 
         btnAvatar1.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar1.setForeground(new java.awt.Color(0, 153, 153));
@@ -98,7 +100,8 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
                 btnAvatar1ActionPerformed(evt);
             }
         });
-        add(btnAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 130, 130));
+        add(btnAvatar1);
+        btnAvatar1.setBounds(100, 180, 130, 130);
 
         btnAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar2.setForeground(new java.awt.Color(0, 153, 153));
@@ -110,7 +113,8 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
                 btnAvatar2ActionPerformed(evt);
             }
         });
-        add(btnAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 130, 130));
+        add(btnAvatar2);
+        btnAvatar2.setBounds(350, 180, 130, 130);
 
         btnAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar3.setForeground(new java.awt.Color(0, 153, 153));
@@ -122,7 +126,8 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
                 btnAvatar3ActionPerformed(evt);
             }
         });
-        add(btnAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 130, 130));
+        add(btnAvatar3);
+        btnAvatar3.setBounds(590, 180, 130, 130);
 
         btnAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar4.setForeground(new java.awt.Color(0, 153, 153));
@@ -134,7 +139,8 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
                 btnAvatar4ActionPerformed(evt);
             }
         });
-        add(btnAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 130, 130));
+        add(btnAvatar4);
+        btnAvatar4.setBounds(840, 180, 130, 130);
 
         btnAvatar5.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         btnAvatar5.setForeground(new java.awt.Color(0, 153, 153));
@@ -147,37 +153,44 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
                 btnAvatar5ActionPerformed(evt);
             }
         });
-        add(btnAvatar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 180, 130, 130));
+        add(btnAvatar5);
+        btnAvatar5.setBounds(1080, 180, 130, 130);
 
         lblAvatar4.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar4.setForeground(new java.awt.Color(0, 153, 153));
         lblAvatar4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 320, 130, 20));
+        add(lblAvatar4);
+        lblAvatar4.setBounds(840, 320, 130, 20);
 
         lblTitle.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 48)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(0, 153, 153));
         lblTitle.setText("CHOOSE YOUR AVATAR");
-        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 510, 70));
+        add(lblTitle);
+        lblTitle.setBounds(390, 50, 510, 70);
 
         lblAvatar1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar1.setForeground(new java.awt.Color(0, 153, 153));
         lblAvatar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 130, 20));
+        add(lblAvatar1);
+        lblAvatar1.setBounds(100, 320, 130, 20);
 
         lblAvatar2.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar2.setForeground(new java.awt.Color(0, 153, 153));
         lblAvatar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 130, 20));
+        add(lblAvatar2);
+        lblAvatar2.setBounds(350, 320, 130, 20);
 
         lblAvatar3.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar3.setForeground(new java.awt.Color(0, 153, 153));
         lblAvatar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 130, 20));
+        add(lblAvatar3);
+        lblAvatar3.setBounds(590, 320, 130, 20);
 
         lblAvatar5.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 24)); // NOI18N
         lblAvatar5.setForeground(new java.awt.Color(0, 153, 153));
         lblAvatar5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblAvatar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 320, 130, 20));
+        add(lblAvatar5);
+        lblAvatar5.setBounds(1080, 320, 130, 20);
 
         btnSelect.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 36)); // NOI18N
         btnSelect.setForeground(new java.awt.Color(0, 153, 153));
@@ -190,15 +203,20 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
                 btnSelectActionPerformed(evt);
             }
         });
-        add(btnSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 610, 240, 80));
+        add(btnSelect);
+        btnSelect.setBounds(540, 610, 240, 80);
 
         txtName.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         txtName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 460, 90));
+        add(txtName);
+        txtName.setBounds(420, 400, 460, 90);
+        add(jLabel1);
+        jLabel1.setBounds(0, -60, 1280, 860);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         PlayerDTO player = new PlayerDTO();
+        this.avatarName="avatarImage";
         player.setAvatar(new AvatarDTO(this.txtName.getText(), avatarImage));
         this.presenter.goToWaitingRoom(player);
         btnSelect.setEnabled(false);
@@ -207,31 +225,32 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
 
     private void btnAvatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar1ActionPerformed
         // TODO add your handling code here:
-        this.avatarImage = this.btnAvatar1.getText();
+        this.avatarImage ="src\\main\\avatares\\Luis.jpg";
+        
     }//GEN-LAST:event_btnAvatar1ActionPerformed
 
     private void btnAvatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar2ActionPerformed
         // TODO add your handling code here:
-        this.avatarImage = this.btnAvatar2.getText();
+      this.avatarImage ="src\\main\\avatares\\jose.jpeg";
+
 
     }//GEN-LAST:event_btnAvatar2ActionPerformed
 
     private void btnAvatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar3ActionPerformed
         // TODO add your handling code here:
-        this.avatarImage = this.btnAvatar3.getText();
+         this.avatarImage ="src\\main\\avatares\\emir.jpeg";
 
     }//GEN-LAST:event_btnAvatar3ActionPerformed
 
     private void btnAvatar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar4ActionPerformed
         // TODO add your handling code here:
-        this.avatarImage = this.btnAvatar4.getText();
+        this.avatarImage ="src\\main\\avatares\\toledo.jpeg";
 
     }//GEN-LAST:event_btnAvatar4ActionPerformed
 
     private void btnAvatar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatar5ActionPerformed
         // TODO add your handling code here:
-        this.avatarImage = this.btnAvatar5.getText();
-
+      this.avatarImage ="src\\main\\avatares\\victor.jpeg";
     }//GEN-LAST:event_btnAvatar5ActionPerformed
 
 
@@ -242,6 +261,7 @@ public class PlayerSetupPanel extends javax.swing.JPanel implements ViewParent {
     private javax.swing.JButton btnAvatar4;
     private javax.swing.JButton btnAvatar5;
     private javax.swing.JButton btnSelect;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAvatar1;
     private javax.swing.JLabel lblAvatar2;
     private javax.swing.JLabel lblAvatar3;
