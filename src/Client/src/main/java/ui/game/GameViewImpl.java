@@ -73,6 +73,7 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
     @Override
     public void updateGame(final GameViewModel gameViewModel) {
         DominoGameGraphic dominoGameGraphic = Utils.createDominoGameGraphic(gameViewModel);
+        System.out.println(gameViewModel);
         this.remove(this.gamePanel);
         this.gamePanel = new GamePanel(dominoGameGraphic);
         this.gamePanel.addMouseListener(new Puntero(this.gamePanel, this));

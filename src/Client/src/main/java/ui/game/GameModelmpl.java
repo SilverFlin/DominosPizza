@@ -150,13 +150,14 @@ public class GameModelmpl implements GameModel, GameViewModel {
         PlayerDTO player = this.getMyPlayer();
         int remainingTilesPool = this.getRemainingTilesInPool();
         List<OpponentDTO> opponents = this.getRoom();
+        PlayerDTO activePlayer = this.getActivePlayer();
+        String activePlayerStr = " {name=" + activePlayer.getAvatar().getNombre() + ", tiles=" + activePlayer.getTiles().size() + "}";
 
         return "Game View Model\n"
-                + "List<DominoDTO> boardTiles = " + boardTiles + "\n"
                 + "PlayerDTO myPlayer = " + player + "\n"
                 + "remainingPool = " + remainingTilesPool + "\n"
                 + "List<OpponentDTO> = " + opponents + "\n"
-                + "currentPlayer" + this.getActivePlayer() + "\n";
+                + "currentPlayer " + activePlayerStr + "\n";
     }
 
 }
