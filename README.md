@@ -1,5 +1,42 @@
 # DominosPizza
 
+## Getting Started 
+
+### Prerequisitos
+
+Para poder correr el proyecto se necesita tener instalado el JDK 17+, NetBeans 17.0+, Maven 3.8.1+ y ganas de jugar Dominó.
+
+### Instalación
+
+Para poder instalar el proyecto se necesita clonar el repositorio, y abrir los cuatro proyectos en NetBeans.
+
+Las dependencias de Maven se deberían configurar e instalar automáticamente, pero si no se instalan se puede hacer click derecho en el proyecto, y seleccionar la opción `Add Dependency...`.
+
+![Add Dependency](/docs/imgs/instalacion1.png)
+
+En la ventana que se abre, se debe buscar la dependencia que se necesitan, establecidas en el [diagrama de despliegue](/docs/diagrams/Deploy_Diagram.md).
+
+
+
+Una vez todo buildeado, se debe ubicar el proyecto de [Server](/src/Server/) y correrlo a través de `edu.itson.server.App.java`
+
+Antes de correr el Cliente, se debe configurar la dirección IP del servidor, esto se hace en el archivo [App.java](/src/Client/src/main/java/client/App.java), en la línea 37.
+
+```java
+NetworkEventConnection eventConnection = new NetworkEventConnection("127.0.0.1", 6666);
+```
+Por default viene apuntando a localhost, pero se puede cambiar a la dirección IP del servidor.
+
+Para conseguir la IP se debe asegurar que los dispositivos donde se va a correr el Cliente y el Servidor estén bajo el mismo router, y correr el siguiente comando en la terminal:
+
+```bash
+ipconfig
+```
+
+En la salida del comando se debe buscar la dirección IPv4 del dispositivo (que corre el server), y esa es la dirección IP que se debe utilizar.
+
+Una vez configurada la dirección IP, se debe correr el proyecto de [Client](/src/Client/) a través de `client.App.java`
+
 ## Descripción
 
 DominosPizza es un juego de dominó en línea, en el cual los jugadores podrán jugar partidas de dominó en línea con otros jugadores.
