@@ -8,6 +8,8 @@ import graphics.PunteroListener;
 import graphics.Utils;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -71,19 +73,23 @@ public class GameViewImpl extends javax.swing.JFrame implements GameView, Punter
     }
     
     @Override
-    public void updateGame(final GameViewModel gameViewModel) {
-        DominoGameGraphic dominoGameGraphic = Utils.createDominoGameGraphic(gameViewModel);
-        System.out.println(gameViewModel);
-        this.remove(this.gamePanel);
-        this.gamePanel = new GamePanel(dominoGameGraphic);
-        this.gamePanel.addMouseListener(new Puntero(this.gamePanel, this));
-        
-        javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(this.gamePanel);
-        gamePanel.setLayout(gamePanelLayout);
-        this.add(this.gamePanel, java.awt.BorderLayout.CENTER);
-        
-        this.revalidate();
-        this.repaint();
+    public void updateGame(final GameViewModel gameViewModel)  {
+        try {
+            DominoGameGraphic dominoGameGraphic = Utils.createDominoGameGraphic(gameViewModel);
+            System.out.println(gameViewModel);
+            this.remove(this.gamePanel);
+            this.gamePanel = new GamePanel(dominoGameGraphic);
+            this.gamePanel.addMouseListener(new Puntero(this.gamePanel, this));
+            
+            javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(this.gamePanel);
+            gamePanel.setLayout(gamePanelLayout);
+            this.add(this.gamePanel, java.awt.BorderLayout.CENTER);
+            
+            this.revalidate();
+            this.repaint();
+        } catch (IOException ex) {
+            Logger.getLogger(GameViewImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
